@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import { AbstractControl, FormControl } from '@angular/forms';
 import { INbControlErrMapping } from '../../models';
-import { NB_CONTROL_DEFAULT_ERR_MAPPING_TOKEN } from '../../constants';
+import { NB_CONTROL_COMMON_ERR_MAPPING_TOKEN } from '../../constants';
 import { Subject } from 'rxjs';
 import { takeUntil, tap } from 'rxjs/operators';
 
@@ -43,9 +43,9 @@ export class NbControlErrComponent implements OnChanges, OnDestroy {
   private destroy$ = new Subject();
 
   constructor(
-    @Inject(NB_CONTROL_DEFAULT_ERR_MAPPING_TOKEN)
+    @Inject(NB_CONTROL_COMMON_ERR_MAPPING_TOKEN)
     @Optional()
-    private defaultErrMapping: INbControlErrMapping = {},
+    private commonErrMapping: INbControlErrMapping = {},
     private changeDR: ChangeDetectorRef,
   ) { }
 
@@ -66,7 +66,7 @@ export class NbControlErrComponent implements OnChanges, OnDestroy {
 
   private updateAllErrMapping(): void {
     this.allErrMapping = {
-      ...this.defaultErrMapping,
+      ...this.commonErrMapping,
       ...this.errMapping,
     };
     this.changeDR.markForCheck();

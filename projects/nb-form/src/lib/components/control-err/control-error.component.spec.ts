@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NbControlErrComponent } from './control-err.component';
 import { NbFormTestingModule } from '../../testing';
-import { NbControlErrTypeEnum, NB_CONTROL_DEFAULT_ERR_MAPPING_TOKEN } from '../../constants';
+import { NbControlErrTypeEnum, NB_CONTROL_COMMON_ERR_MAPPING_TOKEN } from '../../constants';
 import { ChangeDetectorRef, SimpleChange } from '@angular/core';
 import { INbControlErrMapping } from '../../models';
 import { FormControl } from '@angular/forms';
@@ -164,7 +164,7 @@ describe('NbControlErrComponent', () => {
             imports: [NbFormTestingModule],
             providers: [
               {
-                provide: NB_CONTROL_DEFAULT_ERR_MAPPING_TOKEN,
+                provide: NB_CONTROL_COMMON_ERR_MAPPING_TOKEN,
                 useValue: item.testData.defaultMapping,
               }
             ]

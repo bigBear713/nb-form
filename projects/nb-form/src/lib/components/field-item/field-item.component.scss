@@ -1,0 +1,34 @@
+:host {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.field-label {
+  flex: 0 0 120px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 8px 0 4px;
+  word-break: break-word;
+
+  &:empty {
+    flex-basis: 0;
+    padding: 0;
+  }
+}
+
+.label-required {
+  color: red;
+}
+
+.field-content {
+  flex: 1 1 auto;
+  position: relative;
+  display: flex;
+  align-items: center;
+}

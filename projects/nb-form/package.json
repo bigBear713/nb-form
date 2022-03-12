@@ -6,6 +6,7 @@
     "@angular/core": "^12.2.0"
   },
   "dependencies": {
+    "lodash-es": "^4.17.21",
     "tslib": "^2.3.0"
   }
 }

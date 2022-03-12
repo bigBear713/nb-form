@@ -17,7 +17,7 @@ import { takeUntil, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'nb-control-err',
-  template: `<div *ngIf="errControl.touched&&control.errors" 
+  template: `<div *ngIf="(control.touched||errControl.touched)&&control.errors" 
                   [nb-r-str]="control.errors|nbErrInfo:allErrMapping"></div>`,
   styles: [`
     :host {

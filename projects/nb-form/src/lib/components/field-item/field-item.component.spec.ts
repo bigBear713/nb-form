@@ -36,6 +36,7 @@ describe('NbFieldItemComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(NbFieldItemComponent);
     component = fixture.componentInstance;
+    component.control = new FormControl();
     fixture.detectChanges();
   });
 
@@ -51,6 +52,7 @@ describe('NbFieldItemComponent', () => {
     beforeEach(() => {
       uiFixture = TestBed.createComponent(UIComponent);
       uiComponent = uiFixture.componentInstance;
+      uiComponent.control = new FormControl();
       uiFixture.detectChanges();
       uiHostEle = uiFixture.debugElement.nativeElement;
     });

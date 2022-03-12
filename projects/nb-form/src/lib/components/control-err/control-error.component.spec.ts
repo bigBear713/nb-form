@@ -18,16 +18,15 @@ describe('NbControlErrComponent', () => {
   });
 
   it('should create', () => {
-    const fixture = TestBed.createComponent(NbControlErrComponent);
-    const component = fixture.componentInstance;
-    fixture.detectChanges();
-    expect(component).toBeTruthy();
+    const instance = createComponent();
+    expect(instance.component).toBeTruthy();
   });
 
   describe('Verify the UI', () => {
     let fixture: ComponentFixture<NbControlErrComponent>;
     let component: NbControlErrComponent;
     let hostEle: HTMLElement;
+
     beforeEach(() => {
       const instance = createComponent();
       fixture = instance.fixture;
@@ -97,7 +96,31 @@ describe('NbControlErrComponent', () => {
         expect(!!hostEle.querySelector('div')).toEqual(item.expect.infoWrapperExisted);
       });
     });
+
+    it('verify the errControl touched status change', () => {
+      const instance = createComponent();
+      const fixture = instance.fixture;
+      const component = instance.component;
+
+      spyOn(component.errControl, 'markAsTouched').and.callThrough();
+
+      const changes = {
+        control: new SimpleChange(undefined, component.control, false)
+      };
+      component.ngOnChanges(changes);
+
+      component.control.setValue(123);
+
+      expect(component.errControl.markAsTouched).toHaveBeenCalled();
+      expect(component.errControl.touched).toBeTrue();
+
+      component.control.setErrors({});
+      fixture.detectChanges();
+      const hostEle: HTMLElement = fixture.debugElement.nativeElement;
+      expect(hostEle.querySelector('div')).toBeTruthy();
+    });
   });
+
 
   describe('verify the allErrorMapping', () => {
     const testData: {
@@ -173,6 +196,7 @@ describe('NbControlErrComponent', () => {
 function createComponent() {
   const fixture = TestBed.createComponent(NbControlErrComponent);
   const component = fixture.componentInstance;
+  component.control = new FormControl();
   fixture.detectChanges();
   return { fixture, component };
 }

@@ -105,6 +105,40 @@
           }
         }
       }
+    },
+    "nb-form": {
+      "projectType": "library",
+      "root": "projects/nb-form",
+      "sourceRoot": "projects/nb-form/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/nb-form/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/nb-form/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/nb-form/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/nb-form/src/test.ts",
+            "tsConfig": "projects/nb-form/tsconfig.spec.json",
+            "karmaConfig": "projects/nb-form/karma.conf.js",
+            "watch": true,
+            "progress": true,
+            "codeCoverage": true
+          }
+        }
+      }
     }
   },
   "defaultProject": "nb-form-demo"

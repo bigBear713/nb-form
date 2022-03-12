@@ -1,8 +1,4 @@
-export interface INbFormConfig {
-  [key: string]: INbFormControlConfig;
-}
-
-export interface INbFormControlConfig {
+export interface INbControlConfig {
   required: boolean;
   max?: number;
   min?: number;

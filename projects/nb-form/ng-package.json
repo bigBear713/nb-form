@@ -2,6 +2,7 @@
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
   "dest": "../../dist/nb-form",
   "allowedNonPeerDependencies": [
+    "@bigbear713/nb-common",
     "lodash-es",
     "tslib"
   ],

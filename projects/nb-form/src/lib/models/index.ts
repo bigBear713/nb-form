@@ -1,2 +1,3 @@
-export * from './nb-form-control-error-mapping.interface';
-export * from './nb-form-config.interface';
+export * from './nb-control-err-mapping.interface';
+export * from './nb-form-configs.interface';
+export * from './nb-control-config.interface';

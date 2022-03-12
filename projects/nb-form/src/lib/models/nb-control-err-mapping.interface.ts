@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
 
-export interface INbFormControlErrorMapping {
+export interface INbControlErrMapping {
   [key: string]: string | Observable<string>;
 }

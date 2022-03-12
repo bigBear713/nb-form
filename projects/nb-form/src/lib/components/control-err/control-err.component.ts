@@ -5,17 +5,20 @@ import {
   Inject,
   Input,
   OnChanges,
+  OnDestroy,
   Optional,
   SimpleChanges
 } from '@angular/core';
-import { AbstractControl } from '@angular/forms';
+import { AbstractControl, FormControl } from '@angular/forms';
 import { INbControlErrMapping } from '../../models';
 import { NB_CONTROL_DEFAULT_ERR_MAPPING_TOKEN } from '../../constants';
+import { Subject } from 'rxjs';
+import { takeUntil, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'nb-control-err',
-  template: `<div *ngIf="control?.touched&&control?.errors" 
-                  [nb-r-str]="control?.errors | nbErrInfo:allErrMapping"></div>`,
+  template: `<div *ngIf="errControl.touched&&control.errors" 
+                  [nb-r-str]="control.errors|nbErrInfo:allErrMapping"></div>`,
   styles: [`
     :host {
       position: absolute;
@@ -27,13 +30,17 @@ import { NB_CONTROL_DEFAULT_ERR_MAPPING_TOKEN } from '../../constants';
   `],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NbControlErrComponent implements OnChanges {
+export class NbControlErrComponent implements OnChanges, OnDestroy {
 
-  @Input() control: AbstractControl | undefined;
+  @Input() control!: AbstractControl;
 
   @Input() errMapping: INbControlErrMapping = {};
 
   allErrMapping: INbControlErrMapping = {};
+
+  errControl = new FormControl();
+
+  private destroy$ = new Subject();
 
   constructor(
     @Inject(NB_CONTROL_DEFAULT_ERR_MAPPING_TOKEN)
@@ -43,10 +50,18 @@ export class NbControlErrComponent implements OnChanges {
   ) { }
 
   ngOnChanges(changes: SimpleChanges) {
-    const { errMapping } = changes;
+    const { control, errMapping } = changes;
+    if (control) {
+      this.subscribeControlChange();
+    }
     if (errMapping) {
       this.updateAllErrMapping();
     }
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   private updateAllErrMapping(): void {
@@ -55,5 +70,14 @@ export class NbControlErrComponent implements OnChanges {
       ...this.errMapping,
     };
     this.changeDR.markForCheck();
+  }
+
+  private subscribeControlChange(): void {
+    this.control.valueChanges.pipe(
+      tap(() => this.errControl.markAsTouched()),
+      takeUntil(this.destroy$)
+    ).subscribe(
+      () => this.changeDR.markForCheck()
+    );
   }
 }

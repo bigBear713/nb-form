@@ -22,7 +22,7 @@ import { INbControlErrMapping } from '../../models';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NbFieldItemComponent {
-  @Input() control: AbstractControl | undefined;
+  @Input() control!: AbstractControl;
 
   @Input() errMapping: INbControlErrMapping = {};
 

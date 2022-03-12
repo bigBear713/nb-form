@@ -1,5 +1,5 @@
 export interface INbControlConfig {
-  required: boolean;
+  required?: boolean;
   max?: number;
   min?: number;
   maxLength?: number,
@@ -8,7 +8,7 @@ export interface INbControlConfig {
   arrMinLength?: number;
   maxFileSize?: number;
   minFileSize?: number;
-  fileTypes?: string[];
+  fileType?: string[];
   pattern?: string | RegExp;
   whitespace?: boolean;
   initValue?: any;

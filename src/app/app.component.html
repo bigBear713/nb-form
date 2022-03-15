@@ -15,7 +15,9 @@
     <span field-label>字段3：</span>
     <input type="file" (change)="onChangeFile($event)">
   </nb-field-item>
+  <button type="button" (click)="onSubmit()">submit</button>
 </form>
+<button (click)="resetCtrl1()">重置字段1</button>
 <div>
   <p>说明</p>
   <p>字段1要求必填</p>

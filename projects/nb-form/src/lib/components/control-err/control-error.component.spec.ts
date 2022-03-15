@@ -36,7 +36,7 @@ describe('NbControlErrComponent', () => {
 
     [
       {
-        title: 'The touched is false, the errors is null',
+        title: 'The control is valid and pristine is true',
         testData: {
           getControl: () => {
             const control = new FormControl();
@@ -48,11 +48,13 @@ describe('NbControlErrComponent', () => {
         }
       },
       {
-        title: 'The touched is true, the errors is null',
+        title: 'The control is valid and pristine is true',
         testData: {
           getControl: () => {
             const control = new FormControl();
-            control.markAsTouched();
+            control.setValue('1');
+            console.log(control.pristine, control.dirty, '111');
+
             return control;
           },
         },

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { NbTransLangEnum, NbTransService } from '@bigbear713/nb-trans';
 import { NbControlErrTypeEnum, NbFormService, NbFormValidators } from 'nb-form';
@@ -48,12 +48,20 @@ export class AppComponent implements OnInit {
     );
   }
 
+  resetCtrl1() {
+    this.field1Ctrl.reset();
+  }
+
   onChangeFile($event: Event): void {
     const fileEle = $event.target as HTMLInputElement;
     if (fileEle && fileEle.files?.length) {
       this.field3Ctrl.setValue(fileEle.files[0]);
       this.field3Ctrl.markAsTouched();
     }
+  }
+
+  onSubmit() {
+    this.formService.showAllErrInfo(this.form);
   }
 
   private buildForm(): void {

@@ -1,17 +1,19 @@
 import { Injectable } from '@angular/core';
-import { ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormGroup, ValidatorFn } from '@angular/forms';
 import { INbControlConfig } from '../models';
-import { NbFormValidators } from '../validators';
+import { NbFormToolsService } from './form-tools.service';
+
+type NbAbstractControl = AbstractControl | null | undefined;
 
 @Injectable({
   providedIn: 'root'
 })
 export class NbFormService {
 
-  constructor() { }
+  constructor(private formTools: NbFormToolsService) { }
 
   getValidatorsFromControlConfig(config: INbControlConfig): ValidatorFn[] {
-    const strategies: { [key: string]: any } = this.getFormValidatorStrategies();
+    const strategies: { [key: string]: any } = this.formTools.getFormValidatorStrategies();
     const validators: ValidatorFn[] = [];
     Object.keys(config).forEach((key) => {
       const validatorFn: ValidatorFn | undefined = strategies[key]?.(config);
@@ -23,71 +25,32 @@ export class NbFormService {
     return validators;
   }
 
-  private getFormValidatorStrategies(): { [key: string]: (config: INbControlConfig) => ValidatorFn | undefined } {
-    return {
-      required: (config: INbControlConfig) => NbFormValidators.required(config.required),
-      max: (config: INbControlConfig) => {
-        if (config.max ?? false) {
-          return Validators.max(config.max as number);
-        }
-        return;
-      },
-      min: (config: INbControlConfig) => {
-        if (config.min ?? false) {
-          return Validators.min(config.min as number);
-        }
-        return;
-      },
-      maxLength: (config: INbControlConfig) => {
-        if (config.maxLength ?? false) {
-          return Validators.maxLength(config.maxLength as number);
-        }
-        return;
-      },
-      minLength: (config: INbControlConfig) => {
-        if (config.minLength ?? false) {
-          return Validators.minLength(config.minLength as number);
-        }
-        return;
-      },
-      arrMaxLength: (config: INbControlConfig) => {
-        if (config.arrMaxLength ?? false) {
-          return NbFormValidators.arrMaxLength(config.arrMaxLength as number);
-        }
-        return;
-      },
-      arrMinLength: (config: INbControlConfig) => {
-        if (config.arrMinLength ?? false) {
-          return NbFormValidators.arrMinLength(config.arrMinLength as number);
-        }
-        return;
-      },
-      maxFileSize: (config: INbControlConfig) => {
-        if (config.maxFileSize ?? false) {
-          return NbFormValidators.fileSize({ maxSize: config.maxFileSize });
-        }
-        return;
-      },
-      minFileSize: (config: INbControlConfig) => {
-        if (config.minFileSize ?? false) {
-          return NbFormValidators.fileSize({ minSize: config.minFileSize })
-        }
-        return;
-      },
-      fileType: (config: INbControlConfig) => {
-        if (config.fileType?.length) {
-          return NbFormValidators.fileType(config.fileType);
-        }
-        return;
-      },
-      pattern: (config: INbControlConfig) => {
-        if (config.pattern) {
-          return Validators.pattern(config.pattern);
-        }
-        return;
-      },
-      whitespace: (config: INbControlConfig) => NbFormValidators.whitespace(config.whitespace),
-    };
+  markAllAsDirty(control: NbAbstractControl, opts?: { onlySelf?: boolean; emitEvent?: boolean; }): void {
+    control?.markAsDirty(opts);
+
+    const fn = (controlItem: NbAbstractControl): void => this.markAllAsDirty(controlItem, opts)
+    if (control instanceof FormArray) {
+      this.formTools.doFormArrayFn(control, fn);
+    } else if (control instanceof FormGroup) {
+      this.formTools.doFormGroupFn(control, fn);
+    }
+  }
+
+  showAllErrInfo(control: NbAbstractControl, opts?: { onlySelf?: boolean; emitEvent?: boolean; }): void {
+    control?.markAllAsTouched();
+    this.markAllAsDirty(control, opts);
+    this.updateAllValueAndValidity(control, opts);
+  }
+
+  updateAllValueAndValidity(control: NbAbstractControl, opts?: { onlySelf?: boolean; emitEvent?: boolean; }): void {
+    control?.updateValueAndValidity(opts);
+
+    const fn = (controlItem: NbAbstractControl): void => this.updateAllValueAndValidity(controlItem, opts)
+    if (control instanceof FormArray) {
+      this.formTools.doFormArrayFn(control, fn);
+    } else if (control instanceof FormGroup) {
+      this.formTools.doFormGroupFn(control, fn);
+    }
   }
 
 }

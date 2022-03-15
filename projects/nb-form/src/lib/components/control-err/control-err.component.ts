@@ -13,12 +13,11 @@ import { AbstractControl, FormControl } from '@angular/forms';
 import { INbControlErrMapping } from '../../models';
 import { NB_CONTROL_COMMON_ERR_MAPPING_TOKEN } from '../../constants';
 import { Subject } from 'rxjs';
-import { takeUntil, tap } from 'rxjs/operators';
+import { startWith, takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'nb-control-err',
-  template: `<div *ngIf="(control.touched||errControl.touched)&&control.errors" 
-                  [nb-r-str]="control.errors|nbErrInfo:allErrMapping"></div>`,
+  template: `<div *ngIf="hasErr" [nb-r-str]="control.errors|nbErrInfo:allErrMapping"></div>`,
   styles: [`
     :host {
       position: absolute;
@@ -39,6 +38,8 @@ export class NbControlErrComponent implements OnChanges, OnDestroy {
   allErrMapping: INbControlErrMapping = {};
 
   errControl = new FormControl();
+
+  hasErr: boolean = false;
 
   private destroy$ = new Subject();
 
@@ -73,11 +74,20 @@ export class NbControlErrComponent implements OnChanges, OnDestroy {
   }
 
   private subscribeControlChange(): void {
-    this.control.valueChanges.pipe(
-      tap(() => this.errControl.markAsTouched()),
+    this.updateHasErr(false);
+    this.control.statusChanges.pipe(
+      startWith(null),
       takeUntil(this.destroy$)
     ).subscribe(
-      () => this.changeDR.markForCheck()
+      (status) => {
+        const hasErr = this.control.dirty && status === 'INVALID';
+        this.updateHasErr(hasErr);
+      }
     );
+  }
+
+  private updateHasErr(hasErr: boolean): void {
+    this.hasErr = hasErr;
+    this.changeDR.markForCheck();
   }
 }

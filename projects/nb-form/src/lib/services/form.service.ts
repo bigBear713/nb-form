@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
-import { AbstractControl, FormArray, FormGroup, ValidatorFn } from '@angular/forms';
-import { INbControlConfig } from '../models';
+import { FormArray, FormGroup, ValidatorFn } from '@angular/forms';
+import { INbControlConfig, NbAbstractControl } from '../models';
 import { NbFormToolsService } from './form-tools.service';
-
-type NbAbstractControl = AbstractControl | null | undefined;
 
 @Injectable({
   providedIn: 'root'

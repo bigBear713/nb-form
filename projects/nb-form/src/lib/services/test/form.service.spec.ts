@@ -1,11 +1,13 @@
 import { TestBed } from '@angular/core/testing';
-import { Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NbFormTestingModule } from '../../testing';
 import { NbFormValidators } from '../../validators';
+import { NbFormToolsService } from '../form-tools.service';
 import { NbFormService } from '../form.service';
 
 describe('NbFormService', () => {
   let service: NbFormService;
+  let formTools: NbFormToolsService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -15,6 +17,7 @@ describe('NbFormService', () => {
 
   beforeEach(() => {
     service = TestBed.inject(NbFormService);
+    formTools = TestBed.inject(NbFormToolsService);
   });
 
   it('should create an instance', () => {
@@ -162,6 +165,148 @@ describe('NbFormService', () => {
         expect(Validators.maxLength).toHaveBeenCalledTimes(item.expect.callTimes.maxLength);
         expect(Validators.minLength).toHaveBeenCalledTimes(item.expect.callTimes.minLength);
         expect(Validators.pattern).toHaveBeenCalledTimes(item.expect.callTimes.pattern);
+      });
+    });
+  });
+
+  describe('#markAllAsDirty() and #updateAllValueAndValidity()', () => {
+    [
+      {
+        title: 'mark undefined as dirty with options',
+        params: {
+          target: undefined,
+          opts: { onlySelf: false, emitEvent: true }
+        },
+        expectCallTimes: { doFormArrayFn: 0, doFormGroupFn: 0, }
+      },
+      {
+        title: 'mark formControl as dirty with options',
+        params: {
+          target: new FormControl(),
+          opts: { onlySelf: false, emitEvent: true }
+        },
+        expectCallTimes: { doFormArrayFn: 0, doFormGroupFn: 0, }
+      },
+      {
+        title: 'mark formControl as dirty without options',
+        params: {
+          target: new FormControl(),
+          opts: undefined
+        },
+        expectCallTimes: { doFormArrayFn: 0, doFormGroupFn: 0, }
+      },
+      {
+        title: 'mark formArray as dirty with options',
+        params: {
+          target: new FormArray([new FormControl()]),
+          opts: { onlySelf: false, emitEvent: true }
+        },
+        expectCallTimes: { doFormArrayFn: 1, doFormGroupFn: 0, }
+      },
+      {
+        title: 'mark formArray as dirty without options',
+        params: {
+          target: new FormArray([new FormControl()]),
+          opts: undefined
+        },
+        expectCallTimes: { doFormArrayFn: 1, doFormGroupFn: 0, }
+      },
+      {
+        title: 'mark formGroup as dirty with options',
+        params: {
+          target: new FormGroup({ control: new FormControl() }),
+          opts: { onlySelf: false, emitEvent: true }
+        },
+        expectCallTimes: { doFormArrayFn: 0, doFormGroupFn: 1, }
+      },
+      {
+        title: 'mark formGroup as dirty without options',
+        params: {
+          target: new FormGroup({ control: new FormControl() }),
+          opts: undefined
+        },
+        expectCallTimes: { doFormArrayFn: 0, doFormGroupFn: 1, }
+      }
+    ].forEach(item => {
+      it(`#markAllAsDirty() - ${item.title}`, () => {
+        spyOn(formTools, 'doFormArrayFn').and.callThrough();
+        spyOn(formTools, 'doFormGroupFn').and.callThrough();
+        item.params.target && spyOn(item.params.target, 'markAsDirty');
+
+        service.markAllAsDirty(item.params.target, item.params.opts);
+
+        item.params.target && expect(item.params.target.markAsDirty).toHaveBeenCalledWith(item.params.opts);
+        expect(formTools.doFormArrayFn).toHaveBeenCalledTimes(item.expectCallTimes.doFormArrayFn);
+        expect(formTools.doFormGroupFn).toHaveBeenCalledTimes(item.expectCallTimes.doFormGroupFn);
+      });
+
+      it(`#updateAllValueAndValidity() - ${item.title}`, () => {
+        spyOn(formTools, 'doFormArrayFn').and.callThrough();
+        spyOn(formTools, 'doFormGroupFn').and.callThrough();
+
+        service.updateAllValueAndValidity(item.params.target, item.params.opts);
+
+        expect(formTools.doFormArrayFn).toHaveBeenCalledTimes(item.expectCallTimes.doFormArrayFn);
+        expect(formTools.doFormGroupFn).toHaveBeenCalledTimes(item.expectCallTimes.doFormGroupFn);
+      });
+    });
+  });
+
+  describe('#showAllErrInfo()', () => {
+    [
+      {
+        title: 'when the control is undefined',
+        params: {
+          target: undefined, opts: { onlySelf: false, emitEvent: true }
+        },
+      },
+      {
+        title: 'when the control is formControl with options',
+        params: {
+          target: new FormControl(), opts: { onlySelf: false, emitEvent: true }
+        },
+      },
+      {
+        title: 'when the control is formControl without options',
+        params: {
+          target: new FormControl(), opts: undefined
+        },
+      },
+      {
+        title: 'when the control is formArray with options',
+        params: {
+          target: new FormArray([new FormControl()]), opts: { onlySelf: false, emitEvent: true }
+        },
+      },
+      {
+        title: 'when the control is formArray without options',
+        params: {
+          target: new FormArray([new FormControl()]), opts: undefined
+        },
+      },
+      {
+        title: 'when the control is formGroup with options',
+        params: {
+          target: new FormGroup({ control: new FormControl() }), opts: { onlySelf: false, emitEvent: true }
+        },
+      },
+      {
+        title: 'when the control is formArray without options',
+        params: {
+          target: new FormGroup({ control: new FormControl() }), opts: undefined
+        },
+      }
+    ].forEach(item => {
+      it(item.title, () => {
+        spyOn(service, 'markAllAsDirty').and.callThrough();
+        spyOn(service, 'updateAllValueAndValidity').and.callThrough();
+        item.params.target && spyOn(item.params.target, 'markAllAsTouched').and.callThrough();
+
+        service.showAllErrInfo(item.params.target, item.params.opts);
+
+        item.params.target && expect(item.params.target.markAllAsTouched).toHaveBeenCalled();
+        expect(service.markAllAsDirty).toHaveBeenCalledWith(item.params.target, item.params.opts);
+        expect(service.updateAllValueAndValidity).toHaveBeenCalledWith(item.params.target, item.params.opts);
       });
     });
   });

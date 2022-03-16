@@ -13,7 +13,7 @@ import { AbstractControl, FormControl } from '@angular/forms';
 import { INbControlErrMapping } from '../../models';
 import { NB_CONTROL_COMMON_ERR_MAPPING_TOKEN } from '../../constants';
 import { Subject } from 'rxjs';
-import { startWith, takeUntil } from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'nb-control-err',
@@ -76,7 +76,6 @@ export class NbControlErrComponent implements OnChanges, OnDestroy {
   private subscribeControlChange(): void {
     this.updateHasErr(false);
     this.control.statusChanges.pipe(
-      startWith(null),
       takeUntil(this.destroy$)
     ).subscribe(
       (status) => {

@@ -5,8 +5,9 @@ import { NbFormTestingModule } from '../../testing';
 import { NbControlErrTypeEnum, NB_CONTROL_COMMON_ERR_MAPPING_TOKEN } from '../../constants';
 import { ChangeDetectorRef, SimpleChange } from '@angular/core';
 import { INbControlErrMapping } from '../../models';
-import { FormControl } from '@angular/forms';
+import { AbstractControl, FormControl } from '@angular/forms';
 import { NbFormValidators } from '../../validators';
+import { NbFormService } from '../../services';
 
 describe('NbControlErrComponent', () => {
 
@@ -36,11 +37,22 @@ describe('NbControlErrComponent', () => {
 
     [
       {
-        title: 'The control is valid and pristine is true',
+        title: 'The control is valid and dirty is false',
         testData: {
-          getControl: () => {
-            const control = new FormControl();
-            return control;
+          control: new FormControl(),
+          operateControl: (control: AbstractControl) => { },
+        },
+        expect: {
+          infoWrapperExisted: false
+        }
+      },
+      {
+        title: 'The control is valid and dirty is true',
+        testData: {
+          control: new FormControl(),
+          operateControl: (control: AbstractControl) => {
+            const service: NbFormService = TestBed.inject(NbFormService);
+            service.showAllErrInfo(control);
           },
         },
         expect: {
@@ -48,76 +60,59 @@ describe('NbControlErrComponent', () => {
         }
       },
       {
-        title: 'The control is valid and pristine is true',
+        title: 'The control is invalid and dirty is true',
         testData: {
-          getControl: () => {
-            const control = new FormControl();
-            control.setValue('1');
-            console.log(control.pristine, control.dirty, '111');
-
-            return control;
-          },
-        },
-        expect: {
-          infoWrapperExisted: false
-        }
-      },
-      {
-        title: 'The touched is false, there is a error',
-        testData: {
-          getControl: () => {
-            const control = new FormControl('', [NbFormValidators.required(true)]);
-            return control;
-          },
-        },
-        expect: {
-          infoWrapperExisted: false
-        }
-      },
-      {
-        title: 'The touched is true, there is a error',
-        testData: {
-          getControl: () => {
-            const control = new FormControl('', [NbFormValidators.required(true)]);
-            control.markAsTouched();
-            return control;
+          control: new FormControl('', [NbFormValidators.required(true)]),
+          operateControl: (control: AbstractControl) => {
+            const service: NbFormService = TestBed.inject(NbFormService);
+            service.showAllErrInfo(control);
           },
         },
         expect: {
           infoWrapperExisted: true
         }
       },
+      {
+        title: 'The control is invalid and dirty is false',
+        testData: {
+          control: new FormControl('', [NbFormValidators.required(true)]),
+          operateControl: (control: AbstractControl) => { },
+        },
+        expect: {
+          infoWrapperExisted: false
+        }
+      },
     ].forEach(item => {
       it(item.title, () => {
-        component.control = item.testData.getControl();
-        component.errMapping = { [NbControlErrTypeEnum.REQUIRED]: 'This field is required!' };
+        component.control = item.testData.control;
+        const changes = {
+          control: new SimpleChange(undefined, component.control, false)
+        };
+        component.ngOnChanges(changes);
+        item.testData.operateControl(component.control);
 
-        fixture.componentRef.injector.get(ChangeDetectorRef).detectChanges();
         fixture.detectChanges();
 
         expect(!!hostEle.querySelector('div')).toEqual(item.expect.infoWrapperExisted);
       });
     });
 
-    it('verify the errControl touched status change', () => {
+    it('verify the form.showAllErrInfo() function', () => {
       const instance = createComponent();
       const fixture = instance.fixture;
       const component = instance.component;
-
-      spyOn(component.errControl, 'markAsTouched').and.callThrough();
+      component.control = new FormControl('', [NbFormValidators.required(true)]);
+      const service: NbFormService = TestBed.inject(NbFormService);
 
       const changes = {
         control: new SimpleChange(undefined, component.control, false)
       };
       component.ngOnChanges(changes);
 
-      component.control.setValue(123);
+      service.showAllErrInfo(component.control);
 
-      expect(component.errControl.markAsTouched).toHaveBeenCalled();
-      expect(component.errControl.touched).toBeTrue();
-
-      component.control.setErrors({});
       fixture.detectChanges();
+
       const hostEle: HTMLElement = fixture.debugElement.nativeElement;
       expect(hostEle.querySelector('div')).toBeTruthy();
     });

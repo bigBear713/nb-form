@@ -1,7 +1,7 @@
 import { AbstractControl } from '@angular/forms';
 import { NbControlErrTypeEnum } from '../constants';
 
-export const fileSize = (fileSize: { maxSize?: number; minSize?: number }) => {
+export const fileSize = (fileSize: { max?: number; min?: number }) => {
   return (control: AbstractControl) => {
     const file = control.value;
 
@@ -9,11 +9,11 @@ export const fileSize = (fileSize: { maxSize?: number; minSize?: number }) => {
       return null;
     }
 
-    if (fileSize.maxSize && file.size > fileSize.maxSize) {
+    if (fileSize.max && file.size > fileSize.max) {
       return { [NbControlErrTypeEnum.FILE_MAX_SIZE]: true };
     }
 
-    if (fileSize.minSize && file.size < fileSize.minSize) {
+    if (fileSize.min && file.size < fileSize.min) {
       return { [NbControlErrTypeEnum.FILE_MIN_SIZE]: true };
     }
 

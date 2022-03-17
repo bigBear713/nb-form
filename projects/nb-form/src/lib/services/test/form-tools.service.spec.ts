@@ -1,5 +1,5 @@
-import { TestBed, inject } from '@angular/core/testing';
-import { AbstractControl, FormArray, FormControl, FormGroup } from '@angular/forms';
+import { TestBed } from '@angular/core/testing';
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { NbAbstractControl } from '../../models';
 import { NbFormTestingModule } from '../../testing';
 import { NbFormToolsService } from '../form-tools.service';

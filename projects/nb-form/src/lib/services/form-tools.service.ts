@@ -47,25 +47,25 @@ export class NbFormToolsService {
       },
       arrMaxLength: (config: INbControlConfig) => {
         if (config.arrMaxLength ?? false) {
-          return NbFormValidators.arrMaxLength(config.arrMaxLength as number);
+          return NbFormValidators.arrLength({ max: config.arrMaxLength as number });
         }
         return;
       },
       arrMinLength: (config: INbControlConfig) => {
         if (config.arrMinLength ?? false) {
-          return NbFormValidators.arrMinLength(config.arrMinLength as number);
+          return NbFormValidators.arrLength({ min: config.arrMinLength as number });
         }
         return;
       },
       maxFileSize: (config: INbControlConfig) => {
         if (config.maxFileSize ?? false) {
-          return NbFormValidators.fileSize({ maxSize: config.maxFileSize });
+          return NbFormValidators.fileSize({ max: config.maxFileSize });
         }
         return;
       },
       minFileSize: (config: INbControlConfig) => {
         if (config.minFileSize ?? false) {
-          return NbFormValidators.fileSize({ minSize: config.minFileSize })
+          return NbFormValidators.fileSize({ min: config.minFileSize })
         }
         return;
       },

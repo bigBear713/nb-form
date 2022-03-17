@@ -15,7 +15,7 @@ describe('NbFormValidators.fileSize', () => {
       title: 'When the value of control is null',
       params: {
         controlValue: null,
-        fileSize: { maxSize: 100, minSize: 10 },
+        fileSize: { max: 100, min: 10 },
       },
       expect: null
     },
@@ -23,7 +23,7 @@ describe('NbFormValidators.fileSize', () => {
       title: 'When the value of control is string value',
       params: {
         controlValue: 'controlValue',
-        fileSize: { maxSize: 100, minSize: 10 },
+        fileSize: { max: 100, min: 10 },
       },
       expect: null
     },
@@ -31,7 +31,7 @@ describe('NbFormValidators.fileSize', () => {
       title: 'When the file size < 10b',
       params: {
         controlValue: new File([testData['3']], 'filesize.txt'),
-        fileSize: { maxSize: 20, minSize: 10 },
+        fileSize: { max: 20, min: 10 },
       },
       expect: { [NbControlErrTypeEnum.FILE_MIN_SIZE]: true }
     },
@@ -39,7 +39,7 @@ describe('NbFormValidators.fileSize', () => {
       title: 'When the file size < 10b, and only set the min size limit',
       params: {
         controlValue: new File([testData['3']], 'filesize.txt'),
-        fileSize: { minSize: 10 },
+        fileSize: { min: 10 },
       },
       expect: { [NbControlErrTypeEnum.FILE_MIN_SIZE]: true }
     },
@@ -63,7 +63,7 @@ describe('NbFormValidators.fileSize', () => {
       title: 'When the file size > 20b',
       params: {
         controlValue: new File([testData['26']], 'filesize.txt'),
-        fileSize: { maxSize: 20, minSize: 10 },
+        fileSize: { max: 20, min: 10 },
       },
       expect: { [NbControlErrTypeEnum.FILE_MAX_SIZE]: true }
     },
@@ -71,7 +71,7 @@ describe('NbFormValidators.fileSize', () => {
       title: 'When the file size > 20b, and only set the max size limit',
       params: {
         controlValue: new File([testData['26']], 'filesize.txt'),
-        fileSize: { maxSize: 20 },
+        fileSize: { max: 20 },
       },
       expect: { [NbControlErrTypeEnum.FILE_MAX_SIZE]: true }
     },
@@ -79,7 +79,7 @@ describe('NbFormValidators.fileSize', () => {
       title: 'When the file size = 20b',
       params: {
         controlValue: new File([testData['20']], 'filesize.txt'),
-        fileSize: { maxSize: 20 },
+        fileSize: { max: 20 },
       },
       expect: null
     },
@@ -87,7 +87,7 @@ describe('NbFormValidators.fileSize', () => {
       title: 'When the file size < 20b',
       params: {
         controlValue: new File([testData['10']], 'filesize.txt'),
-        fileSize: { maxSize: 20 },
+        fileSize: { max: 20 },
       },
       expect: null
     },

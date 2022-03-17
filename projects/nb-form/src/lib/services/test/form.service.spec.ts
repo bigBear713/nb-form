@@ -27,8 +27,7 @@ describe('NbFormService', () => {
   describe('#getValidatorsFromControlConfig()', () => {
     beforeEach(() => {
       spyOn(NbFormValidators, 'required').and.callThrough();
-      spyOn(NbFormValidators, 'arrMaxLength').and.callThrough();
-      spyOn(NbFormValidators, 'arrMinLength').and.callThrough();
+      spyOn(NbFormValidators, 'arrLength').and.callThrough();
       spyOn(NbFormValidators, 'fileSize').and.callThrough();
       spyOn(NbFormValidators, 'fileType').and.callThrough();
       spyOn(NbFormValidators, 'whitespace').and.callThrough();
@@ -65,8 +64,7 @@ describe('NbFormService', () => {
             min: 1,
             maxLength: 1,
             minLength: 1,
-            arrMaxLength: 1,
-            arrMinLength: 1,
+            arrLength: 2,
             fileSize: 2,
             fileType: 1,
             pattern: 1,
@@ -98,8 +96,7 @@ describe('NbFormService', () => {
             min: 0,
             maxLength: 0,
             minLength: 0,
-            arrMaxLength: 0,
-            arrMinLength: 0,
+            arrLength: 0,
             fileSize: 0,
             fileType: 0,
             pattern: 0,
@@ -118,8 +115,7 @@ describe('NbFormService', () => {
             min: 0,
             maxLength: 0,
             minLength: 0,
-            arrMaxLength: 0,
-            arrMinLength: 0,
+            arrLength: 0,
             fileSize: 0,
             fileType: 0,
             pattern: 0,
@@ -140,8 +136,7 @@ describe('NbFormService', () => {
             min: 0,
             maxLength: 0,
             minLength: 0,
-            arrMaxLength: 0,
-            arrMinLength: 0,
+            arrLength: 0,
             fileSize: 0,
             fileType: 0,
             pattern: 0,
@@ -155,8 +150,7 @@ describe('NbFormService', () => {
         expect(result.length).toEqual(item.expect.validatorsLength);
 
         expect(NbFormValidators.required).toHaveBeenCalledTimes(item.expect.callTimes.required);
-        expect(NbFormValidators.arrMaxLength).toHaveBeenCalledTimes(item.expect.callTimes.arrMaxLength);
-        expect(NbFormValidators.arrMinLength).toHaveBeenCalledTimes(item.expect.callTimes.arrMinLength);
+        expect(NbFormValidators.arrLength).toHaveBeenCalledTimes(item.expect.callTimes.arrLength);
         expect(NbFormValidators.fileSize).toHaveBeenCalledTimes(item.expect.callTimes.fileSize);
         expect(NbFormValidators.fileType).toHaveBeenCalledTimes(item.expect.callTimes.fileType);
         expect(NbFormValidators.whitespace).toHaveBeenCalledTimes(item.expect.callTimes.whitespace);

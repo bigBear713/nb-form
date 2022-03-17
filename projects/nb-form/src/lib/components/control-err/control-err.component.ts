@@ -17,14 +17,19 @@ import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'nb-control-err',
-  template: `<div *ngIf="hasErr" [nb-r-str]="control.errors|nbErrInfo:allErrMapping"></div>`,
+  template: `<div *ngIf="control&&hasErr" class="err-info" [nb-r-str]="control.errors|nbErrInfo:allErrMapping"></div>`,
   styles: [`
     :host {
-      position: absolute;
+      position: relative;
       top: 100%;
       left: 0;
       color: red;
       font-size: 14px;
+    }
+    .err-info {
+      position: absolute;
+      top: 0;
+      left: 0;
     }
   `],
   changeDetection: ChangeDetectionStrategy.OnPush

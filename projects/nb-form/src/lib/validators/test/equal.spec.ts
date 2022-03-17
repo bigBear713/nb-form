@@ -2,7 +2,7 @@ import { FormControl } from "@angular/forms";
 import { NbControlErrTypeEnum } from "../../constants";
 import { NbFormValidators } from "../index";
 
-describe('NbFormValidators.repeated', () => {
+describe('NbFormValidators.equal', () => {
   [
     {
       title: 'When the values of controls all are null',
@@ -24,7 +24,7 @@ describe('NbFormValidators.repeated', () => {
     it(item.title, () => {
       const control = new FormControl(
         item.params.controlValue,
-        [NbFormValidators.repeated(item.params.compareControl)]
+        [NbFormValidators.equal(item.params.compareControl)]
       );
       expect(control.errors).toEqual(item.expect);
     });
@@ -34,23 +34,23 @@ describe('NbFormValidators.repeated', () => {
     {
       title: 'When the controls all do not have any errors, the value of target control is string value, and the value of compare control is null.',
       params: {
-        getTargetControl: (compare: FormControl) => new FormControl('controlValue', [NbFormValidators.repeated(compare)]),
+        getTargetControl: (compare: FormControl) => new FormControl('controlValue', [NbFormValidators.equal(compare)]),
         compareControl: new FormControl(null),
       },
       expect: {
-        target: { [NbControlErrTypeEnum.REPEATED]: true },
-        compare: { [NbControlErrTypeEnum.REPEATED]: true },
+        target: { [NbControlErrTypeEnum.EQUAL]: true },
+        compare: { [NbControlErrTypeEnum.EQUAL]: true },
       }
     },
     {
       title: 'When the compare controls has one required error, the value of target control is string value, and the value of compare control is null.',
       params: {
-        getTargetControl: (compare: FormControl) => new FormControl('controlValue', [NbFormValidators.repeated(compare)]),
+        getTargetControl: (compare: FormControl) => new FormControl('controlValue', [NbFormValidators.equal(compare)]),
         compareControl: new FormControl(null, [NbFormValidators.required(true)]),
       },
       expect: {
-        target: { [NbControlErrTypeEnum.REPEATED]: true },
-        compare: { [NbControlErrTypeEnum.REPEATED]: true },
+        target: { [NbControlErrTypeEnum.EQUAL]: true },
+        compare: { [NbControlErrTypeEnum.EQUAL]: true },
       }
     },
 
@@ -64,10 +64,10 @@ describe('NbFormValidators.repeated', () => {
 
   it('The target value is string value, and compare value is null, they are required', () => {
     const compareControl = new FormControl(null, [NbFormValidators.required(true)]);
-    const control = new FormControl('control', [NbFormValidators.required(true), NbFormValidators.repeated(compareControl)]);
+    const control = new FormControl('control', [NbFormValidators.required(true), NbFormValidators.equal(compareControl)]);
 
-    expect(control.errors).toEqual({ [NbControlErrTypeEnum.REPEATED]: true });
-    expect(compareControl.errors).toEqual({ [NbControlErrTypeEnum.REPEATED]: true });
+    expect(control.errors).toEqual({ [NbControlErrTypeEnum.EQUAL]: true });
+    expect(compareControl.errors).toEqual({ [NbControlErrTypeEnum.EQUAL]: true });
 
     control.setValue(null);
     expect(control.errors).toEqual({ [NbControlErrTypeEnum.REQUIRED]: true });

@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { NbTransLangEnum, NbTransService } from '@bigbear713/nb-trans';
 import { NbControlErrTypeEnum, NbFormService, NbFormValidators } from 'nb-form';
@@ -70,7 +70,7 @@ export class AppComponent implements OnInit {
       field2: [null, this.formService.getValidatorsFromControlConfig({ whitespace: false })],
       field3: [undefined, [
         NbFormValidators.fileType(['image/svg+xml', 'image/jpeg']),
-        NbFormValidators.fileSize({ maxSize: 500 * 1000, minSize: 100 * 1000 }),
+        NbFormValidators.fileSize({ max: 500 * 1000, min: 100 * 1000 }),
       ]],
     });
   }

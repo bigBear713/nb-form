@@ -3,7 +3,7 @@ export enum NbControlErrTypeEnum {
   FILE_MAX_SIZE = 'fileMaxSize',
   FILE_MIN_SIZE = 'fileMinSize',
   FILE_TYPE = 'fileType',
-  REPEATED = 'repeated',
+  EQUAL = 'equal',
   MAX_LENGTH = 'maxlength',
   MIN_LENGTH = 'minlength',
   ARR_MAX_LENGTH = 'arrMaxLength',

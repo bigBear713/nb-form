@@ -15,8 +15,16 @@
     <span field-label>字段3：</span>
     <input type="file" (change)="onChangeFile($event)">
   </nb-field-item>
-  <button type="button" (click)="onSubmit()">submit</button>
 </form>
+
+<hr>
+<h5>直接使用{{"\<nb-control-err>\</nb-control-err>"}}</h5>
+<form *ngIf="form" style="margin-bottom: 20px;width: 200px;" [formGroup]="form">
+  <input type="text" formControlName="field1">
+  <nb-control-err [control]="field1Ctrl" [errMapping]="errMapping1"></nb-control-err>
+</form>
+<hr>
+<button type="button" (click)="onSubmit()">submit</button>
 <button (click)="resetCtrl1()">重置字段1</button>
 <div>
   <p>说明</p>

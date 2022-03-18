@@ -23,6 +23,8 @@ import { takeUntil } from 'rxjs/operators';
       position: relative;
       top: 100%;
       left: 0;
+      display: block;
+      width: 100%;
       color: red;
       font-size: 14px;
     }
@@ -30,6 +32,7 @@ import { takeUntil } from 'rxjs/operators';
       position: absolute;
       top: 0;
       left: 0;
+      word-break: break-word;
     }
   `],
   changeDetection: ChangeDetectionStrategy.OnPush

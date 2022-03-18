@@ -15,7 +15,7 @@ import { INbControlErrMapping } from '../../models';
     </label>
     <div class="field-content">
       <ng-content></ng-content>
-      <nb-control-err *ngIf="control" [control]="control" [errMapping]="errMapping"></nb-control-err>
+      <nb-control-err *ngIf="control" class="nb-control-err" [control]="control" [errMapping]="errMapping"></nb-control-err>
     </div>
 `,
   styleUrls: ['./field-item.component.scss'],

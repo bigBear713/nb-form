@@ -3,15 +3,15 @@
   <button type="button" (click)="changeLanguage('en')">switch as English</button>
 </h3>
 <form *ngIf="form" [formGroup]="form">
-  <nb-field-item [required]="true" [control]="field1Ctrl" [errMapping]="errMapping1">
+  <nb-field-item [required]="true" [control]="field1Ctrl" [errInfo]="errInfo1">
     <span field-label>字段1：</span>
     <input type="text" [formControl]="field1Ctrl">
   </nb-field-item>
-  <nb-field-item [control]="field2Ctrl" [errMapping]="errMapping1">
+  <nb-field-item [control]="field2Ctrl" [errInfo]="errInfo1">
     <span field-label>字段2：</span>
     <input type="text" [formControl]="field2Ctrl">
   </nb-field-item>
-  <nb-field-item [control]="field3Ctrl" [errMapping]="errMapping2">
+  <nb-field-item [control]="field3Ctrl" [errInfo]="errInfo2">
     <span field-label>字段3：</span>
     <input type="file" (change)="onChangeFile($event)">
   </nb-field-item>
@@ -21,7 +21,7 @@
 <h5>直接使用{{"\<nb-control-err>\</nb-control-err>"}}</h5>
 <form *ngIf="form" style="margin-bottom: 20px;width: 200px;" [formGroup]="form">
   <input type="text" formControlName="field1">
-  <nb-control-err [control]="field1Ctrl" [errMapping]="errMapping1"></nb-control-err>
+  <nb-control-err [control]="field1Ctrl" [errInfo]="errInfo1"></nb-control-err>
 </form>
 <hr>
 <button type="button" (click)="onSubmit()">submit</button>

@@ -5,7 +5,7 @@ import { NbTransLangEnum, NbTransModule, NbTransService, NB_TRANS_LOADER } from 
 import {
   NbFormModule,
   NbControlErrTypeEnum,
-  NB_CONTROL_COMMON_ERR_MAPPING_TOKEN
+  NB_CONTROL_COMMON_ERR_INFO_TOKEN
 } from 'nb-form';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -25,7 +25,7 @@ import { AppComponent } from './app.component';
   ],
   providers: [
     {
-      provide: NB_CONTROL_COMMON_ERR_MAPPING_TOKEN,
+      provide: NB_CONTROL_COMMON_ERR_INFO_TOKEN,
       useFactory: (transService: NbTransService) => ({
         [NbControlErrTypeEnum.FILE_TYPE]: transService.translationAsync('fileType'),
         [NbControlErrTypeEnum.FILE_MIN_SIZE]: 'The file min file is 50KB!',

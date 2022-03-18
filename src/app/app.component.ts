@@ -12,11 +12,11 @@ export class AppComponent implements OnInit {
 
   form: FormGroup | undefined;
 
-  errMapping1 = {
+  errInfo1 = {
     [NbControlErrTypeEnum.REQUIRED]: this.transService.translationAsync('required'),
   };
 
-  errMapping2 = {
+  errInfo2 = {
     [NbControlErrTypeEnum.FILE_MAX_SIZE]: 'The file max file is 100kb!',
   };
 

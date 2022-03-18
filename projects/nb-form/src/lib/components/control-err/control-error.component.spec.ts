@@ -2,9 +2,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NbControlErrComponent } from './control-err.component';
 import { NbFormTestingModule } from '../../testing';
-import { NbControlErrTypeEnum, NB_CONTROL_COMMON_ERR_MAPPING_TOKEN } from '../../constants';
-import { ChangeDetectorRef, SimpleChange } from '@angular/core';
-import { INbControlErrMapping } from '../../models';
+import { NB_CONTROL_COMMON_ERR_INFO_TOKEN } from '../../constants';
+import { SimpleChange } from '@angular/core';
+import { IControlErrInfo } from '../../models';
 import { AbstractControl, FormControl } from '@angular/forms';
 import { NbFormValidators } from '../../validators';
 import { NbFormService } from '../../services';
@@ -119,33 +119,33 @@ describe('NbControlErrComponent', () => {
   });
 
 
-  describe('verify the allErrorMapping', () => {
+  describe('verify the allErrorInfo', () => {
     const testData: {
       title: string;
-      testData: { defaultMapping: INbControlErrMapping | undefined; errMapping: INbControlErrMapping };
-      expect: INbControlErrMapping;
+      testData: { defaultInfo: IControlErrInfo | undefined; errInfo: IControlErrInfo };
+      expect: IControlErrInfo;
     }[] = [
         {
-          title: 'There does not have default mapping',
+          title: 'There does not have default info',
           testData: {
-            defaultMapping: undefined,
-            errMapping: { fileType: 'The file type does not support!' }
+            defaultInfo: undefined,
+            errInfo: { fileType: 'The file type does not support!' }
           },
           expect: { fileType: 'The file type does not support!' }
         },
         {
-          title: 'There have default mapping',
+          title: 'There have default info',
           testData: {
-            defaultMapping: { required: 'The filed is required' },
-            errMapping: { fileType: 'The file type does not support!' }
+            defaultInfo: { required: 'The filed is required' },
+            errInfo: { fileType: 'The file type does not support!' }
           },
           expect: { required: 'The filed is required', fileType: 'The file type does not support!' }
         },
         {
-          title: 'The errMapping is undefined',
+          title: 'The errInfo is undefined',
           testData: {
-            defaultMapping: { required: 'The filed is required' },
-            errMapping: undefined as any
+            defaultInfo: { required: 'The filed is required' },
+            errInfo: undefined as any
           },
           expect: { required: 'The filed is required' }
         }
@@ -161,8 +161,8 @@ describe('NbControlErrComponent', () => {
             imports: [NbFormTestingModule],
             providers: [
               {
-                provide: NB_CONTROL_COMMON_ERR_MAPPING_TOKEN,
-                useValue: item.testData.defaultMapping,
+                provide: NB_CONTROL_COMMON_ERR_INFO_TOKEN,
+                useValue: item.testData.defaultInfo,
               }
             ]
           })
@@ -176,13 +176,13 @@ describe('NbControlErrComponent', () => {
         });
 
         it(`The allErrorMapping should be ${JSON.stringify(item.expect)}`, () => {
-          subComponent.errMapping = item.testData.errMapping;
+          subComponent.errInfo = item.testData.errInfo;
           const changes = {
-            errMapping: new SimpleChange(undefined, item.testData.errMapping, true)
+            errInfo: new SimpleChange(undefined, item.testData.errInfo, true)
           };
           subComponent.ngOnChanges(changes);
 
-          expect(subComponent.allErrMapping).toEqual(item.expect);
+          expect(subComponent.allErrInfo).toEqual(item.expect);
         });
       });
     })

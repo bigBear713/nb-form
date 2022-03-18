@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormControl } from '@angular/forms';
-import { INbControlErrMapping } from '../../models';
+import { IControlErrInfo } from '../../models';
 import { NbFormTestingModule } from '../../testing';
 import { NbFieldItemComponent } from './field-item.component';
 
 @Component({
   template: `
     <nb-field-item [control]="control" 
-                   [errMapping]="errMapping" 
+                   [errInfo]="errInfo" 
                    [required]="required">
     <ng-container field-label>fieldLabel</ng-container> 
     <input>              
@@ -17,7 +17,7 @@ import { NbFieldItemComponent } from './field-item.component';
 })
 class UIComponent {
   control!: FormControl;
-  errMapping!: INbControlErrMapping;
+  errInfo!: IControlErrInfo;
   required: boolean = true;
 }
 

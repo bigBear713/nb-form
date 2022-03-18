@@ -10,14 +10,14 @@ import {
   SimpleChanges
 } from '@angular/core';
 import { AbstractControl, FormControl } from '@angular/forms';
-import { INbControlErrMapping } from '../../models';
-import { NB_CONTROL_COMMON_ERR_MAPPING_TOKEN } from '../../constants';
+import { IControlErrInfo } from '../../models';
+import { NB_CONTROL_COMMON_ERR_INFO_TOKEN } from '../../constants';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'nb-control-err',
-  template: `<div *ngIf="control&&hasErr" class="err-info" [nb-r-str]="control.errors|nbErrInfo:allErrMapping"></div>`,
+  template: `<div *ngIf="control&&hasErr" class="err-info" [nb-r-str]="control.errors|nbErrInfo:allErrInfo"></div>`,
   styles: [`
     :host {
       position: relative;
@@ -41,9 +41,9 @@ export class NbControlErrComponent implements OnChanges, OnDestroy {
 
   @Input() control!: AbstractControl;
 
-  @Input() errMapping: INbControlErrMapping = {};
+  @Input() errInfo: IControlErrInfo = {};
 
-  allErrMapping: INbControlErrMapping = {};
+  allErrInfo: IControlErrInfo = {};
 
   errControl = new FormControl();
 
@@ -52,19 +52,19 @@ export class NbControlErrComponent implements OnChanges, OnDestroy {
   private destroy$ = new Subject();
 
   constructor(
-    @Inject(NB_CONTROL_COMMON_ERR_MAPPING_TOKEN)
+    @Inject(NB_CONTROL_COMMON_ERR_INFO_TOKEN)
     @Optional()
-    private commonErrMapping: INbControlErrMapping = {},
+    private commonErrInfo: IControlErrInfo = {},
     private changeDR: ChangeDetectorRef,
   ) { }
 
   ngOnChanges(changes: SimpleChanges) {
-    const { control, errMapping } = changes;
+    const { control, errInfo } = changes;
     if (control) {
       this.subscribeControlChange();
     }
-    if (errMapping) {
-      this.updateAllErrMapping();
+    if (errInfo) {
+      this.updateAllErrInfo();
     }
   }
 
@@ -73,10 +73,10 @@ export class NbControlErrComponent implements OnChanges, OnDestroy {
     this.destroy$.complete();
   }
 
-  private updateAllErrMapping(): void {
-    this.allErrMapping = {
-      ...this.commonErrMapping,
-      ...this.errMapping,
+  private updateAllErrInfo(): void {
+    this.allErrInfo = {
+      ...this.commonErrInfo,
+      ...this.errInfo,
     };
     this.changeDR.markForCheck();
   }

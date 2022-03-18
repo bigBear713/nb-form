@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input, } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
-import { IControlErrInfo } from '../../models';
+import { INbControlErrInfo } from '../../models';
 
 @Component({
   selector: 'nb-field-item',
@@ -21,7 +21,7 @@ export class NbFieldItemComponent {
 
   @Input() control: AbstractControl | undefined;
 
-  @Input() errInfo: IControlErrInfo = {};
+  @Input() errInfo: INbControlErrInfo = {};
 
   @Input() required: boolean = false;
 

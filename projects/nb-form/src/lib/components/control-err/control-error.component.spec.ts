@@ -4,7 +4,7 @@ import { NbControlErrComponent } from './control-err.component';
 import { NbFormTestingModule } from '../../testing';
 import { NB_CONTROL_COMMON_ERR_INFO_TOKEN } from '../../constants';
 import { SimpleChange } from '@angular/core';
-import { IControlErrInfo } from '../../models';
+import { INbControlErrInfo } from '../../models';
 import { AbstractControl, FormControl } from '@angular/forms';
 import { NbFormValidators } from '../../validators';
 import { NbFormService } from '../../services';
@@ -122,8 +122,8 @@ describe('NbControlErrComponent', () => {
   describe('verify the allErrorInfo', () => {
     const testData: {
       title: string;
-      testData: { defaultInfo: IControlErrInfo | undefined; errInfo: IControlErrInfo };
-      expect: IControlErrInfo;
+      testData: { defaultInfo: INbControlErrInfo | undefined; errInfo: INbControlErrInfo };
+      expect: INbControlErrInfo;
     }[] = [
         {
           title: 'There does not have default info',

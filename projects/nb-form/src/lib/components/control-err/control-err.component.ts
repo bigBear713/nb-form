@@ -10,7 +10,7 @@ import {
   SimpleChanges
 } from '@angular/core';
 import { AbstractControl, FormControl } from '@angular/forms';
-import { IControlErrInfo } from '../../models';
+import { INbControlErrInfo } from '../../models';
 import { NB_CONTROL_COMMON_ERR_INFO_TOKEN } from '../../constants';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -41,9 +41,9 @@ export class NbControlErrComponent implements OnChanges, OnDestroy {
 
   @Input() control!: AbstractControl;
 
-  @Input() errInfo: IControlErrInfo = {};
+  @Input() errInfo: INbControlErrInfo = {};
 
-  allErrInfo: IControlErrInfo = {};
+  allErrInfo: INbControlErrInfo = {};
 
   errControl = new FormControl();
 
@@ -54,7 +54,7 @@ export class NbControlErrComponent implements OnChanges, OnDestroy {
   constructor(
     @Inject(NB_CONTROL_COMMON_ERR_INFO_TOKEN)
     @Optional()
-    private commonErrInfo: IControlErrInfo = {},
+    private commonErrInfo: INbControlErrInfo = {},
     private changeDR: ChangeDetectorRef,
   ) { }
 

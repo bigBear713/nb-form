@@ -249,13 +249,13 @@ this.updateAllValueAndValidity(form,{onlySelf:true});
 | Name  | Type  | Default  | Description  | Version |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
 | control  | `AbstractControl`  | `-`  | 要显示的错误信息所属的控件。一定要传入该值  | `v12.0.0` |
-| errMapping  | `INbControlErrMapping`  | `{}`  | 当前控件的错误信息，会和`providers`中设置常用的错误信息一起组合成最终使用的错误信息。如果不传，则只会显示`providers`中设置常用的错误信息  | `v12.0.0` |
+| errInfo  | `INbControlErrInfo`  | `{}`  | 当前控件的错误信息，会和`providers`中设置常用的错误信息一起组合成最终使用的错误信息。如果不传，则只会显示`providers`中设置常用的错误信息  | `v12.0.0` |
 
 ##### Usage
 ```html
 <!-- control = new FormControl() -->
-<!-- errMapping = {required:'这个字段必填！'} -->
-<nb-control-err [control]="control" [errMapping]="errMapping"></nb-control-err>
+<!-- errInfo = {required:'这个字段必填！'} -->
+<nb-control-err [control]="control" [errInfo]="errInfo"></nb-control-err>
 ```
 
 <br>
@@ -270,7 +270,7 @@ this.updateAllValueAndValidity(form,{onlySelf:true});
 | Name  | Type  | Default  | Description  | Version |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
 | control  | `AbstractControl ｜ undefined`  | `-`  | 要显示错误信息的控件。 | `v12.0.0` |
-| errMapping  | `INbControlErrMapping`  | `{}` | 要显示的错误信息。如果不传，则只会显示`providers`中设置常用的错误信息 | `v12.0.0` |
+| errInfo  | `INbControlErrInfo`  | `{}` | 要显示的错误信息。如果不传，则只会显示`providers`中设置常用的错误信息 | `v12.0.0` |
 | required  | `boolean`  | `false` | 该字段是否必填。如果必填，字段标签左侧会出现一个"*"。默认为false | `v12.0.0` |
 
 ##### Usage
@@ -282,7 +282,7 @@ this.updateAllValueAndValidity(form,{onlySelf:true});
 </nb-field-item>
 
 <!-- 必填，显示错误信息 -->
-<nb-field-item [required]="true" [control]="control" [errMapping]="errMapping">
+<nb-field-item [required]="true" [control]="control" [errInfo]="errInfo">
   <ng-container field-label>field 2</ng-container>
   <input>
 </nb-field-item>
@@ -294,7 +294,7 @@ this.updateAllValueAndValidity(form,{onlySelf:true});
 
 ### Token
 
-#### NB_CONTROL_COMMON_ERR_MAPPING_TOKEN
+#### NB_CONTROL_COMMON_ERR_INFO_TOKEN
 ##### `v12.0.0`
 ###### 用于设置常见的错误信息，避免每个地方都需要设置一遍。设置后，会和每个`<nb-control-err></nb-control-err>`组件中传入的错误信息组合成最终的错误信息。
 
@@ -303,7 +303,7 @@ this.updateAllValueAndValidity(form,{onlySelf:true});
   providers: [
     // ...
     {
-      provide: NB_CONTROL_COMMON_ERR_MAPPING_TOKEN,
+      provide: NB_CONTROL_COMMON_ERR_INFO_TOKEN,
       useFactory: (transService: NbTransService) => ({
         [NbControlErrTypeEnum.FILE_TYPE]: transService.translationAsync('fileType'),
         [NbControlErrTypeEnum.FILE_MIN_SIZE]: 'The file min file is 50KB!',
@@ -347,7 +347,7 @@ this.updateAllValueAndValidity(form,{onlySelf:true});
 
 <br>
 
-#### INbControlErrMapping
+#### INbControlErrInfo
 ##### `v12.0.0`
 ###### 控件错误信息映射。key为错误信息类型，value为错误信息
 | Property  | Type  | Mandatory  | Description  | Version |

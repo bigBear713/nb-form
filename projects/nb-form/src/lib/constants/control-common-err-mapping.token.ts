@@ -1,4 +1,4 @@
 import { InjectionToken } from "@angular/core";
-import { IControlErrInfo } from "../models";
+import { INbControlErrInfo } from "../models";
 
-export const NB_CONTROL_COMMON_ERR_INFO_TOKEN = new InjectionToken<IControlErrInfo>('common errors information');
+export const NB_CONTROL_COMMON_ERR_INFO_TOKEN = new InjectionToken<INbControlErrInfo>('common errors information');

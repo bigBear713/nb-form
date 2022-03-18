@@ -1,5 +1,5 @@
 import { Observable } from "rxjs";
 
-export interface IControlErrInfo {
+export interface INbControlErrInfo {
   [key: string]: string | Observable<string>;
 }

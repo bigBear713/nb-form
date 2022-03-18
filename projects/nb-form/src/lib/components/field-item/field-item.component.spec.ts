@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormControl } from '@angular/forms';
-import { IControlErrInfo } from '../../models';
+import { INbControlErrInfo } from '../../models';
 import { NbFormTestingModule } from '../../testing';
 import { NbFieldItemComponent } from './field-item.component';
 
@@ -17,7 +17,7 @@ import { NbFieldItemComponent } from './field-item.component';
 })
 class UIComponent {
   control!: FormControl;
-  errInfo!: IControlErrInfo;
+  errInfo!: INbControlErrInfo;
   required: boolean = true;
 }
 

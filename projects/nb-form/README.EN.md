@@ -248,13 +248,13 @@ this.updateAllValueAndValidity(form,{onlySelf:true});
 | Name  | Type  | Default  | Description  | Version |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
 | control  | `AbstractControl`  | `-`  | The control which the error info belong.  | `v12.0.0` |
-| errMapping  | `INbControlErrMapping`  | `{}`  | Error information which only belong the control. It will combined with the common error infos which are set in `providers`.  | `v12.0.0` |
+| errInfo  | `INbControlErrInfo`  | `{}`  | Error information which only belong the control. It will combined with the common error infos which are set in `providers`.  | `v12.0.0` |
 
 ##### Usage
 ```html
 <!-- control = new FormControl() -->
-<!-- errMapping = {required:'This field is required!'} -->
-<nb-control-err [control]="control" [errMapping]="errMapping"></nb-control-err>
+<!-- errInfo = {required:'This field is required!'} -->
+<nb-control-err [control]="control" [errInfo]="errInfo"></nb-control-err>
 ```
 
 <br>
@@ -269,7 +269,7 @@ this.updateAllValueAndValidity(form,{onlySelf:true});
 | Name  | Type  | Default  | Description  | Version |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
 | control  | `AbstractControl ｜ undefined`  | `-`  | The control which error info belong. | `v12.0.0` |
-| errMapping  | `INbControlErrMapping`  | `{}` | The error information. If it is undefined, the final error info is only the common error info from `providers` | `v12.0.0` |
+| errInfo  | `INbControlErrInfo`  | `{}` | The error information. If it is undefined, the final error info is only the common error info from `providers` | `v12.0.0` |
 | required  | `boolean`  | `false` | Is the field required? If is is `true`, there will display "*". The default is `false` | `v12.0.0` |
 
 ##### Usage
@@ -281,7 +281,7 @@ this.updateAllValueAndValidity(form,{onlySelf:true});
 </nb-field-item>
 
 <!-- Set the filed is required, and will display the error info -->
-<nb-field-item [required]="true" [control]="control" [errMapping]="errMapping">
+<nb-field-item [required]="true" [control]="control" [errInfo]="errInfo">
   <ng-container field-label>field 2</ng-container>
   <input>
 </nb-field-item>
@@ -293,7 +293,7 @@ this.updateAllValueAndValidity(form,{onlySelf:true});
 
 ### Token
 
-#### NB_CONTROL_COMMON_ERR_MAPPING_TOKEN
+#### NB_CONTROL_COMMON_ERR_INFO_TOKEN
 ##### `v12.0.0`
 ###### Used to set common error info, so you don't need to set the common error info every where. If you set the common error info, it will auto be combined with the error info of `<nb-control-err></nb-control-err>` to be final error info.
 
@@ -302,7 +302,7 @@ this.updateAllValueAndValidity(form,{onlySelf:true});
   providers: [
     // ...
     {
-      provide: NB_CONTROL_COMMON_ERR_MAPPING_TOKEN,
+      provide: NB_CONTROL_COMMON_ERR_INFO_TOKEN,
       useFactory: (transService: NbTransService) => ({
         [NbControlErrTypeEnum.FILE_TYPE]: transService.translationAsync('fileType'),
         [NbControlErrTypeEnum.FILE_MIN_SIZE]: 'The file min file is 50KB!',
@@ -346,7 +346,7 @@ this.updateAllValueAndValidity(form,{onlySelf:true});
 
 <br>
 
-#### INbControlErrMapping
+#### INbControlErrInfo
 ##### `v12.0.0`
 ###### Error informations. The key is the type of error, the value is error information
 | Property  | Type  | Mandatory  | Description  | Version |

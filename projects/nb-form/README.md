@@ -2,7 +2,7 @@
 
 ### @bigbear713/nb-form
 
-Angular form lib by bigBear713.
+Angular common form lib by bigBear713.
 
 [OnlineDemo](https://bigBear713.github.io/nb-form/)
 
@@ -21,6 +21,7 @@ Angular form lib by bigBear713.
 
 ## Feature
 - 提供常用的表单控件校验器：`arrLength`, `fileSize`, `fileType`, `repeated`, `required`, `whitespace`。具体见下方校验器的定义;
+- 支持组件的更新策略为`ChangeDetectionStrategy.OnPush`;
 
 <br>
 
@@ -82,7 +83,7 @@ new FormArray([],[NbFormValidators.arrMaxLength({max:5,min:3})]);
 ##### Params
 | Name  | Type  | Mandatory  | Description  | Version |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-| compare  | `AbstractControl`  | true  | 要对比的表单. | `v12.0.0` |
+| compare  | `AbstractControl`  | true  | 要对比的表单控件. | `v12.0.0` |
 
 ##### Return
 | Type  | Description  |
@@ -268,7 +269,7 @@ this.updateAllValueAndValidity(form,{onlySelf:true});
 ##### Input
 | Name  | Type  | Default  | Description  | Version |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-| control  | `AbstractControl | undefined`  | `-`  | 要显示错误信息的控件。如果不传，则不会显示错误信息 | `v12.0.0` |
+| control  | `AbstractControl ｜ undefined`  | `-`  | 要显示错误信息的控件。 | `v12.0.0` |
 | errMapping  | `INbControlErrMapping`  | `{}` | 要显示的错误信息。如果不传，则只会显示`providers`中设置常用的错误信息 | `v12.0.0` |
 | required  | `boolean`  | `false` | 该字段是否必填。如果必填，字段标签左侧会出现一个"*"。默认为false | `v12.0.0` |
 
@@ -337,18 +338,18 @@ this.updateAllValueAndValidity(form,{onlySelf:true});
 | arrMinLength  | `number`  | false  | 数组最小长度 | `v12.0.0` |
 | maxFileSize  | `number`  | false  | 最大文件大小 | `v12.0.0` |
 | minFileSize  | `number`  | false  | 最小文件大小 | `v12.0.0` |
-| fileType  | `number`  | false  | 支持的文件类型 | `v12.0.0` |
-| pattern  | `number`  | false  | 正则表达匹配 | `v12.0.0` |
-| whitespace  | `number`  | false  | 是否可以都是空格 | `v12.0.0` |
-| initValue  | `number`  | false  | 初始值 | `v12.0.0` |
-| placeholder  | `number`  | false  | placeholder | `v12.0.0` |
-| [key: string]  | `number`  | false  | 拓展配置 | `v12.0.0` |
+| fileType  | `string[]`  | false  | 支持的文件类型 | `v12.0.0` |
+| pattern  | `string ｜ RegExp`  | false  | 正则表达匹配 | `v12.0.0` |
+| whitespace  | `boolean`  | false  | 是否可以都是空格 | `v12.0.0` |
+| initValue  | `any`  | false  | 初始值 | `v12.0.0` |
+| placeholder  | `string`  | false  | placeholder | `v12.0.0` |
+| [key: string]  | `any`  | false  | 拓展配置 | `v12.0.0` |
 
 <br>
 
 #### INbControlErrMapping
 ##### `v12.0.0`
-###### 控件错误信息映射。key为错误信息类型，value为
+###### 控件错误信息映射。key为错误信息类型，value为错误信息
 | Property  | Type  | Mandatory  | Description  | Version |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
 | [key: string]  | `string｜Observable<string>`  | false  | key值为字符串类型，value值为字符串类型或者可观察者对象。key表示错误类型，value为显示到UI上的错误信息。支持直接显示和订阅显示，以便在多语言场景下使用 | `v12.0.0` |

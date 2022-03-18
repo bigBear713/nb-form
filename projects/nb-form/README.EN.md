@@ -1,24 +1,393 @@
-# NbForm
+<div align="center">
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.0.
+### @bigbear713/nb-form
 
-## Code scaffolding
+Angular common form lib by bigBear713.
 
-Run `ng generate component component-name --project nb-form` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project nb-form`.
-> Note: Don't forget to add `--project nb-form` or else it will be added to the default project in your `angular.json` file. 
+[OnlineDemo](https://bigBear713.github.io/nb-form/)
 
-## Build
+[Bug Report](https://github.com/bigBear713/nb-form/issues)
 
-Run `ng build nb-form` to build the project. The build artifacts will be stored in the `dist/` directory.
+[Feature Request](https://github.com/bigBear713/nb-form/issues)
 
-## Publishing
+</div>
 
-After building your library with `ng build nb-form`, go to the dist folder `cd dist/nb-form` and run `npm publish`.
+## Document
+- [中文](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md "中文文档")
+- [English](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.EN.md "English Document")
 
-## Running unit tests
+<br>
 
-Run `ng test nb-form` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Further help
+## Feature
+- Provide the common validators:`arrLength`, `fileSize`, `fileType`, `repeated`, `required`, `whitespace`. You can see the definition below;
+- Support the changeDetection of components as `ChangeDetectionStrategy.OnPush`;
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+<br>
+
+
+### Version
+###### The nb-form's major version will keep up with the Angular's major version
+- "@bigbear713/nb-form":"^12.0.0" - "@angular/core": "^12.0.0"
+
+<br>
+
+### Installation
+```bash
+$ npm i @bigbear713/nb-form
+// or
+$ yarn add @bigbear713/nb-form
+```
+
+<br>
+
+### Module
+
+#### NbFormModule
+###### Form module. After importing the module, you can use the `component`. The `service` and `validators` also can be used if you don't import  the module.
+
+#### NbFormTestingModule
+###### Form testing module, used fo unit test.
+
+<br>
+
+### Validators
+
+#### NbFormValidators.arrMaxLength
+##### `v12.0.0`
+###### Array length validator
+
+##### Params
+| Name  | Type  | Mandatory  | Description  | Version |
+| ------------ | ------------ | ------------ | ------------ | ------------ |
+| arrLength  | `{ max?: number; min?: number }`  | true  | The limit about array length. You can set max/min value alone  | `v12.0.0` |
+
+##### Return
+| Type  | Description  |
+| ------------ | ------------ |
+| `{ [NbControlErrTypeEnum.ARR_MAX_LENGTH]?: true;[NbControlErrTypeEnum.ARR_MIN_LENGTH]?: true; }｜null`  | The result. If it is null, the condition is met or the value of control is not a array value. If the result is `{ [NbControlErrTypeEnum.ARR_MAX_LENGTH]: true }`, the control array value's length is greater than max limit value. If the result is `{ [NbControlErrTypeEnum.ARR_MIN_LENGTH]: true }`, the control array value's length is less than the min limit value. |
+
+##### Usage
+```ts
+
+new FormArray([],[NbFormValidators.arrMaxLength({max:5,min:3})]);
+
+```
+
+<br>
+
+#### NbFormValidators.equal
+##### `v12.0.0`
+###### Values are equal validator
+
+##### Params
+| Name  | Type  | Mandatory  | Description  | Version |
+| ------------ | ------------ | ------------ | ------------ | ------------ |
+| compared  | `AbstractControl`  | true  | The control which will be compared with the current control | `v12.0.0` |
+
+##### Return
+| Type  | Description  |
+| ------------ | ------------ |
+| `{ [NbControlErrTypeEnum.NOT_EQUAL]: true; }｜null`  | The result. If the two control's values are equal, the result is null. If the valus are not equal, the result is `{ [NbControlErrTypeEnum.NOT_EQUAL]: true }`. When the values are not equal, the compared control will has the no equal error info. |
+
+##### Usage
+```ts
+
+const targetControl = new FormControl();
+const compareControl = new FormControl();
+targetControl.setValidators([NbFormValidators.equal(compareControl)])
+
+```
+
+<br>
+
+#### NbFormValidators.fileSize
+##### `v12.0.0`
+###### File size validator
+
+##### Params
+| Name  | Type  | Mandatory  | Description  | Version |
+| ------------ | ------------ | ------------ | ------------ | ------------ |
+| fileSize  | `{ max?: number; min?: number }`  | true  | The limit of file size. You can set the max/min limit alone. The limit value's unit is `B`. | `v12.0.0` |
+
+##### Return
+| Type  | Description  |
+| ------------ | ------------ |
+| `{ [NbControlErrTypeEnum.FILE_MAX_SIZE]?: true;[NbControlErrTypeEnum.FILE_MIN_SIZE]?: true; }｜null`  | The result. If is is null, the condition is met or the control's value is not a `File` type value. If the result is `{ [NbControlErrTypeEnum.FILE_MAX_SIZE]: true }`, the file size is greater than the max limit value. If the result is `{ [NbControlErrTypeEnum.FILE_MIN_SIZE]: true }`, the file size is less than the min limit value. |
+
+##### Usage
+```ts
+
+new FormControl(new File(),[NbFormValidators.fileSize({max:5,min:3})]);
+
+```
+
+<br>
+
+#### NbFormValidators.fileType
+##### `v12.0.0`
+###### File type validator
+
+##### Params
+| Name  | Type  | Mandatory  | Description  | Version |
+| ------------ | ------------ | ------------ | ------------ | ------------ |
+| types  | `string[]`  | true  | The file types you want to support. The types value should be `MIME Type` value. | `v12.0.0` |
+
+##### Return
+| Type  | Description  |
+| ------------ | ------------ |
+| `{ [NbControlErrTypeEnum.FILE_TYPE]: true; }｜null`  | The result. If it is null, the condition is met or the value of control is not a `File`value. If the result is `{ [NbControlErrTypeEnum.FILE_TYPE]: true }`, the control's file type is among the types to be supported |
+
+##### Usage
+```ts
+
+new FormControl(new File(),[NbFormValidators.fileType(['image/jpeg','image/png'])]);
+
+```
+
+<br>
+
+#### NbFormValidators.required
+##### `v12.0.0`
+###### Required validator
+
+##### Params
+| Name  | Type  | Mandatory  | Description  | Version |
+| ------------ | ------------ | ------------ | ------------ | ------------ |
+| required  | `boolean`  | false  | Is the control required. The default is `true`. If the param is `true`, it will call the `Validators.required`, otherwise it will not do the check | `v12.0.0` |
+
+##### Return
+| Type  | Description  |
+| ------------ | ------------ |
+| `{ [NbControlErrTypeEnum.REQUIRED]: true; }｜null`  | The result. If it is null, the condition is met. If the result is `{ [NbControlErrTypeEnum.REQUIRED]: true }`, the control's value shoule be required. |
+
+##### Usage
+```ts
+
+new FormControl('',[NbFormValidators.required(false)])
+
+```
+
+<br>
+
+#### NbFormValidators.whitespace
+##### `v12.0.0`
+###### Whitespace validator
+
+##### Params
+| Name  | Type  | Mandatory  | Description  | Version |
+| ------------ | ------------ | ------------ | ------------ | ------------ |
+| canWhitespace  | `boolean`  | false  | Can the control's value all be whitespace? The default is `true`. If the param is `true`, user can only enter whitespaces.  | `v12.0.0` |
+
+##### Return
+| Type  | Description  |
+| ------------ | ------------ |
+| `{ [NbControlErrTypeEnum.REQUIRED]: true; }｜null`  | The result. If it is null, the condition is met. If the result is `{ [NbControlErrTypeEnum.REQUIRED]: true }`, the condition is not met. |
+
+##### Usage
+```ts
+
+new FormControl('',[NbFormValidators.whitespace(false)])
+
+```
+
+<br>
+
+### Service
+
+#### NbFormService
+##### `v12.0.0`
+###### A `service` which provide some common function about form
+
+##### Methods
+| Name  | Return  | Description  | Scenes  | Version |
+| ------------ | ------------ | ------------ | ------------ | ------------ |
+| getValidatorsFromControlConfig(config: INbControlConfig)  | `ValidatorFn[]`  | Get the validator list based on the config param. The config you can set inlcude `required`,`max`,`min`,`maxLength`,`minLength`,`arrMaxLength`,`arrMinLength`,`maxFileSize`,`minFileSize`,`fileType`,`pattern`,`whitespace`. And `max`,`min`,`maxLength`,`minLength`,`pattern` will return the validators from `Validators`, others is from `NbFormValidators` | When you need to quickly set the validator list based on configuration information  | `v12.0.0` |
+| markAllAsDirty(control: NbAbstractControl, opts?: { onlySelf?: boolean; emitEvent?: boolean; }) | `void`  | Mark the control and its sub-controls as dirty. The `control` is the target which you want to mark, `opts` param will be set to the control and its sub-controls | If you want to mark a control and its sub-controls as dirty  | `v12.0.0` |
+| showAllErrInfo(control: NbAbstractControl, opts?: { onlySelf?: boolean; emitEvent?: boolean; })  | `void`  | Show the control and its sub-controls all error information. It will call the `control.markAllAsTouched`,`markAllAsDirty`,`updateAllValueAndValidity` functions to make the error info be displayed on UI. The `control` is the target you want to do. The `opts` param will be set to the control and its sub-controls when calling the `markAllAsDirty`,`updateAllValueAndValidity` functions | When you want to show the error info of control and its sub-controls to user, like submitting the form | `v12.0.0` |
+| updateAllValueAndValidity(control: NbAbstractControl, opts?: { onlySelf?: boolean; emitEvent?: boolean; }) | `void`  | Update the control and its sub-controls vaules and validities. The `control` param is the target you want to do, `opts` param will be set to the control and its sub-controls | When you want to update the control and its sub-controls vaules and validities | `v12.0.0` |
+
+
+##### Usage
+```ts
+constructor(private formService: NbFormService) {}
+
+const config:INbControlConfig={required:true,whitespace:false};
+const validators = this.formService.getValidatorsFromControlConfig(config);
+new FormControl('',validators);
+
+
+const form = new FormGroup({
+  // ...
+});
+this.markAllAsDirty(form,{onlySelf:true});
+
+
+const form = new FormGroup({
+  // ...
+});
+this.showAllErrInfo(form,{onlySelf:true});
+
+
+const form = new FormGroup({
+  // ...
+});
+this.updateAllValueAndValidity(form,{onlySelf:true});
+
+```
+
+<br>
+
+### Component
+
+#### `<nb-control-err></nb-control-err>`
+##### `v12.0.0`
+###### The component is used to show error info of the control. The error info support `string` and `Observable<string>` type, so you can use it in i18n. You can set common error info in `providers`, it will combined with error info which is inputed from the component.
+
+##### Input
+| Name  | Type  | Default  | Description  | Version |
+| ------------ | ------------ | ------------ | ------------ | ------------ |
+| control  | `AbstractControl`  | `-`  | The control which the error info belong.  | `v12.0.0` |
+| errMapping  | `INbControlErrMapping`  | `{}`  | Error information which only belong the control. It will combined with the common error infos which are set in `providers`.  | `v12.0.0` |
+
+##### Usage
+```html
+<!-- control = new FormControl() -->
+<!-- errMapping = {required:'This field is required!'} -->
+<nb-control-err [control]="control" [errMapping]="errMapping"></nb-control-err>
+```
+
+<br>
+
+#### `<nb-field-item></nb-field-item>`
+##### `v12.0.0`
+###### The file item component, is used in form in common. It has common layout and can show error info
+##### `[field-label]`
+###### The file item's label
+
+##### Input
+| Name  | Type  | Default  | Description  | Version |
+| ------------ | ------------ | ------------ | ------------ | ------------ |
+| control  | `AbstractControl ｜ undefined`  | `-`  | The control which error info belong. | `v12.0.0` |
+| errMapping  | `INbControlErrMapping`  | `{}` | The error information. If it is undefined, the final error info is only the common error info from `providers` | `v12.0.0` |
+| required  | `boolean`  | `false` | Is the field required? If is is `true`, there will display "*". The default is `false` | `v12.0.0` |
+
+##### Usage
+```html
+<!-- set the field's label and field content. If there does not have control params, the error info will not be displayed -->
+<nb-field-item>
+  <ng-container field-label>field 1</ng-container>
+  <input>
+</nb-field-item>
+
+<!-- Set the filed is required, and will display the error info -->
+<nb-field-item [required]="true" [control]="control" [errMapping]="errMapping">
+  <ng-container field-label>field 2</ng-container>
+  <input>
+</nb-field-item>
+
+```
+
+<br>
+
+
+### Token
+
+#### NB_CONTROL_COMMON_ERR_MAPPING_TOKEN
+##### `v12.0.0`
+###### Used to set common error info, so you don't need to set the common error info every where. If you set the common error info, it will auto be combined with the error info of `<nb-control-err></nb-control-err>` to be final error info.
+
+##### Usage
+```ts
+  providers: [
+    // ...
+    {
+      provide: NB_CONTROL_COMMON_ERR_MAPPING_TOKEN,
+      useFactory: (transService: NbTransService) => ({
+        [NbControlErrTypeEnum.FILE_TYPE]: transService.translationAsync('fileType'),
+        [NbControlErrTypeEnum.FILE_MIN_SIZE]: 'The file min file is 50KB!',
+      }),
+      deps: [NbTransService]
+    },
+    // ...
+  ]
+```
+
+<br>
+
+### Interface
+
+#### NbAbstractControl
+##### `v12.0.0`
+###### Abstract control, include `AbstractControl`, `null`, `undefined` 
+
+<br>
+
+#### INbControlConfig
+##### `v12.0.0`
+###### The config of control
+| Property  | Type  | Mandatory  | Description  | Version |
+| ------------ | ------------ | ------------ | ------------ | ------------ |
+| required  | `boolean`  | false  | Is required limit | `v12.0.0` |
+| max  | `number`  | false  | Max limit | `v12.0.0` |
+| min  | `number`  | false  | Min limit | `v12.0.0` |
+| maxLength  | `number`  | false  | Max length limit | `v12.0.0` |
+| minLength  | `number`  | false  | Min length limit | `v12.0.0` |
+| arrMaxLength  | `number`  | false  | Max length limit of array | `v12.0.0` |
+| arrMinLength  | `number`  | false  | Min length limit of array | `v12.0.0` |
+| maxFileSize  | `number`  | false  | Max size limit of file | `v12.0.0` |
+| minFileSize  | `number`  | false  | Min size limit of file | `v12.0.0` |
+| fileType  | `string[]`  | false  | The types limit of file | `v12.0.0` |
+| pattern  | `string ｜ RegExp`  | false  | The pattern limit | `v12.0.0` |
+| whitespace  | `boolean`  | false  | Can all be whitespace | `v12.0.0` |
+| initValue  | `any`  | false  | Initial value | `v12.0.0` |
+| placeholder  | `string`  | false  | placeholder | `v12.0.0` |
+| [key: string]  | `any`  | false  | more configs | `v12.0.0` |
+
+<br>
+
+#### INbControlErrMapping
+##### `v12.0.0`
+###### Error informations. The key is the type of error, the value is error information
+| Property  | Type  | Mandatory  | Description  | Version |
+| ------------ | ------------ | ------------ | ------------ | ------------ |
+| [key: string]  | `string｜Observable<string>`  | false  | The key is string type, and the value is string or Observable<string> type, so you can use it in i18n | `v12.0.0` |
+
+<br>
+
+#### INbFormConfigs
+##### `v12.0.0`
+###### The configs of form control
+| Property  | Type  | Mandatory  | Description  | Version |
+| ------------ | ------------ | ------------ | ------------ | ------------ |
+| [key: string]  | `INbControlConfig`  | false  | The key is the control's name, the value is control's configs | `v12.0.0` |
+
+<br>
+
+### Enum
+#### NbControlErrTypeEnum
+##### `v12.0.0`
+###### Common error enum
+| Key  | Value  | Description  | Version |
+| ------------ | ------------ | ------------ | ------------ |  
+| REQUIRED  | `required`  | Required error | `v12.0.0` |
+| FILE_MAX_SIZE  | `fileMaxSize`  | File max size error | `v12.0.0` |
+| FILE_MIN_SIZE  | `fileMinSize`  | File min size error | `v12.0.0` |
+| FILE_TYPE  | `fileType`  | File type error | `v12.0.0` |
+| EQUAL  | `equal`  | Equal error | `v12.0.0` |
+| MAX_LENGTH  | `maxlength`  | Max length error | `v12.0.0` |
+| MIN_LENGTH  | `minlength`  | Min length error | `v12.0.0` |
+| ARR_MAX_LENGTH  | `arrMaxLength`  | Max length of array error | `v12.0.0` |
+| ARR_MIN_LENGTH  | `arrMinLength`  | Min length of array error | `v12.0.0` |
+
+<br>
+
+### Contribution
+> Feature and PR are welcome to make this project better together
+
+<a href="https://github.com/bigBear713" target="_blank"><img src="https://avatars.githubusercontent.com/u/12368900?v=4" alt="bigBear713" width="30px" height="30px"></a>
+
+<br>
+
+### License
+MIT

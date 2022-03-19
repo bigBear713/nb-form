@@ -24,9 +24,8 @@ import { takeUntil } from 'rxjs/operators';
       top: 100%;
       left: 0;
       display: block;
-      width: 100%;
-      color: red;
       font-size: 14px;
+      color: red;
     }
     .err-info {
       position: absolute;

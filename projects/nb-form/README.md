@@ -248,7 +248,7 @@ this.updateAllValueAndValidity(form,{onlySelf:true});
 ##### Input
 | Name  | Type  | Default  | Description  | Version |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-| control  | `AbstractControl`  | `-`  | 要显示的错误信息所属的控件。一定要传入该值  | `v12.0.0` |
+| control  | `AbstractControl`  | `-`  | 要显示的错误信息所属的控件  | `v12.0.0` |
 | errInfo  | `INbControlErrInfo`  | `{}`  | 当前控件的错误信息，会和`providers`中设置常用的错误信息一起组合成最终使用的错误信息。如果不传，则只会显示`providers`中设置常用的错误信息  | `v12.0.0` |
 
 ##### Usage
@@ -349,7 +349,7 @@ this.updateAllValueAndValidity(form,{onlySelf:true});
 
 #### INbControlErrInfo
 ##### `v12.0.0`
-###### 控件错误信息映射。key为错误信息类型，value为错误信息
+###### 控件错误信息
 | Property  | Type  | Mandatory  | Description  | Version |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
 | [key: string]  | `string｜Observable<string>`  | false  | key值为字符串类型，value值为字符串类型或者可观察者对象。key表示错误类型，value为显示到UI上的错误信息。支持直接显示和订阅显示，以便在多语言场景下使用 | `v12.0.0` |

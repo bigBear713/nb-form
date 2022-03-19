@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
   form: FormGroup | undefined;
 
   errInfo1 = {
-    [NbControlErrTypeEnum.REQUIRED]: this.transService.translationAsync('required'),
+    [NbControlErrTypeEnum.REQUIRED]: this.transService.translationAsync('errors.required'),
   };
 
   errInfo2 = {

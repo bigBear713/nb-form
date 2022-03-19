@@ -4,33 +4,33 @@
 </h3>
 <form *ngIf="form" [formGroup]="form">
   <nb-field-item [required]="true" [control]="field1Ctrl" [errInfo]="errInfo1">
-    <span field-label>字段1：</span>
+    <span field-label>{{"demoContent.field1"|nbTrans}}：</span>
     <input type="text" [formControl]="field1Ctrl">
   </nb-field-item>
   <nb-field-item [control]="field2Ctrl" [errInfo]="errInfo1">
-    <span field-label>字段2：</span>
+    <span field-label>{{"demoContent.field2"|nbTrans}}：</span>
     <input type="text" [formControl]="field2Ctrl">
   </nb-field-item>
   <nb-field-item [control]="field3Ctrl" [errInfo]="errInfo2">
-    <span field-label>字段3：</span>
+    <span field-label>{{"demoContent.field3"|nbTrans}}：</span>
     <input type="file" (change)="onChangeFile($event)">
   </nb-field-item>
 </form>
 
 <hr>
-<h5>直接使用{{"\<nb-control-err>\</nb-control-err>"}}</h5>
+<h5>{{"demoContent.useComp"|nbTrans}}</h5>
 <form *ngIf="form" style="margin-bottom: 20px;width: 200px;" [formGroup]="form">
   <input type="text" formControlName="field1">
   <nb-control-err [control]="field1Ctrl" [errInfo]="errInfo1"></nb-control-err>
 </form>
 <hr>
-<button type="button" (click)="onSubmit()">submit</button>
-<button (click)="resetCtrl1()">重置字段1</button>
+<button type="button" (click)="onSubmit()">{{'demoContent.submit'|nbTrans}}</button>
+<button (click)="resetCtrl1()">{{'demoContent.resetField1'|nbTrans}}</button>
 <div>
-  <p>说明</p>
-  <p>字段1要求必填</p>
-  <p>字段2要求不能都为空格，否则会报必填的错误。</p>
-  <p>字段3要求选择的文件的格式为：jpg/svg,文件大小在 100KB ~ 500KB 之间。</p>
-  <p>必填错误信息和文件格式错误信息支持多语言转换</p>
-  <p>错误信息支持通过DI(依赖注入)设置公用错误信息，和各个的错误信息组合成最终的错误信息</p>
+  <p>{{'demoContent.desc'|nbTrans}}</p>
+  <p>{{'demoContent.desc1'|nbTrans}}</p>
+  <p>{{'demoContent.desc2'|nbTrans}}</p>
+  <p>{{'demoContent.desc3'|nbTrans}}</p>
+  <p>{{'demoContent.desc4'|nbTrans}}</p>
+  <p>{{'demoContent.desc5'|nbTrans}}</p>
 </div>

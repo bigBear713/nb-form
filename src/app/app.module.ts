@@ -7,16 +7,16 @@ import {
   NbControlErrTypeEnum,
   NB_CONTROL_COMMON_ERR_INFO_TOKEN
 } from 'nb-form';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     NbFormModule,
@@ -27,24 +27,21 @@ import { AppComponent } from './app.component';
     {
       provide: NB_CONTROL_COMMON_ERR_INFO_TOKEN,
       useFactory: (transService: NbTransService) => ({
-        [NbControlErrTypeEnum.FILE_TYPE]: transService.translationAsync('fileType'),
+        [NbControlErrTypeEnum.FILE_TYPE]: transService.translationAsync('errors.fileType'),
         [NbControlErrTypeEnum.FILE_MIN_SIZE]: 'The file min file is 50KB!',
       }),
       deps: [NbTransService]
     },
     {
       provide: NB_TRANS_LOADER,
-      useValue: {
-        [NbTransLangEnum.ZH_CN]: {
-          required: '这个字段为必填项！',
-          fileType: '文件格式要求为jpg/svg!'
-        },
-        [NbTransLangEnum.EN]: {
-          required: 'This field is required!',
-          fileType: 'The file format should be jpg/svg!'
-        },
-      }
-    }
+      useFactory: (http: HttpClient) => {
+        return {
+          [NbTransLangEnum.ZH_CN]: () => http.get('./assets/localization/zh-CN/translations.json'),
+          [NbTransLangEnum.EN]: () => http.get('./assets/localization/en/translations.json'),
+        };
+      },
+      deps: [HttpClient]
+    },
   ],
   bootstrap: [AppComponent]
 })

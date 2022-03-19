@@ -1,0 +1,20 @@
+{
+  "errors": {
+    "required": "这个字段为必填项！",
+    "fileType": "文件格式要求为jpg/svg!"
+  },
+  "demoContent": {
+    "field1": "字段1",
+    "field2": "字段2",
+    "field3": "字段3",
+    "useComp": "直接使用<nb-control-err></nb-control-err>",
+    "submit": "提交",
+    "resetField1": "重置字段1",
+    "desc": "说明",
+    "desc1": "字段1要求必填",
+    "desc2": "字段2要求不能都为空格，否则会报必填的错误。",
+    "desc3": "字段3要求选择的文件的格式为：jpg/svg,文件大小在 100KB ~ 500KB 之间。",
+    "desc4": "必填错误信息和文件格式错误信息支持多语言转换",
+    "desc5": "支持通过DI(依赖注入)设置公用错误信息，会和<nb-control-err></nb-control-err>组件传进来的错误信息组合成最终的错误信息"
+  }
+}

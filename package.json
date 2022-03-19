@@ -1,6 +1,6 @@
 {
   "name": "nb-form-demo",
-  "version": "0.0.0",
+  "version": "12.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -8,17 +8,15 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "start:lib": "ng build --watch nb-form",
-    "build:lib": "ng build nb-form && npm run copy:readmeEn && cd dist/nb-form && npm pack",
+    "build:lib": "ng build nb-form && npm run copy:readmeEn",
     "build:analyze": "npm run build -- --source-map && npm run view:analyze",
     "view:analyze": "node_modules/.bin/source-map-explorer dist/nb-form-demo/*",
     "test:lib": "ng test nb-form",
     "deploy": "ng build --outputPath=docs --base-href=/nb-form/ && cp docs/index.html docs/404.html",
-    "dev:ssr": "ng run nb-form-demo:serve-ssr",
-    "serve:ssr": "node dist/nb-form-demo/server/main.js",
-    "build:ssr": "ng build && ng run nb-form-demo:server",
-    "prerender": "ng run nb-form-demo:prerender",
-    "publish:lib": "cd ./dist/nb-form && npm publish --access=public",
-    "copy:readmeEn": "cp projects/nb-form/README.EN.md dist/nb-form/README.EN.md"
+    "publish:lib": "npm run build:lib && cd ./dist/nb-form && npm publish --access=public",
+    "copy:readmeEn": "cp projects/nb-form/README.EN.md dist/nb-form/README.EN.md",
+    "pack:lib": "cd ./dist/nb-form && npm pack",
+    "reInstall": "rm -rf ./node_modules && npm i"
   },
   "private": true,
   "dependencies": {
@@ -32,7 +30,6 @@
     "@angular/router": "~12.2.0",
     "@bigbear713/nb-common": "^12.1.0",
     "@bigbear713/nb-trans": "^12.0.0",
-    "@bigbear713/ng-trans": "^12.1.1",
     "lodash-es": "^4.17.21",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",

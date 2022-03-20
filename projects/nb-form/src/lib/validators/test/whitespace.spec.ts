@@ -42,7 +42,7 @@ describe('NbFormValidators.whitespace', () => {
         controlValue: '    ',
         canWhitespace: false,
       },
-      expect: { [NbControlErrTypeEnum.REQUIRED]: true }
+      expect: { [NbControlErrTypeEnum.WHITESPACE]: true }
     },
     {
       title: 'When the value of control is not all whitespace and canWhitespace is false',

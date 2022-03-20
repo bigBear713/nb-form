@@ -73,7 +73,7 @@ const maxControl = new FormArray([1,2,3,4,5,6],[NbFormValidators.arrMaxLength({m
 console.log(maxControl.errors); // { [NbControlErrTypeEnum.ARR_MAX_LENGTH]: true }
 
 const minControl = new FormArray([1,2],[NbFormValidators.arrMaxLength({max:5,min:3})]);
-console.log(maxControl.errors); // { [NbControlErrTypeEnum.ARR_MIN_LENGTH]: true }
+console.log(minC  ontrol.errors); // { [NbControlErrTypeEnum.ARR_MIN_LENGTH]: true }
 ```
 
 <br>

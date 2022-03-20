@@ -86,6 +86,8 @@ export class NbControlErrComponent implements OnChanges, OnDestroy {
       takeUntil(this.destroy$)
     ).subscribe(
       (status) => {
+        console.log(status);
+
         const hasErr = this.control.dirty && status === 'INVALID';
         this.updateHasErr(hasErr);
       }

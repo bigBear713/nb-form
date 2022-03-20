@@ -8,4 +8,5 @@ export enum NbControlErrTypeEnum {
   MIN_LENGTH = 'minlength',
   ARR_MAX_LENGTH = 'arrMaxLength',
   ARR_MIN_LENGTH = 'arrMinLength',
+  WHITESPACE = 'whitespace',
 }

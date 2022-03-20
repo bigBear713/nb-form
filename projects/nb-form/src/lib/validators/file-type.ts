@@ -1,7 +1,7 @@
-import { AbstractControl } from '@angular/forms';
+import { AbstractControl, ValidatorFn } from '@angular/forms';
 import { NbControlErrTypeEnum } from '../constants';
 
-export const fileType = (types: string[]) => {
+export const fileType = (types: string[]): ValidatorFn => {
   return (control: AbstractControl) => {
     const file = control.value;
 

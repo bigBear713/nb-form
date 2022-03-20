@@ -1,7 +1,7 @@
-import { AbstractControl } from "@angular/forms";
+import { AbstractControl, ValidatorFn } from "@angular/forms";
 import { NbControlErrTypeEnum } from "../constants";
 
-export const arrLength = (arrLength: { max?: number; min?: number }) => {
+export const arrLength = (arrLength: { max?: number; min?: number }): ValidatorFn => {
   return (control: AbstractControl) => {
     const arr = control.value;
     if (!Array.isArray(arr)) {

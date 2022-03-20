@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { NbTransLangEnum, NbTransService } from '@bigbear713/nb-trans';
+import { isEqual } from 'lodash-es';
 import { NbControlErrTypeEnum, NbFormService, NbFormValidators } from 'nb-form';
+import { combineLatest } from 'rxjs';
+import { distinctUntilChanged, startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -14,10 +17,11 @@ export class AppComponent implements OnInit {
 
   errInfo1 = {
     [NbControlErrTypeEnum.REQUIRED]: this.transService.translationAsync('errors.required'),
+    [NbControlErrTypeEnum.WHITESPACE]: this.transService.translationAsync('errors.required'),
   };
 
   errInfo2 = {
-    [NbControlErrTypeEnum.FILE_MAX_SIZE]: 'The file max file is 100kb!',
+    [NbControlErrTypeEnum.FILE_MAX_SIZE]: 'The file max file is 500kb!',
   };
 
   get field1Ctrl(): FormControl {
@@ -32,6 +36,14 @@ export class AppComponent implements OnInit {
     return this.form?.get('field3') as FormControl;
   }
 
+  get field4Ctrl(): FormControl {
+    return this.form?.get('field4') as FormControl;
+  }
+
+  get field5Ctrl(): FormControl {
+    return this.form?.get('field5') as FormControl;
+  }
+
   constructor(
     private fb: FormBuilder,
     private formService: NbFormService,
@@ -40,6 +52,17 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.buildForm();
+    combineLatest([
+      this.field4Ctrl.statusChanges.pipe(startWith(this.field4Ctrl.status)),
+      this.field5Ctrl.statusChanges.pipe(startWith(this.field5Ctrl.status))
+    ]).pipe(
+      distinctUntilChanged(
+        (prev, curr) => isEqual(prev, curr)
+      )
+    ).subscribe((status) => {
+      this.field4Ctrl.updateValueAndValidity();
+      this.field5Ctrl.updateValueAndValidity();
+    })
   }
 
   changeLanguage(langKey: string) {
@@ -55,8 +78,8 @@ export class AppComponent implements OnInit {
   onChangeFile($event: Event): void {
     const fileEle = $event.target as HTMLInputElement;
     if (fileEle && fileEle.files?.length) {
+      this.field3Ctrl.markAsDirty();
       this.field3Ctrl.setValue(fileEle.files[0]);
-      this.field3Ctrl.markAsTouched();
     }
   }
 
@@ -67,11 +90,15 @@ export class AppComponent implements OnInit {
   private buildForm(): void {
     this.form = this.fb.group({
       field1: [null, [NbFormValidators.required(true)]],
-      field2: [null, this.formService.getValidatorsFromControlConfig({ whitespace: false })],
-      field3: [undefined, [
-        NbFormValidators.fileType(['image/svg+xml', 'image/jpeg']),
-        NbFormValidators.fileSize({ max: 500 * 1000, min: 100 * 1000 }),
-      ]],
+      field2: [null, [NbFormValidators.whitespace(false)]],
+      field3: [undefined, this.formService.getValidatorsFromControlConfig({
+        fileType: ['image/svg+xml', 'image/jpeg'],
+        maxFileSize: 500 * 1000, minFileSize: 100 * 1000
+      })],
+      field4: [''],
+      field5: [null]
     });
+    this.field4Ctrl.setValidators([NbFormValidators.equal(this.field5Ctrl)]);
+    this.field5Ctrl.setValidators([NbFormValidators.equal(this.field4Ctrl)]);
   }
 }

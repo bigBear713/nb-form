@@ -1,7 +1,7 @@
-import { AbstractControl } from '@angular/forms';
+import { AbstractControl, ValidatorFn } from '@angular/forms';
 import { NbControlErrTypeEnum } from '../constants';
 
-export const fileSize = (fileSize: { max?: number; min?: number }) => {
+export const fileSize = (fileSize: { max?: number; min?: number }): ValidatorFn => {
   return (control: AbstractControl) => {
     const file = control.value;
 

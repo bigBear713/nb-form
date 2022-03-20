@@ -65,20 +65,22 @@ $ yarn add @bigbear713/nb-form
 ##### Return
 | Type  | Description  |
 | ------------ | ------------ |
-| `{ [NbControlErrTypeEnum.ARR_MAX_LENGTH]?: true;[NbControlErrTypeEnum.ARR_MIN_LENGTH]?: true; }｜null`  | 校验结果。返回null表示符合条件，或者要校验的内容不是一个数组。返回`{ [NbControlErrTypeEnum.ARR_MAX_LENGTH]: true }`表示数组长度超出最大长度限制。返回`{ [NbControlErrTypeEnum.ARR_MIN_LENGTH]: true }`表示数组长度小于最小长度限制。  |
+| `{ [NbControlErrTypeEnum.ARR_MAX_LENGTH]?: true;[NbControlErrTypeEnum.ARR_MIN_LENGTH]?: true; }｜null`  | 返回null表示符合条件，或者要校验的内容不是一个数组。返回`{ [NbControlErrTypeEnum.ARR_MAX_LENGTH]: true }`表示数组长度超出最大长度限制。返回`{ [NbControlErrTypeEnum.ARR_MIN_LENGTH]: true }`表示数组长度小于最小长度限制。  |
 
 ##### Usage
 ```ts
+const maxControl = new FormArray([1,2,3,4,5,6],[NbFormValidators.arrMaxLength({max:5,min:3})]);
+console.log(maxControl.errors); // { [NbControlErrTypeEnum.ARR_MAX_LENGTH]: true }
 
-new FormArray([],[NbFormValidators.arrMaxLength({max:5,min:3})]);
-
+const minControl = new FormArray([1,2],[NbFormValidators.arrMaxLength({max:5,min:3})]);
+console.log(maxControl.errors); // { [NbControlErrTypeEnum.ARR_MIN_LENGTH]: true }
 ```
 
 <br>
 
 #### NbFormValidators.equal
 ##### `v12.0.0`
-###### 值是否相等校验器
+###### 值是否相等校验器。当两个控件的值不相等时，当前控件会带有相关的错误信息。如果想两个控件都带有错误信息，可参考demo
 
 ##### Params
 | Name  | Type  | Mandatory  | Description  | Version |
@@ -88,15 +90,14 @@ new FormArray([],[NbFormValidators.arrMaxLength({max:5,min:3})]);
 ##### Return
 | Type  | Description  |
 | ------------ | ------------ |
-| `{ [NbControlErrTypeEnum.NOT_EQUAL]: true; }｜null`  | 校验结果。返回null表示两个表单控件的值相等。返回`{ [NbControlErrTypeEnum.NOT_EQUAL]: true }`表示两个表单控件值不相等。当两个值不相等时，`compare`也会带有该错误信息。 |
+| `{ [NbControlErrTypeEnum.NOT_EQUAL]: true; }｜null`  | 校验结果。返回null表示两个表单控件的值相等。返回`{ [NbControlErrTypeEnum.NOT_EQUAL]: true }`表示两个表单控件值不相等。 |
 
 ##### Usage
 ```ts
-
-const targetControl = new FormControl();
-const compareControl = new FormControl();
-targetControl.setValidators([NbFormValidators.equal(compareControl)])
-
+const targetControl = new FormControl('');
+const compareControl = new FormControl(null);
+targetControl.setValidators([NbFormValidators.equal(compareControl)]);
+console.log(targetControl.errors); // { [NbControlErrTypeEnum.NOT_EQUAL]: true; }
 ```
 
 <br>
@@ -117,9 +118,8 @@ targetControl.setValidators([NbFormValidators.equal(compareControl)])
 
 ##### Usage
 ```ts
-
-new FormControl(new File(),[NbFormValidators.fileSize({max:5,min:3})]);
-
+const control = new FormControl(new File(),[NbFormValidators.fileSize({max:5,min:3})]);
+console.log(control.errors); // { [NbControlErrTypeEnum.FILE_MAX_SIZE]: true; } / { [NbControlErrTypeEnum.FILE_MIN_SIZE]?: true; }
 ```
 
 <br>
@@ -140,9 +140,8 @@ new FormControl(new File(),[NbFormValidators.fileSize({max:5,min:3})]);
 
 ##### Usage
 ```ts
-
-new FormControl(new File(),[NbFormValidators.fileType(['image/jpeg','image/png'])]);
-
+const control = new FormControl(new File(),[NbFormValidators.fileType(['image/jpeg','image/png'])]);
+console.log(control.errors); // { [NbControlErrTypeEnum.FILE_TYPE]: true; }
 ```
 
 <br>
@@ -163,9 +162,8 @@ new FormControl(new File(),[NbFormValidators.fileType(['image/jpeg','image/png']
 
 ##### Usage
 ```ts
-
-new FormControl('',[NbFormValidators.required(false)])
-
+const control = new FormControl('',[NbFormValidators.required(true)])
+console.log(control.errors); // { [NbControlErrTypeEnum.REQUIRED]: true; }
 ```
 
 <br>
@@ -182,13 +180,12 @@ new FormControl('',[NbFormValidators.required(false)])
 ##### Return
 | Type  | Description  |
 | ------------ | ------------ |
-| `{ [NbControlErrTypeEnum.REQUIRED]: true; }｜null`  | 校验结果。返回null表示符合条件。返回`{ [NbControlErrTypeEnum.REQUIRED]: true }`表示不允许都是空格的情况下，表单控件值都是空格 |
+| `{ [NbControlErrTypeEnum.WHITESPACE]: true; }｜null`  | 校验结果。返回null表示符合条件。返回`{ [NbControlErrTypeEnum.WHITESPACE]: true }`表示不允许都是空格的情况下，表单控件值都是空格 |
 
 ##### Usage
 ```ts
-
-new FormControl('',[NbFormValidators.whitespace(false)])
-
+const control =new FormControl('    ',[NbFormValidators.whitespace(false)])
+console.log(control.errors); // { [NbControlErrTypeEnum.WHITESPACE]: true; }
 ```
 
 <br>
@@ -380,6 +377,7 @@ this.updateAllValueAndValidity(form,{onlySelf:true});
 | MIN_LENGTH  | `minlength`  | 最小长度错误 | `v12.0.0` |
 | ARR_MAX_LENGTH  | `arrMaxLength`  | 数组最大长度错误 | `v12.0.0` |
 | ARR_MIN_LENGTH  | `arrMinLength`  | 数组最小长度错误 | `v12.0.0` |
+| WHITESPACE  | `whitespace`  | 空格错误 | `v12.0.0` |
 
 <br>
 

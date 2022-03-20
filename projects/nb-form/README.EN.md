@@ -69,16 +69,18 @@ $ yarn add @bigbear713/nb-form
 
 ##### Usage
 ```ts
+const maxControl = new FormArray([1,2,3,4,5,6],[NbFormValidators.arrMaxLength({max:5,min:3})]);
+console.log(maxControl.errors); // { [NbControlErrTypeEnum.ARR_MAX_LENGTH]: true }
 
-new FormArray([],[NbFormValidators.arrMaxLength({max:5,min:3})]);
-
+const minControl = new FormArray([1,2],[NbFormValidators.arrMaxLength({max:5,min:3})]);
+console.log(maxControl.errors); // { [NbControlErrTypeEnum.ARR_MIN_LENGTH]: true }
 ```
 
 <br>
 
 #### NbFormValidators.equal
 ##### `v12.0.0`
-###### Values are equal validator
+###### Values are equal validator. When the values of the controls are not equal, only the target control will have the no equal error info. If you want to make the target and compared control all have the error info, can refer to the demo
 
 ##### Params
 | Name  | Type  | Mandatory  | Description  | Version |
@@ -92,11 +94,10 @@ new FormArray([],[NbFormValidators.arrMaxLength({max:5,min:3})]);
 
 ##### Usage
 ```ts
-
-const targetControl = new FormControl();
-const compareControl = new FormControl();
-targetControl.setValidators([NbFormValidators.equal(compareControl)])
-
+const targetControl = new FormControl('');
+const compareControl = new FormControl(null);
+targetControl.setValidators([NbFormValidators.equal(compareControl)]);
+console.log(targetControl.errors); // { [NbControlErrTypeEnum.NOT_EQUAL]: true; }
 ```
 
 <br>
@@ -117,9 +118,8 @@ targetControl.setValidators([NbFormValidators.equal(compareControl)])
 
 ##### Usage
 ```ts
-
-new FormControl(new File(),[NbFormValidators.fileSize({max:5,min:3})]);
-
+const control = new FormControl(new File(),[NbFormValidators.fileSize({max:5,min:3})]);
+console.log(control.errors); // { [NbControlErrTypeEnum.FILE_MAX_SIZE]: true; } / { [NbControlErrTypeEnum.FILE_MIN_SIZE]?: true; }
 ```
 
 <br>
@@ -140,9 +140,8 @@ new FormControl(new File(),[NbFormValidators.fileSize({max:5,min:3})]);
 
 ##### Usage
 ```ts
-
-new FormControl(new File(),[NbFormValidators.fileType(['image/jpeg','image/png'])]);
-
+const control = new FormControl(new File(),[NbFormValidators.fileType(['image/jpeg','image/png'])]);
+console.log(control.errors); // { [NbControlErrTypeEnum.FILE_TYPE]: true; }
 ```
 
 <br>
@@ -163,9 +162,8 @@ new FormControl(new File(),[NbFormValidators.fileType(['image/jpeg','image/png']
 
 ##### Usage
 ```ts
-
-new FormControl('',[NbFormValidators.required(false)])
-
+const control = new FormControl('',[NbFormValidators.required(true)])
+console.log(control.errors); // { [NbControlErrTypeEnum.REQUIRED]: true; }
 ```
 
 <br>
@@ -182,13 +180,12 @@ new FormControl('',[NbFormValidators.required(false)])
 ##### Return
 | Type  | Description  |
 | ------------ | ------------ |
-| `{ [NbControlErrTypeEnum.REQUIRED]: true; }｜null`  | The result. If it is null, the condition is met. If the result is `{ [NbControlErrTypeEnum.REQUIRED]: true }`, the condition is not met. |
+| `{ [NbControlErrTypeEnum.WHITESPACE]: true; }｜null`  | The result. If it is null, the condition is met. If the result is `{ [NbControlErrTypeEnum.WHITESPACE]: true }`, the condition is not met. |
 
 ##### Usage
 ```ts
-
-new FormControl('',[NbFormValidators.whitespace(false)])
-
+const control =new FormControl('    ',[NbFormValidators.whitespace(false)])
+console.log(control.errors); // { [NbControlErrTypeEnum.WHITESPACE]: true; }
 ```
 
 <br>
@@ -290,7 +287,6 @@ this.updateAllValueAndValidity(form,{onlySelf:true});
 
 <br>
 
-
 ### Token
 
 #### NB_CONTROL_COMMON_ERR_INFO_TOKEN
@@ -379,6 +375,7 @@ this.updateAllValueAndValidity(form,{onlySelf:true});
 | MIN_LENGTH  | `minlength`  | Min length error | `v12.0.0` |
 | ARR_MAX_LENGTH  | `arrMaxLength`  | Max length of array error | `v12.0.0` |
 | ARR_MIN_LENGTH  | `arrMinLength`  | Min length of array error | `v12.0.0` |
+| WHITESPACE  | `whitespace`  | whitespace error | `v12.0.0` |
 
 <br>
 

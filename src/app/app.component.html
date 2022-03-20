@@ -15,6 +15,14 @@
     <span field-label>{{"demoContent.field3"|nbTrans}}：</span>
     <input type="file" (change)="onChangeFile($event)">
   </nb-field-item>
+  <nb-field-item [control]="field4Ctrl">
+    <span field-label>{{"demoContent.field4"|nbTrans}}：</span>
+    <input type="text" [formControl]="field4Ctrl">
+  </nb-field-item>
+  <nb-field-item [control]="field5Ctrl">
+    <span field-label>{{"demoContent.field5"|nbTrans}}：</span>
+    <input type="text" [formControl]="field5Ctrl">
+  </nb-field-item>
 </form>
 
 <hr>
@@ -33,4 +41,5 @@
   <p>{{'demoContent.desc3'|nbTrans}}</p>
   <p>{{'demoContent.desc4'|nbTrans}}</p>
   <p>{{'demoContent.desc5'|nbTrans}}</p>
+  <p>{{'demoContent.desc6'|nbTrans}}</p>
 </div>

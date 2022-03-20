@@ -39,7 +39,6 @@ describe('NbFormValidators.equal', () => {
       },
       expect: {
         target: { [NbControlErrTypeEnum.EQUAL]: true },
-        compare: { [NbControlErrTypeEnum.EQUAL]: true },
       }
     },
     {
@@ -50,7 +49,6 @@ describe('NbFormValidators.equal', () => {
       },
       expect: {
         target: { [NbControlErrTypeEnum.EQUAL]: true },
-        compare: { [NbControlErrTypeEnum.EQUAL]: true },
       }
     },
 
@@ -58,7 +56,6 @@ describe('NbFormValidators.equal', () => {
     it(item.title, () => {
       const control = item.params.getTargetControl(item.params.compareControl);
       expect(control.errors).toEqual(item.expect.target);
-      expect(item.params.compareControl.errors).toEqual(item.expect.compare);
     });
   });
 
@@ -67,10 +64,8 @@ describe('NbFormValidators.equal', () => {
     const control = new FormControl('control', [NbFormValidators.required(true), NbFormValidators.equal(compareControl)]);
 
     expect(control.errors).toEqual({ [NbControlErrTypeEnum.EQUAL]: true });
-    expect(compareControl.errors).toEqual({ [NbControlErrTypeEnum.EQUAL]: true });
 
     control.setValue(null);
     expect(control.errors).toEqual({ [NbControlErrTypeEnum.REQUIRED]: true });
-    expect(compareControl.errors).toEqual({ [NbControlErrTypeEnum.REQUIRED]: true });
   });
 });

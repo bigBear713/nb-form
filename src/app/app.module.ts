@@ -28,7 +28,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
       provide: NB_CONTROL_COMMON_ERR_INFO_TOKEN,
       useFactory: (transService: NbTransService) => ({
         [NbControlErrTypeEnum.FILE_TYPE]: transService.translationAsync('errors.fileType'),
-        [NbControlErrTypeEnum.FILE_MIN_SIZE]: 'The file min file is 100KB!',
+        [NbControlErrTypeEnum.FILE_MIN_SIZE]: 'The file min size is 100KB!',
         [NbControlErrTypeEnum.EQUAL]: '两个控件值不相等',
       }),
       deps: [NbTransService]

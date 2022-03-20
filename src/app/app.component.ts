@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
   };
 
   errInfo2 = {
-    [NbControlErrTypeEnum.FILE_MAX_SIZE]: 'The file max file is 500kb!',
+    [NbControlErrTypeEnum.FILE_MAX_SIZE]: 'The file max size is 500kb!',
   };
 
   get field1Ctrl(): FormControl {
@@ -62,7 +62,7 @@ export class AppComponent implements OnInit {
     ).subscribe((status) => {
       this.field4Ctrl.updateValueAndValidity();
       this.field5Ctrl.updateValueAndValidity();
-    })
+    });
   }
 
   changeLanguage(langKey: string) {

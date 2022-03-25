@@ -87,6 +87,7 @@ console.log(minC  ontrol.errors); // { [NbControlErrTypeEnum.ARR_MIN_LENGTH]: tr
 | Name  | Type  | Mandatory  | Description  | Version |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
 | compared  | `AbstractControl`  | true  | The control which will be compared with the current control | `v12.0.0` |
+| immediately  | `boolean`  | false  | Verify immediately. If set it as`false`, it will verify the value until the compared control is `dirty`. The default is `true` | `v12.1.0` |
 
 ##### Return
 | Type  | Description  |
@@ -98,6 +99,16 @@ console.log(minC  ontrol.errors); // { [NbControlErrTypeEnum.ARR_MIN_LENGTH]: tr
 const targetControl = new FormControl('');
 const compareControl = new FormControl(null);
 targetControl.setValidators([NbFormValidators.equal(compareControl)]);
+console.log(targetControl.errors); // { [NbControlErrTypeEnum.NOT_EQUAL]: true; }
+
+
+const targetControl = new FormControl('');
+const compareControl = new FormControl(null);
+targetControl.setValidators([NbFormValidators.equal(compareControl,false)]);
+console.log(targetControl.errors); // null
+
+compareControl.markAsDirty();
+targetControl.updateValueAndValidity();
 console.log(targetControl.errors); // { [NbControlErrTypeEnum.NOT_EQUAL]: true; }
 ```
 
@@ -204,6 +215,7 @@ console.log(control.errors); // { [NbControlErrTypeEnum.WHITESPACE]: true; }
 | markAllAsDirty(control: NbAbstractControl, opts?: { onlySelf?: boolean; emitEvent?: boolean; }) | `void`  | Mark the control and its sub-controls as dirty. The `control` is the target which you want to mark, `opts` param will be set to the control and its sub-controls | If you want to mark a control and its sub-controls as dirty  | `v12.0.0` |
 | showAllErrInfo(control: NbAbstractControl, opts?: { onlySelf?: boolean; emitEvent?: boolean; })  | `void`  | Show the control and its sub-controls all error information. It will call the `control.markAllAsTouched`,`markAllAsDirty`,`updateAllValueAndValidity` functions to make the error info be displayed on UI. The `control` is the target you want to do. The `opts` param will be set to the control and its sub-controls when calling the `markAllAsDirty`,`updateAllValueAndValidity` functions | When you want to show the error info of control and its sub-controls to user, like submitting the form | `v12.0.0` |
 | updateAllValueAndValidity(control: NbAbstractControl, opts?: { onlySelf?: boolean; emitEvent?: boolean; }) | `void`  | Update the control and its sub-controls vaules and validities. The `control` param is the target you want to do, `opts` param will be set to the control and its sub-controls | When you want to update the control and its sub-controls vaules and validities | `v12.0.0` |
+| updateEqualControlsValidities(controls: { target: AbstractControl; compared: AbstractControl }, destroy$?: Subject<any>) | `Subscription`  | Update the validities of the controls which want to be equal更新两个想相等的控件的有效性。只有当前后两次某个控件的状态改变时才会触发。这是一个订阅事件，返回值为订阅事件的索引。可通过它来取消事件的订阅。或者传入一个`destroy$`参数，在需要的时候通过`destroy$`发送值来取消订阅 | 适合结合`NbFormValidators.equal`校验器，及时更新两个控件是否相等的状态，比如更改密码时的新密码和重复密码的验证 | `v12.1.0` |
 
 
 ##### Usage
@@ -231,6 +243,20 @@ const form = new FormGroup({
   // ...
 });
 this.updateAllValueAndValidity(form,{onlySelf:true});
+
+const passwordControl = new FormControl();
+const repeatPasswordControl = new FormControl();
+passwordControl.setValidators([NbFormValidators.equal(repeatPasswordControl,false)]);
+repeatPasswordControl.setValidators([NbFormValidators.equal(passwordControl,false)]);
+const controls = {target:passwordControl,compared:repeatPasswordControl};
+// unsubscribe it via return value
+const subscription = this.updateEqualControlsValidities(controls);
+subscription.unsubscribe();
+// unsubscribe it via destroy$
+const destroy$ = new Subject<void>();
+const subscription = this.updateEqualControlsValidities(controls,destroy$);
+destroy$.next();
+destroy$.complete();
 
 ```
 

@@ -45,7 +45,18 @@ export class NbFormService {
     this.updateAllValueAndValidity(control, opts);
   }
 
-  subscribeEqualControlsStatusChange(controls: IComparedControls, destroy$?: Subject<any>): Subscription {
+  updateAllValueAndValidity(control: NbAbstractControl, opts?: { onlySelf?: boolean; emitEvent?: boolean; }): void {
+    control?.updateValueAndValidity(opts);
+
+    const fn = (controlItem: NbAbstractControl): void => this.updateAllValueAndValidity(controlItem, opts)
+    if (control instanceof FormArray) {
+      this.formTools.doFormArrayFn(control, fn);
+    } else if (control instanceof FormGroup) {
+      this.formTools.doFormGroupFn(control, fn);
+    }
+  }
+
+  updateEqualControlsValidities(controls: IComparedControls, destroy$?: Subject<any>): Subscription {
     const { target, compared } = controls;
     return combineLatest([
       target.statusChanges.pipe(startWith(target.status)),
@@ -57,17 +68,6 @@ export class NbFormService {
       target.updateValueAndValidity();
       compared.updateValueAndValidity();
     });
-  }
-
-  updateAllValueAndValidity(control: NbAbstractControl, opts?: { onlySelf?: boolean; emitEvent?: boolean; }): void {
-    control?.updateValueAndValidity(opts);
-
-    const fn = (controlItem: NbAbstractControl): void => this.updateAllValueAndValidity(controlItem, opts)
-    if (control instanceof FormArray) {
-      this.formTools.doFormArrayFn(control, fn);
-    } else if (control instanceof FormGroup) {
-      this.formTools.doFormGroupFn(control, fn);
-    }
   }
 
 }

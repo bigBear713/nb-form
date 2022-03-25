@@ -86,7 +86,8 @@ console.log(minControl.errors); // { [NbControlErrTypeEnum.ARR_MIN_LENGTH]: true
 ##### Params
 | Name  | Type  | Mandatory  | Description  | Version |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-| compare  | `AbstractControl`  | true  | 要对比的表单控件. | `v12.0.0` |
+| compared  | `AbstractControl`  | true  | 要对比的表单控件. | `v12.0.0` |
+| immediately  | `boolean`  | false  | 是否立即校验。如果设置为`false`，则会在compared控件为`dirty`状态时才会校验。默认为`true` | `v12.1.0` |
 
 ##### Return
 | Type  | Description  |
@@ -98,6 +99,16 @@ console.log(minControl.errors); // { [NbControlErrTypeEnum.ARR_MIN_LENGTH]: true
 const targetControl = new FormControl('');
 const compareControl = new FormControl(null);
 targetControl.setValidators([NbFormValidators.equal(compareControl)]);
+console.log(targetControl.errors); // { [NbControlErrTypeEnum.NOT_EQUAL]: true; }
+
+
+const targetControl = new FormControl('');
+const compareControl = new FormControl(null);
+targetControl.setValidators([NbFormValidators.equal(compareControl,false)]);
+console.log(targetControl.errors); // null
+
+compareControl.markAsDirty();
+targetControl.updateValueAndValidity();
 console.log(targetControl.errors); // { [NbControlErrTypeEnum.NOT_EQUAL]: true; }
 ```
 
@@ -204,6 +215,7 @@ console.log(control.errors); // { [NbControlErrTypeEnum.WHITESPACE]: true; }
 | markAllAsDirty(control: NbAbstractControl, opts?: { onlySelf?: boolean; emitEvent?: boolean; }) | `void`  | 将表单控件以及子控件都标记为dirty。`control`为要标记的控件，`opts`会在标记时，传给控件以及每个子控件 | 适合想将一个控件以及自控件都标记为dirty的场景  | `v12.0.0` |
 | showAllErrInfo(control: NbAbstractControl, opts?: { onlySelf?: boolean; emitEvent?: boolean; })  | `void`  | 展示控件以及子控件的所有错误信息。通过调用`control.markAllAsTouched`,`markAllAsDirty`,`updateAllValueAndValidity`等常用方法，让错误信息在UI上展示出来。`control`为要操作的控件，`opts`会在调用`markAllAsDirty`,`updateAllValueAndValidity`时，传给控件以及每个子控件  | 适合想将控件以及子控件的错误信息都展示给用户的场景，比如表单提交时。 | `v12.0.0` |
 | updateAllValueAndValidity(control: NbAbstractControl, opts?: { onlySelf?: boolean; emitEvent?: boolean; }) | `void`  | 将表单控件以及子控件都更新值和值的有效性。`control`为要操作的控件，`opts`会在操作时，传给控件以及每个子控件 | 适合想让控件和子控件都更新值和值的有效性的场景 | `v12.0.0` |
+| updateEqualControlsValidities(controls: { target: AbstractControl; compared: AbstractControl }, destroy$?: Subject<any>) | `Subscription`  | 更新两个想相等的控件的有效性。只有当前后两次某个控件的状态改变时才会触发。这是一个订阅事件，返回值为订阅事件的索引。可通过它来取消事件的订阅。或者传入一个`destroy$`参数，在需要的时候通过`destroy$`发送值来取消订阅 | 适合结合`NbFormValidators.equal`校验器，及时更新两个控件是否相等的状态，比如更改密码时的新密码和重复密码的验证 | `v12.1.0` |
 
 
 ##### Usage
@@ -232,6 +244,19 @@ const form = new FormGroup({
 });
 this.updateAllValueAndValidity(form,{onlySelf:true});
 
+const passwordControl = new FormControl();
+const repeatPasswordControl = new FormControl();
+passwordControl.setValidators([NbFormValidators.equal(repeatPasswordControl,false)]);
+repeatPasswordControl.setValidators([NbFormValidators.equal(passwordControl,false)]);
+const controls = {target:passwordControl,compared:repeatPasswordControl};
+// 通过返回值取消订阅
+const subscription = this.updateEqualControlsValidities(controls);
+subscription.unsubscribe();
+// 通过destroy$取消订阅
+const destroy$ = new Subject<void>();
+const subscription = this.updateEqualControlsValidities(controls,destroy$);
+destroy$.next();
+destroy$.complete();
 ```
 
 <br>

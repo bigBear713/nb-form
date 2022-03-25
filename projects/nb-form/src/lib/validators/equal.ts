@@ -5,10 +5,11 @@ import { NbControlErrTypeEnum } from '../constants';
 
 export const equal = (compared: AbstractControl, immediately: boolean = true) => {
     return (target: AbstractControl) => {
-        const errors = isEqual(target.value, compared.value)
+        if (!immediately && !compared.dirty) {
+            return null;
+        }
+        return isEqual(target.value, compared.value)
             ? null
             : { [NbControlErrTypeEnum.EQUAL]: true };
-
-        return errors && (immediately || compared.dirty) ? errors : null
     }
 }

@@ -306,7 +306,7 @@ describe('NbFormService', () => {
     });
   });
 
-  describe('#subscribeEqualControlsStatusChange()', () => {
+  describe('#updateEqualControlsValidities()', () => {
     let controls: { target: AbstractControl; compared: AbstractControl };
 
     beforeEach(() => {
@@ -318,7 +318,7 @@ describe('NbFormService', () => {
     });
 
     it('unsubscribe via return value', () => {
-      const subscription = service.subscribeEqualControlsStatusChange(controls);
+      const subscription = service.updateEqualControlsValidities(controls);
       expect(subscription).toBeTruthy();
 
       controls.target.setValue(1);
@@ -335,7 +335,7 @@ describe('NbFormService', () => {
 
     it('unsubscribe via destroy$ param', () => {
       const destroy$ = new Subject<void>();
-      service.subscribeEqualControlsStatusChange(controls, destroy$);
+      service.updateEqualControlsValidities(controls, destroy$);
 
       controls.target.setValue(1);
       expect(controls.target.updateValueAndValidity).toHaveBeenCalledTimes(3);

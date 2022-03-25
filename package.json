@@ -15,8 +15,7 @@
     "deploy": "ng build --outputPath=docs --base-href=/nb-form/ && cp docs/index.html docs/404.html",
     "publish:lib": "npm run build:lib && cd ./dist/nb-form && npm publish --access=public",
     "copy:readmeEn": "cp projects/nb-form/README.EN.md dist/nb-form/README.EN.md",
-    "pack:lib": "cd ./dist/nb-form && npm pack",
-    "reInstall": "rm -rf ./node_modules && npm i"
+    "pack:lib": "cd ./dist/nb-form && npm pack"
   },
   "private": true,
   "dependencies": {

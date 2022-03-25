@@ -81,19 +81,16 @@ export class NbControlErrComponent implements OnChanges, OnDestroy {
   }
 
   private subscribeControlChange(): void {
-    this.updateHasErr(false);
+    this.updateHasErr(this.control);
     this.control.statusChanges.pipe(
       takeUntil(this.destroy$)
     ).subscribe(
-      (status) => {
-        const hasErr = this.control.dirty && status === 'INVALID';
-        this.updateHasErr(hasErr);
-      }
+      _ => this.updateHasErr(this.control)
     );
   }
 
-  private updateHasErr(hasErr: boolean): void {
-    this.hasErr = hasErr;
+  private updateHasErr(control: AbstractControl): void {
+    this.hasErr = control.dirty && control.status === 'INVALID';
     this.changeDR.markForCheck();
   }
 }

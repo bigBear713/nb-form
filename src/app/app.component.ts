@@ -44,6 +44,10 @@ export class AppComponent implements OnInit {
     return this.form?.get('field5') as FormControl;
   }
 
+  get field6Ctrl(): FormControl {
+    return this.form?.get('field6') as FormControl;
+  }
+
   constructor(
     private fb: FormBuilder,
     private formService: NbFormService,
@@ -96,9 +100,12 @@ export class AppComponent implements OnInit {
         maxFileSize: 500 * 1000, minFileSize: 100 * 1000
       })],
       field4: [''],
-      field5: [null]
+      field5: [null],
+      field6: [null, [NbFormValidators.required(true)]],
     });
     this.field4Ctrl.setValidators([NbFormValidators.equal(this.field5Ctrl)]);
     this.field5Ctrl.setValidators([NbFormValidators.equal(this.field4Ctrl)]);
+
+    this.field6Ctrl.markAsDirty();
   }
 }

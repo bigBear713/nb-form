@@ -18,6 +18,7 @@ Angular common form lib by bigBear713.
 
 ## Feature
 - 提供常用的表单控件校验器：`arrLength`, `fileSize`, `fileType`, `repeated`, `required`, `whitespace`。具体见下方校验器的定义;
+- 支持通过DI设置common error info;
 - 支持组件的更新策略为`ChangeDetectionStrategy.OnPush`;
 
 ## Installation

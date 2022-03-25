@@ -19,6 +19,7 @@ Angular common form lib by bigBear713.
 
 ## Feature
 - Provide the common validators:`arrLength`, `fileSize`, `fileType`, `repeated`, `required`, `whitespace`. You can see the definition below;
+- Support to use DI to set common error info;
 - Support the changeDetection of components as `ChangeDetectionStrategy.OnPush`;
 
 ## Installation

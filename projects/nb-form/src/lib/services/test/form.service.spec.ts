@@ -1,5 +1,6 @@
 import { TestBed } from '@angular/core/testing';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Subject } from 'rxjs';
 import { NbFormTestingModule } from '../../testing';
 import { NbFormValidators } from '../../validators';
 import { NbFormToolsService } from '../form-tools.service';
@@ -302,6 +303,49 @@ describe('NbFormService', () => {
         expect(service.markAllAsDirty).toHaveBeenCalledWith(item.params.target, item.params.opts);
         expect(service.updateAllValueAndValidity).toHaveBeenCalledWith(item.params.target, item.params.opts);
       });
+    });
+  });
+
+  describe('#subscribeEqualControlsStatusChange()', () => {
+    let controls: { target: AbstractControl; compared: AbstractControl };
+
+    beforeEach(() => {
+      const target = new FormControl('', [NbFormValidators.required(true)]);
+      const compared = new FormControl('', [NbFormValidators.required(true)]);
+      controls = { target, compared };
+      spyOn(controls.target, 'updateValueAndValidity').and.callThrough();
+      spyOn(controls.compared, 'updateValueAndValidity').and.callThrough();
+    });
+
+    it('unsubscribe via return value', () => {
+      const subscription = service.subscribeEqualControlsStatusChange(controls);
+      expect(subscription).toBeTruthy();
+
+      controls.target.setValue(1);
+      // because when updating control's value, updateValueAndValidity function will auto be call, 
+      // so here is 3 
+      expect(controls.target.updateValueAndValidity).toHaveBeenCalledTimes(3);
+      expect(controls.compared.updateValueAndValidity).toHaveBeenCalledTimes(2);
+
+      subscription.unsubscribe();
+      controls.target.setValue('');
+      expect(controls.target.updateValueAndValidity).toHaveBeenCalledTimes(4);
+      expect(controls.compared.updateValueAndValidity).toHaveBeenCalledTimes(2);
+    });
+
+    it('unsubscribe via destroy$ param', () => {
+      const destroy$ = new Subject<void>();
+      service.subscribeEqualControlsStatusChange(controls, destroy$);
+
+      controls.target.setValue(1);
+      expect(controls.target.updateValueAndValidity).toHaveBeenCalledTimes(3);
+      expect(controls.compared.updateValueAndValidity).toHaveBeenCalledTimes(2);
+
+      destroy$.next();
+      destroy$.complete();
+      controls.target.setValue('');
+      expect(controls.target.updateValueAndValidity).toHaveBeenCalledTimes(4);
+      expect(controls.compared.updateValueAndValidity).toHaveBeenCalledTimes(2);
     });
   });
 

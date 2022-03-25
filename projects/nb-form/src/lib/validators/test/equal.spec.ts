@@ -8,7 +8,7 @@ describe('NbFormValidators.equal', () => {
       title: 'When the values of controls all are null',
       params: {
         controlValue: null,
-        compareControl: new FormControl(null),
+        comparedControl: new FormControl(null),
       },
       expect: null
     },
@@ -16,7 +16,7 @@ describe('NbFormValidators.equal', () => {
       title: 'When the values of controls all are some string value',
       params: {
         controlValue: 'controlValue',
-        compareControl: new FormControl('controlValue'),
+        comparedControl: new FormControl('controlValue'),
       },
       expect: null
     },
@@ -24,7 +24,7 @@ describe('NbFormValidators.equal', () => {
     it(item.title, () => {
       const control = new FormControl(
         item.params.controlValue,
-        [NbFormValidators.equal(item.params.compareControl)]
+        [NbFormValidators.equal(item.params.comparedControl)]
       );
       expect(control.errors).toEqual(item.expect);
     });
@@ -32,20 +32,20 @@ describe('NbFormValidators.equal', () => {
 
   [
     {
-      title: 'When the controls all do not have any errors, the value of target control is string value, and the value of compare control is null.',
+      title: 'When the controls all do not have any errors, the value of target control is string value, and the value of compared control is null.',
       params: {
-        getTargetControl: (compare: FormControl) => new FormControl('controlValue', [NbFormValidators.equal(compare)]),
-        compareControl: new FormControl(null),
+        getTargetControl: (compared: FormControl) => new FormControl('controlValue', [NbFormValidators.equal(compared)]),
+        comparedControl: new FormControl(null),
       },
       expect: {
         target: { [NbControlErrTypeEnum.EQUAL]: true },
       }
     },
     {
-      title: 'When the compare controls has one required error, the value of target control is string value, and the value of compare control is null.',
+      title: 'When the compared controls has one required error, the value of target control is string value, and the value of compared control is null.',
       params: {
-        getTargetControl: (compare: FormControl) => new FormControl('controlValue', [NbFormValidators.equal(compare)]),
-        compareControl: new FormControl(null, [NbFormValidators.required(true)]),
+        getTargetControl: (compared: FormControl) => new FormControl('controlValue', [NbFormValidators.equal(compared)]),
+        comparedControl: new FormControl(null, [NbFormValidators.required(true)]),
       },
       expect: {
         target: { [NbControlErrTypeEnum.EQUAL]: true },
@@ -54,18 +54,38 @@ describe('NbFormValidators.equal', () => {
 
   ].forEach(item => {
     it(item.title, () => {
-      const control = item.params.getTargetControl(item.params.compareControl);
+      const control = item.params.getTargetControl(item.params.comparedControl);
       expect(control.errors).toEqual(item.expect.target);
     });
   });
 
-  it('The target value is string value, and compare value is null, they are required', () => {
-    const compareControl = new FormControl(null, [NbFormValidators.required(true)]);
-    const control = new FormControl('control', [NbFormValidators.required(true), NbFormValidators.equal(compareControl)]);
+  it('The target value is string value, and compared value is null, they are required', () => {
+    const comparedControl = new FormControl(null, [NbFormValidators.required(true,)]);
+    const control = new FormControl('control', [NbFormValidators.required(true), NbFormValidators.equal(comparedControl, true)]);
 
     expect(control.errors).toEqual({ [NbControlErrTypeEnum.EQUAL]: true });
 
     control.setValue(null);
     expect(control.errors).toEqual({ [NbControlErrTypeEnum.REQUIRED]: true });
+  });
+
+  it('The error will be displayed when compared control is dirty', () => {
+    const comparedControl = new FormControl();
+    const targetControl = new FormControl('', [NbFormValidators.equal(comparedControl, false)]);
+    expect(targetControl.errors).toEqual(null);
+
+    comparedControl.markAsDirty();
+    targetControl.updateValueAndValidity();
+    expect(targetControl.errors).toEqual({ [NbControlErrTypeEnum.EQUAL]: true });
+  });
+
+  it('The error will be displayed when the immediatelyErr param of validator has been set as true', () => {
+    const comparedControl = new FormControl();
+    const targetControl = new FormControl('', [NbFormValidators.equal(comparedControl, false)]);
+    expect(targetControl.errors).toEqual(null);
+
+    comparedControl.markAsDirty();
+    targetControl.updateValueAndValidity();
+    expect(targetControl.errors).toEqual({ [NbControlErrTypeEnum.EQUAL]: true });
   });
 });

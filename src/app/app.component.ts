@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { NbTransLangEnum, NbTransService } from '@bigbear713/nb-trans';
-import { isEqual } from 'lodash-es';
 import { NbControlErrTypeEnum, NbFormService, NbFormValidators } from 'nb-form';
-import { combineLatest } from 'rxjs';
-import { distinctUntilChanged, startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -56,17 +53,8 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.buildForm();
-    combineLatest([
-      this.field4Ctrl.statusChanges.pipe(startWith(this.field4Ctrl.status)),
-      this.field5Ctrl.statusChanges.pipe(startWith(this.field5Ctrl.status))
-    ]).pipe(
-      distinctUntilChanged(
-        (prev, curr) => isEqual(prev, curr)
-      )
-    ).subscribe((status) => {
-      this.field4Ctrl.updateValueAndValidity();
-      this.field5Ctrl.updateValueAndValidity();
-    });
+    // you can use it to unsubscribe when destroy the form/component
+    const subscription = this.formService.updateEqualControlsValidities({ target: this.field4Ctrl, compared: this.field5Ctrl });
   }
 
   changeLanguage(langKey: string) {
@@ -103,8 +91,8 @@ export class AppComponent implements OnInit {
       field5: [null],
       field6: [null, [NbFormValidators.required(true)]],
     });
-    this.field4Ctrl.setValidators([NbFormValidators.equal(this.field5Ctrl)]);
-    this.field5Ctrl.setValidators([NbFormValidators.equal(this.field4Ctrl)]);
+    this.field4Ctrl.setValidators([NbFormValidators.equal(this.field5Ctrl, false)]);
+    this.field5Ctrl.setValidators([NbFormValidators.equal(this.field4Ctrl, false)]);
 
     this.field6Ctrl.markAsDirty();
   }

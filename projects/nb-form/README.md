@@ -1,6 +1,6 @@
 <div align="center">
 
-### @bigbear713/nb-form
+# @bigbear713/nb-form
 
 Angular common form lib by bigBear713.
 
@@ -13,26 +13,33 @@ Angular common form lib by bigBear713.
 </div>
 
 ## Document
-- [中文](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md "中文文档")
+- [中文](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md "文档 - 中文")
 - [English](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.EN.md "English Document")
+
+<br>
+
+## Changelog
+- [中文](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/CHANGELOG.md "更新日志 - 中文")
+- [English](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/CHANGELOG.EN.md "Changelog - English")
 
 <br>
 
 
 ## Feature
 - 提供常用的表单控件校验器：`arrLength`, `fileSize`, `fileType`, `repeated`, `required`, `whitespace`。具体见下方校验器的定义;
+- 支持通过DI设置common error info;
 - 支持组件的更新策略为`ChangeDetectionStrategy.OnPush`;
 
 <br>
 
 
-### Version
+## Version
 ###### nb-form的大版本和Angular的大版本保持对应关系
 - "@bigbear713/nb-form":"^12.0.0" - "@angular/core": "^12.0.0"
 
 <br>
 
-### Installation
+## Installation
 ```bash
 $ npm i @bigbear713/nb-form
 // or
@@ -53,7 +60,7 @@ $ yarn add @bigbear713/nb-form
 
 ### Validators
 
-#### NbFormValidators.arrMaxLength
+#### NbFormValidators.arrLength
 ##### `v12.0.0`
 ###### 数组长度校验器
 
@@ -69,10 +76,10 @@ $ yarn add @bigbear713/nb-form
 
 ##### Usage
 ```ts
-const maxControl = new FormArray([1,2,3,4,5,6],[NbFormValidators.arrMaxLength({max:5,min:3})]);
+const maxControl = new FormArray([1,2,3,4,5,6],[NbFormValidators.arrLength({max:5,min:3})]);
 console.log(maxControl.errors); // { [NbControlErrTypeEnum.ARR_MAX_LENGTH]: true }
 
-const minControl = new FormArray([1,2],[NbFormValidators.arrMaxLength({max:5,min:3})]);
+const minControl = new FormArray([1,2],[NbFormValidators.arrLength({max:5,min:3})]);
 console.log(minControl.errors); // { [NbControlErrTypeEnum.ARR_MIN_LENGTH]: true }
 ```
 
@@ -85,7 +92,8 @@ console.log(minControl.errors); // { [NbControlErrTypeEnum.ARR_MIN_LENGTH]: true
 ##### Params
 | Name  | Type  | Mandatory  | Description  | Version |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-| compare  | `AbstractControl`  | true  | 要对比的表单控件. | `v12.0.0` |
+| compared  | `AbstractControl`  | true  | 要对比的表单控件. | `v12.0.0` |
+| immediately  | `boolean`  | false  | 是否立即校验。如果设置为`false`，则会在compared控件为`dirty`状态时才会校验。默认为`true` | `v12.1.0` |
 
 ##### Return
 | Type  | Description  |
@@ -97,6 +105,16 @@ console.log(minControl.errors); // { [NbControlErrTypeEnum.ARR_MIN_LENGTH]: true
 const targetControl = new FormControl('');
 const compareControl = new FormControl(null);
 targetControl.setValidators([NbFormValidators.equal(compareControl)]);
+console.log(targetControl.errors); // { [NbControlErrTypeEnum.NOT_EQUAL]: true; }
+
+
+const targetControl = new FormControl('');
+const compareControl = new FormControl(null);
+targetControl.setValidators([NbFormValidators.equal(compareControl,false)]);
+console.log(targetControl.errors); // null
+
+compareControl.markAsDirty();
+targetControl.updateValueAndValidity();
 console.log(targetControl.errors); // { [NbControlErrTypeEnum.NOT_EQUAL]: true; }
 ```
 
@@ -170,7 +188,7 @@ console.log(control.errors); // { [NbControlErrTypeEnum.REQUIRED]: true; }
 
 #### NbFormValidators.whitespace
 ##### `v12.0.0`
-###### 空格校验器
+###### 是否允许都为空格校验器
 
 ##### Params
 | Name  | Type  | Mandatory  | Description  | Version |
@@ -190,7 +208,7 @@ console.log(control.errors); // { [NbControlErrTypeEnum.WHITESPACE]: true; }
 
 <br>
 
-### Service
+### Services
 
 #### NbFormService
 ##### `v12.0.0`
@@ -203,6 +221,7 @@ console.log(control.errors); // { [NbControlErrTypeEnum.WHITESPACE]: true; }
 | markAllAsDirty(control: NbAbstractControl, opts?: { onlySelf?: boolean; emitEvent?: boolean; }) | `void`  | 将表单控件以及子控件都标记为dirty。`control`为要标记的控件，`opts`会在标记时，传给控件以及每个子控件 | 适合想将一个控件以及自控件都标记为dirty的场景  | `v12.0.0` |
 | showAllErrInfo(control: NbAbstractControl, opts?: { onlySelf?: boolean; emitEvent?: boolean; })  | `void`  | 展示控件以及子控件的所有错误信息。通过调用`control.markAllAsTouched`,`markAllAsDirty`,`updateAllValueAndValidity`等常用方法，让错误信息在UI上展示出来。`control`为要操作的控件，`opts`会在调用`markAllAsDirty`,`updateAllValueAndValidity`时，传给控件以及每个子控件  | 适合想将控件以及子控件的错误信息都展示给用户的场景，比如表单提交时。 | `v12.0.0` |
 | updateAllValueAndValidity(control: NbAbstractControl, opts?: { onlySelf?: boolean; emitEvent?: boolean; }) | `void`  | 将表单控件以及子控件都更新值和值的有效性。`control`为要操作的控件，`opts`会在操作时，传给控件以及每个子控件 | 适合想让控件和子控件都更新值和值的有效性的场景 | `v12.0.0` |
+| updateEqualControlsValidities(controls: { target: AbstractControl; compared: AbstractControl }, destroy$?: Subject<any>) | `Subscription`  | 更新两个想相等的控件的有效性。只有当前后两次某个控件的状态改变时才会触发。这是一个订阅事件，返回值为订阅事件的索引。可通过它来取消事件的订阅。或者传入一个`destroy$`参数，在需要的时候通过`destroy$`发送值来取消订阅 | 适合结合`NbFormValidators.equal`校验器，及时更新两个控件是否相等的状态，比如更改密码时的新密码和重复密码的验证 | `v12.1.0` |
 
 
 ##### Usage
@@ -231,16 +250,28 @@ const form = new FormGroup({
 });
 this.updateAllValueAndValidity(form,{onlySelf:true});
 
+const passwordControl = new FormControl();
+const repeatPasswordControl = new FormControl();
+passwordControl.setValidators([NbFormValidators.equal(repeatPasswordControl,false)]);
+repeatPasswordControl.setValidators([NbFormValidators.equal(passwordControl,false)]);
+const controls = {target:passwordControl,compared:repeatPasswordControl};
+// 通过返回值取消订阅
+const subscription = this.updateEqualControlsValidities(controls);
+subscription.unsubscribe();
+// 通过destroy$取消订阅
+const destroy$ = new Subject<void>();
+this.updateEqualControlsValidities(controls,destroy$);
+destroy$.next();
+destroy$.complete();
 ```
 
 <br>
 
-
-### Component
+### Components
 
 #### `<nb-control-err></nb-control-err>`
 ##### `v12.0.0`
-###### 显示控件控件信息时使用的组件。错误信息支持`string`和`Observable<string>`, 以便适合多语言场景。可在`providers`中设置常用的错误信息，和单独传入该组件的错误信息将合并成最终使用的错误信息
+###### 显示控件错误信息时使用的组件。错误信息支持`string`和`Observable<string>`, 以便适合多语言场景。可在`providers`中设置常用的错误信息，和单独传入该组件的错误信息将合并成最终使用的错误信息
 
 ##### Input
 | Name  | Type  | Default  | Description  | Version |
@@ -259,7 +290,7 @@ this.updateAllValueAndValidity(form,{onlySelf:true});
 
 #### `<nb-field-item></nb-field-item>`
 ##### `v12.0.0`
-###### 字段项组件，常用于表单中。提供基本的字段布局，以及错误信息的展示
+###### 字段项组件，常用于表单中。提供常见的字段布局，以及错误信息的展示
 ##### `[field-label]`
 ###### 字段标签
 
@@ -288,8 +319,7 @@ this.updateAllValueAndValidity(form,{onlySelf:true});
 
 <br>
 
-
-### Token
+### Tokens
 
 #### NB_CONTROL_COMMON_ERR_INFO_TOKEN
 ##### `v12.0.0`
@@ -313,7 +343,7 @@ this.updateAllValueAndValidity(form,{onlySelf:true});
 
 <br>
 
-### Interface
+### Interfaces
 
 #### NbAbstractControl
 ##### `v12.0.0`
@@ -362,7 +392,7 @@ this.updateAllValueAndValidity(form,{onlySelf:true});
 
 <br>
 
-### Enum
+### Enums
 #### NbControlErrTypeEnum
 ##### `v12.0.0`
 ###### 常用表单错误枚举
@@ -381,12 +411,12 @@ this.updateAllValueAndValidity(form,{onlySelf:true});
 
 <br>
 
-### 贡献
+## 贡献
 > 欢迎提feature和PR，一起使该项目更好
 
 <a href="https://github.com/bigBear713" target="_blank"><img src="https://avatars.githubusercontent.com/u/12368900?v=4" alt="bigBear713" width="30px" height="30px"></a>
 
 <br>
 
-### License
+## License
 MIT

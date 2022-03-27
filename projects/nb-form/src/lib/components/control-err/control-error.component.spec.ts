@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NbControlErrComponent } from './control-err.component';
 import { NbFormTestingModule } from '../../testing';
 import { NB_CONTROL_COMMON_ERR_INFO_TOKEN } from '../../constants';
-import { SimpleChange } from '@angular/core';
+import { ChangeDetectorRef, SimpleChange } from '@angular/core';
 import { INbControlErrInfo } from '../../models';
 import { AbstractControl, FormControl } from '@angular/forms';
 import { NbFormValidators } from '../../validators';
@@ -95,6 +95,22 @@ describe('NbControlErrComponent', () => {
 
         expect(!!hostEle.querySelector('div')).toEqual(item.expect.infoWrapperExisted);
       });
+
+    });
+
+    it('The control is in initial status, and the dirty is true, status is invalid', () => {
+      const control = new FormControl('', [NbFormValidators.required(true)]);
+      control.markAsDirty();
+
+      component.control = control;
+      const changes = {
+        control: new SimpleChange(undefined, component.control, false)
+      };
+      component.ngOnChanges(changes);
+
+      fixture.detectChanges();
+
+      expect(hostEle.querySelector('div')).toBeTruthy();
     });
 
     it('verify the form.showAllErrInfo() function', () => {

@@ -1,3 +1,12 @@
+<h2>
+  <a href="https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md" target="_blank">
+    Document
+  </a>
+  <a href="https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/CHANGELOG.md" target="_blank">
+    Changelog
+  </a>
+</h2>
+<hr>
 <h3>
   <button type="button" (click)="changeLanguage('zh-CN')">切换为中文</button>
   <button type="button" (click)="changeLanguage('en')">switch as English</button>
@@ -23,6 +32,10 @@
     <span field-label>{{"demoContent.field5"|nbTrans}}：</span>
     <input type="text" [formControl]="field5Ctrl">
   </nb-field-item>
+  <nb-field-item [control]="field6Ctrl" [errInfo]="errInfo1">
+    <span field-label>{{"demoContent.field6"|nbTrans}}：</span>
+    <input type="text" [formControl]="field6Ctrl">
+  </nb-field-item>
 </form>
 
 <hr>
@@ -42,4 +55,5 @@
   <p>{{'demoContent.desc4'|nbTrans}}</p>
   <p>{{'demoContent.desc5'|nbTrans}}</p>
   <p>{{'demoContent.desc6'|nbTrans}}</p>
+  <p>{{'demoContent.desc7'|nbTrans}}</p>
 </div>

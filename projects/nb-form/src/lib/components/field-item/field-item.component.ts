@@ -23,6 +23,6 @@ export class NbFieldItemComponent {
 
   @Input() errInfo: INbControlErrInfo = {};
 
-  @Input() required: boolean = false;
+  @Input() required: boolean | undefined = false;
 
 }

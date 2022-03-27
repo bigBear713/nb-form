@@ -1,7 +1,12 @@
 import { Injectable } from '@angular/core';
-import { FormArray, FormGroup, ValidatorFn } from '@angular/forms';
+import { AbstractControl, FormArray, FormGroup, ValidatorFn } from '@angular/forms';
+import { isEqual } from 'lodash-es';
+import { combineLatest, Subject, Subscription } from 'rxjs';
+import { distinctUntilChanged, startWith, takeUntil, tap } from 'rxjs/operators';
 import { INbControlConfig, NbAbstractControl } from '../models';
 import { NbFormToolsService } from './form-tools.service';
+
+interface IComparedControls { target: AbstractControl; compared: AbstractControl };
 
 @Injectable({
   providedIn: 'root'
@@ -49,6 +54,20 @@ export class NbFormService {
     } else if (control instanceof FormGroup) {
       this.formTools.doFormGroupFn(control, fn);
     }
+  }
+
+  updateEqualControlsValidities(controls: IComparedControls, destroy$?: Subject<any>): Subscription {
+    const { target, compared } = controls;
+    return combineLatest([
+      target.statusChanges.pipe(startWith(target.status)),
+      compared.statusChanges.pipe(startWith(compared.status)),
+    ]).pipe(
+      distinctUntilChanged((prev, curr) => isEqual(prev, curr)),
+      destroy$ ? takeUntil(destroy$) : tap(() => { })
+    ).subscribe(_ => {
+      target.updateValueAndValidity();
+      compared.updateValueAndValidity();
+    });
   }
 
 }

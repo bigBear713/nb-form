@@ -18,7 +18,7 @@ import { NbFieldItemComponent } from './field-item.component';
 class UIComponent {
   control!: FormControl;
   errInfo!: INbControlErrInfo;
-  required: boolean = true;
+  required: boolean | undefined = true;
 }
 
 describe('NbFieldItemComponent', () => {
@@ -65,6 +65,10 @@ describe('NbFieldItemComponent', () => {
       uiComponent.required = true;
       uiFixture.detectChanges();
       expect(uiHostEle.querySelector('.label-required')).toBeTruthy();
+
+      uiComponent.required = undefined;
+      uiFixture.detectChanges();
+      expect(uiHostEle.querySelector('.label-required')).toBeFalsy();
     });
 
     it('verify the field label content', () => {

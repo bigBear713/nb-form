@@ -9,6 +9,7 @@
     "field3": "field 3",
     "field4": "field 4",
     "field5": "field 5",
+    "field6": "field 6",
     "useComp": "use <nb-control-err></nb-control-err> directly",
     "submit": "submit",
     "resetField1": "reset field1",
@@ -18,6 +19,7 @@
     "desc3": "The format of field 3's file should be: jpg/svg, and file size shoule between 100KB ~ 500KB",
     "desc4": "The error info about required error and file type support i18n",
     "desc5": "The values of field 4 and field 5 should be equal",
-    "desc6": "The common error info is supported to be set via DI, the common error will be combined with the error info from <nb-control-err></nb-control-err> component"
+    "desc6": "The common error info is supported to be set via DI, the common error will be combined with the error info from <nb-control-err></nb-control-err> component",
+    "desc7": "The error info of field 6 will be displayed at the beginning"
   }
 }

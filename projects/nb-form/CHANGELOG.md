@@ -1,18 +1,18 @@
 # v12.1.0
 ## [Validators](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#Validators "Validators")
-### NbFormValidators.equal
+### [NbFormValidators.equal](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nbformvalidatorsequal "NbFormValidators.equal")
 - feat: 增加`immediately`参数，默认为`true`; 
 
 <br/>
 
 ## [Services](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#Services "Services")
-### NbFormService
+### [NbFormService](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nbformservice "NbFormService")
 - feat: `updateEqualControlsValidities()`可以更便捷的更新两个期望相等的控件的有效性;
 
 <br/>
 
 ## [Components](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#Components "Components")
-### `<nb-control-err></nb-control-err>`
+### [`<nb-control-err></nb-control-err>`](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nb-control-errnb-control-err "<nb-control-err></nb-control-err>")
 - fix: 控件初始时为`dirty`，组件不显示错误信息;
 
 <br/>

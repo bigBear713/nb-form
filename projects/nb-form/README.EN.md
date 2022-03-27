@@ -18,6 +18,11 @@ Angular common form lib by bigBear713.
 
 <br>
 
+## Changelog
+- [中文](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/CHANGELOG.md "中文文档")
+- [English](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/CHANGELOG.EN.md "English Document")
+
+<br>
 
 ## Feature
 - Provide the common validators:`arrLength`, `fileSize`, `fileType`, `repeated`, `required`, `whitespace`. You can see the definition below;
@@ -54,7 +59,7 @@ $ yarn add @bigbear713/nb-form
 
 ### Validators
 
-#### NbFormValidators.arrMaxLength
+#### NbFormValidators.arrLength
 ##### `v12.0.0`
 ###### Array length validator
 
@@ -70,10 +75,10 @@ $ yarn add @bigbear713/nb-form
 
 ##### Usage
 ```ts
-const maxControl = new FormArray([1,2,3,4,5,6],[NbFormValidators.arrMaxLength({max:5,min:3})]);
+const maxControl = new FormArray([1,2,3,4,5,6],[NbFormValidators.arrLength({max:5,min:3})]);
 console.log(maxControl.errors); // { [NbControlErrTypeEnum.ARR_MAX_LENGTH]: true }
 
-const minControl = new FormArray([1,2],[NbFormValidators.arrMaxLength({max:5,min:3})]);
+const minControl = new FormArray([1,2],[NbFormValidators.arrLength({max:5,min:3})]);
 console.log(minC  ontrol.errors); // { [NbControlErrTypeEnum.ARR_MIN_LENGTH]: true }
 ```
 
@@ -87,7 +92,7 @@ console.log(minC  ontrol.errors); // { [NbControlErrTypeEnum.ARR_MIN_LENGTH]: tr
 | Name  | Type  | Mandatory  | Description  | Version |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
 | compared  | `AbstractControl`  | true  | The control which will be compared with the current control | `v12.0.0` |
-| immediately  | `boolean`  | false  | Verify immediately. If set it as`false`, it will verify the value until the compared control is `dirty`. The default is `true` | `v12.1.0` |
+| immediately  | `boolean`  | false  | Verify immediately. If set it as `false`, it will verify the value until the compared control is `dirty`. The default is `true` | `v12.1.0` |
 
 ##### Return
 | Type  | Description  |
@@ -182,7 +187,7 @@ console.log(control.errors); // { [NbControlErrTypeEnum.REQUIRED]: true; }
 
 #### NbFormValidators.whitespace
 ##### `v12.0.0`
-###### Whitespace validator
+###### Can all be whitespace validator
 
 ##### Params
 | Name  | Type  | Mandatory  | Description  | Version |
@@ -202,7 +207,7 @@ console.log(control.errors); // { [NbControlErrTypeEnum.WHITESPACE]: true; }
 
 <br>
 
-### Service
+### Services
 
 #### NbFormService
 ##### `v12.0.0`
@@ -254,7 +259,7 @@ const subscription = this.updateEqualControlsValidities(controls);
 subscription.unsubscribe();
 // unsubscribe it via destroy$
 const destroy$ = new Subject<void>();
-const subscription = this.updateEqualControlsValidities(controls,destroy$);
+this.updateEqualControlsValidities(controls,destroy$);
 destroy$.next();
 destroy$.complete();
 
@@ -262,7 +267,7 @@ destroy$.complete();
 
 <br>
 
-### Component
+### Components
 
 #### `<nb-control-err></nb-control-err>`
 ##### `v12.0.0`
@@ -314,7 +319,7 @@ destroy$.complete();
 
 <br>
 
-### Token
+### Tokens
 
 #### NB_CONTROL_COMMON_ERR_INFO_TOKEN
 ##### `v12.0.0`
@@ -338,7 +343,7 @@ destroy$.complete();
 
 <br>
 
-### Interface
+### Interfaces
 
 #### NbAbstractControl
 ##### `v12.0.0`
@@ -387,7 +392,7 @@ destroy$.complete();
 
 <br>
 
-### Enum
+### Enums
 #### NbControlErrTypeEnum
 ##### `v12.0.0`
 ###### Common error enum

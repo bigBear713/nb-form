@@ -1,6 +1,6 @@
 <div align="center">
 
-### @bigbear713/nb-form
+# @bigbear713/nb-form
 
 Angular common form lib by bigBear713.
 
@@ -18,6 +18,12 @@ Angular common form lib by bigBear713.
 
 <br>
 
+## Changelog
+- [中文](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/CHANGELOG.md "中文文档")
+- [English](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/CHANGELOG.EN.md "English Document")
+
+<br>
+
 
 ## Feature
 - 提供常用的表单控件校验器：`arrLength`, `fileSize`, `fileType`, `repeated`, `required`, `whitespace`。具体见下方校验器的定义;
@@ -27,13 +33,13 @@ Angular common form lib by bigBear713.
 <br>
 
 
-### Version
+## Version
 ###### nb-form的大版本和Angular的大版本保持对应关系
 - "@bigbear713/nb-form":"^12.0.0" - "@angular/core": "^12.0.0"
 
 <br>
 
-### Installation
+## Installation
 ```bash
 $ npm i @bigbear713/nb-form
 // or
@@ -42,7 +48,7 @@ $ yarn add @bigbear713/nb-form
 
 <br>
 
-### Module
+## Module
 
 #### NbFormModule
 ###### 表单模块。引入该模块后，可使用`component`。`service`和`validators`不需要引入该模块也可使用。
@@ -52,9 +58,9 @@ $ yarn add @bigbear713/nb-form
 
 <br>
 
-### Validators
+## Validators
 
-#### NbFormValidators.arrMaxLength
+#### NbFormValidators.arrLength
 ##### `v12.0.0`
 ###### 数组长度校验器
 
@@ -70,10 +76,10 @@ $ yarn add @bigbear713/nb-form
 
 ##### Usage
 ```ts
-const maxControl = new FormArray([1,2,3,4,5,6],[NbFormValidators.arrMaxLength({max:5,min:3})]);
+const maxControl = new FormArray([1,2,3,4,5,6],[NbFormValidators.arrLength({max:5,min:3})]);
 console.log(maxControl.errors); // { [NbControlErrTypeEnum.ARR_MAX_LENGTH]: true }
 
-const minControl = new FormArray([1,2],[NbFormValidators.arrMaxLength({max:5,min:3})]);
+const minControl = new FormArray([1,2],[NbFormValidators.arrLength({max:5,min:3})]);
 console.log(minControl.errors); // { [NbControlErrTypeEnum.ARR_MIN_LENGTH]: true }
 ```
 
@@ -182,7 +188,7 @@ console.log(control.errors); // { [NbControlErrTypeEnum.REQUIRED]: true; }
 
 #### NbFormValidators.whitespace
 ##### `v12.0.0`
-###### 空格校验器
+###### 是否允许都为空格校验器
 
 ##### Params
 | Name  | Type  | Mandatory  | Description  | Version |
@@ -202,7 +208,7 @@ console.log(control.errors); // { [NbControlErrTypeEnum.WHITESPACE]: true; }
 
 <br>
 
-### Service
+## Services
 
 #### NbFormService
 ##### `v12.0.0`
@@ -254,19 +260,18 @@ const subscription = this.updateEqualControlsValidities(controls);
 subscription.unsubscribe();
 // 通过destroy$取消订阅
 const destroy$ = new Subject<void>();
-const subscription = this.updateEqualControlsValidities(controls,destroy$);
+this.updateEqualControlsValidities(controls,destroy$);
 destroy$.next();
 destroy$.complete();
 ```
 
 <br>
 
-
-### Component
+## Components
 
 #### `<nb-control-err></nb-control-err>`
 ##### `v12.0.0`
-###### 显示控件控件信息时使用的组件。错误信息支持`string`和`Observable<string>`, 以便适合多语言场景。可在`providers`中设置常用的错误信息，和单独传入该组件的错误信息将合并成最终使用的错误信息
+###### 显示控件错误信息时使用的组件。错误信息支持`string`和`Observable<string>`, 以便适合多语言场景。可在`providers`中设置常用的错误信息，和单独传入该组件的错误信息将合并成最终使用的错误信息
 
 ##### Input
 | Name  | Type  | Default  | Description  | Version |
@@ -285,7 +290,7 @@ destroy$.complete();
 
 #### `<nb-field-item></nb-field-item>`
 ##### `v12.0.0`
-###### 字段项组件，常用于表单中。提供基本的字段布局，以及错误信息的展示
+###### 字段项组件，常用于表单中。提供常见的字段布局，以及错误信息的展示
 ##### `[field-label]`
 ###### 字段标签
 
@@ -314,8 +319,7 @@ destroy$.complete();
 
 <br>
 
-
-### Token
+## Tokens
 
 #### NB_CONTROL_COMMON_ERR_INFO_TOKEN
 ##### `v12.0.0`
@@ -339,7 +343,7 @@ destroy$.complete();
 
 <br>
 
-### Interface
+## Interfaces
 
 #### NbAbstractControl
 ##### `v12.0.0`
@@ -388,7 +392,7 @@ destroy$.complete();
 
 <br>
 
-### Enum
+## Enums
 #### NbControlErrTypeEnum
 ##### `v12.0.0`
 ###### 常用表单错误枚举
@@ -407,12 +411,12 @@ destroy$.complete();
 
 <br>
 
-### 贡献
+## 贡献
 > 欢迎提feature和PR，一起使该项目更好
 
 <a href="https://github.com/bigBear713" target="_blank"><img src="https://avatars.githubusercontent.com/u/12368900?v=4" alt="bigBear713" width="30px" height="30px"></a>
 
 <br>
 
-### License
+## License
 MIT

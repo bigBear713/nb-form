@@ -16,6 +16,9 @@ Angular common form lib by bigBear713.
 - [中文](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md "中文文档")
 - [English](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.EN.md "English Document")
 
+## Changelog
+- [中文](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/CHANGELOG.md "中文文档")
+- [English](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/CHANGELOG.EN.md "English Document")
 
 ## Feature
 - Provide the common validators:`arrLength`, `fileSize`, `fileType`, `repeated`, `required`, `whitespace`. You can see the definition below;

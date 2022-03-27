@@ -22,6 +22,8 @@
 - feat: NbFormModule - 提供可用的`component`
 - feat: NbFormTestingModule - 提供单元测试环境
 
+<br>
+
 ## [Validators](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#Validators "Validators")
 - feat: NbFormValidators.arrLength - 数组长度校验器
 - feat: NbFormValidators.equal - 控件值是否相等校验器

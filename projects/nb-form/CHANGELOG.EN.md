@@ -22,6 +22,8 @@
 - feat: NbFormModule - provide some useful `component`
 - feat: NbFormTestingModule - provide the env to unit test;
 
+<br>
+
 ## [Validators](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.EN.md#Validators "Validators")
 - feat: NbFormValidators.arrLength - array length validator
 - feat: NbFormValidators.equal - values are equal validator

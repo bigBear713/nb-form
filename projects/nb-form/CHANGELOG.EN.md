@@ -46,7 +46,7 @@
 <br>
 
 ## [Tokens](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.EN.md#Tokens "Tokens")
-- feat: NB_CONTROL_COMMON_ERR_INFO_TOKEN - Used to set common error info via DI, and the error information will be used in `<nb-control-err></nb-control-err>`
+- feat: NB_CONTROL_COMMON_ERR_INFO_TOKEN - used to set common error info via DI, and the error information will be used in `<nb-control-err></nb-control-err>`
 
 <br>
 

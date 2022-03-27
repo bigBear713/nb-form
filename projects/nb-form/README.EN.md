@@ -1,6 +1,6 @@
 <div align="center">
 
-### @bigbear713/nb-form
+# @bigbear713/nb-form
 
 Angular common form lib by bigBear713.
 
@@ -13,14 +13,14 @@ Angular common form lib by bigBear713.
 </div>
 
 ## Document
-- [中文](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md "中文文档")
+- [中文](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md "文档 - 中文")
 - [English](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.EN.md "English Document")
 
 <br>
 
 ## Changelog
-- [中文](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/CHANGELOG.md "中文文档")
-- [English](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/CHANGELOG.EN.md "English Document")
+- [中文](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/CHANGELOG.md "更新日志 - 中文")
+- [English](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/CHANGELOG.EN.md "Changelog - English")
 
 <br>
 
@@ -32,13 +32,13 @@ Angular common form lib by bigBear713.
 <br>
 
 
-### Version
+## Version
 ###### The nb-form's major version will keep up with the Angular's major version
 - "@bigbear713/nb-form":"^12.0.0" - "@angular/core": "^12.0.0"
 
 <br>
 
-### Installation
+## Installation
 ```bash
 $ npm i @bigbear713/nb-form
 // or

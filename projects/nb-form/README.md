@@ -13,14 +13,14 @@ Angular common form lib by bigBear713.
 </div>
 
 ## Document
-- [中文](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md "中文文档")
+- [中文](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md "文档 - 中文")
 - [English](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.EN.md "English Document")
 
 <br>
 
 ## Changelog
-- [中文](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/CHANGELOG.md "中文文档")
-- [English](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/CHANGELOG.EN.md "English Document")
+- [中文](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/CHANGELOG.md "更新日志 - 中文")
+- [English](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/CHANGELOG.EN.md "Changelog - English")
 
 <br>
 
@@ -48,7 +48,7 @@ $ yarn add @bigbear713/nb-form
 
 <br>
 
-## Module
+### Module
 
 #### NbFormModule
 ###### 表单模块。引入该模块后，可使用`component`。`service`和`validators`不需要引入该模块也可使用。
@@ -58,7 +58,7 @@ $ yarn add @bigbear713/nb-form
 
 <br>
 
-## Validators
+### Validators
 
 #### NbFormValidators.arrLength
 ##### `v12.0.0`
@@ -208,7 +208,7 @@ console.log(control.errors); // { [NbControlErrTypeEnum.WHITESPACE]: true; }
 
 <br>
 
-## Services
+### Services
 
 #### NbFormService
 ##### `v12.0.0`
@@ -267,7 +267,7 @@ destroy$.complete();
 
 <br>
 
-## Components
+### Components
 
 #### `<nb-control-err></nb-control-err>`
 ##### `v12.0.0`
@@ -319,7 +319,7 @@ destroy$.complete();
 
 <br>
 
-## Tokens
+### Tokens
 
 #### NB_CONTROL_COMMON_ERR_INFO_TOKEN
 ##### `v12.0.0`
@@ -343,7 +343,7 @@ destroy$.complete();
 
 <br>
 
-## Interfaces
+### Interfaces
 
 #### NbAbstractControl
 ##### `v12.0.0`
@@ -392,7 +392,7 @@ destroy$.complete();
 
 <br>
 
-## Enums
+### Enums
 #### NbControlErrTypeEnum
 ##### `v12.0.0`
 ###### 常用表单错误枚举

@@ -14,7 +14,7 @@ Angular common form lib by bigBear713.
 
 ## Document
 - [中文](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md "文档 - 中文")
-- [English](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.EN.md "English Document")
+- [English](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.EN.md "Document - English")
 
 ## Changelog
 - [中文](https://github.com/bigBear713/nb-form/blob/master/CHANGELOG.md "更新日志 - 中文")

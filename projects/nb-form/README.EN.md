@@ -31,7 +31,6 @@ Angular common form lib by bigBear713.
 
 <br>
 
-
 ## Version
 ###### The nb-form's major version will keep up with the Angular's major version
 - "@bigbear713/nb-form":"^12.0.0" - "@angular/core": "^12.0.0"
@@ -322,6 +321,7 @@ destroy$.complete();
 ### Tokens
 
 #### NB_CONTROL_COMMON_ERR_INFO_TOKEN
+##### INbControlErrInfo
 ##### `v12.0.0`
 ###### Used to set common error info, so you don't need to set the common error info every where. If you set the common error info, it will auto be combined with the error info of `<nb-control-err></nb-control-err>` to be final error info.
 

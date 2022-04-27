@@ -322,6 +322,7 @@ destroy$.complete();
 ### Tokens
 
 #### NB_CONTROL_COMMON_ERR_INFO_TOKEN
+##### INbControlErrInfo
 ##### `v12.0.0`
 ###### 用于设置常见的错误信息，避免每个地方都需要设置一遍。设置后，会和每个`<nb-control-err></nb-control-err>`组件中传入的错误信息组合成最终的错误信息。
 

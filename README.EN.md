@@ -21,9 +21,17 @@ Angular common form lib by bigBear713.
 - [English](https://github.com/bigBear713/nb-form/blob/master/CHANGELOG.EN.md "Changelog - English")
 
 ## Feature
-- Provide the common validators: `arrLength`, `equal`, `fileSize`, `fileType`, `required`, `whitespace`. You can see the definition below;
+- Provide the common validators: `arrLength`, `equal`, `fileSize`, `fileType`, `required`, `whitespace`;
 - Support to use DI to set common error info;
 - Support the changeDetection of components as `ChangeDetectionStrategy.OnPush`;
+
+<br>
+
+## Version
+###### The nb-form's major version will keep up with the Angular's major version
+- "@bigbear713/nb-form":"^12.0.0" - "@angular/core": "^12.0.0"
+
+<br>
 
 ## Installation
 ```bash

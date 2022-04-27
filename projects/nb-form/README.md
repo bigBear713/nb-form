@@ -14,19 +14,19 @@ Angular common form lib by bigBear713.
 
 ## Document
 - [中文](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md "文档 - 中文")
-- [English](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.EN.md "English Document")
+- [English](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.EN.md "Document - English")
 
 <br>
 
 ## Changelog
-- [中文](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/CHANGELOG.md "更新日志 - 中文")
-- [English](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/CHANGELOG.EN.md "Changelog - English")
+- [中文](https://github.com/bigBear713/nb-form/blob/master/CHANGELOG.md "更新日志 - 中文")
+- [English](https://github.com/bigBear713/nb-form/blob/master/CHANGELOG.EN.md "Changelog - English")
 
 <br>
 
 
 ## Feature
-- 提供常用的表单控件校验器：`arrLength`, `fileSize`, `fileType`, `repeated`, `required`, `whitespace`。具体见下方校验器的定义;
+- 提供常用的表单控件校验器：`arrLength`, `equal`, `fileSize`, `fileType`, `required`, `whitespace`。具体见下方校验器的定义;
 - 支持通过DI设置common error info;
 - 支持组件的更新策略为`ChangeDetectionStrategy.OnPush`;
 
@@ -322,6 +322,7 @@ destroy$.complete();
 ### Tokens
 
 #### NB_CONTROL_COMMON_ERR_INFO_TOKEN
+##### INbControlErrInfo
 ##### `v12.0.0`
 ###### 用于设置常见的错误信息，避免每个地方都需要设置一遍。设置后，会和每个`<nb-control-err></nb-control-err>`组件中传入的错误信息组合成最终的错误信息。
 

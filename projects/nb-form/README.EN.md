@@ -14,23 +14,22 @@ Angular common form lib by bigBear713.
 
 ## Document
 - [中文](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md "文档 - 中文")
-- [English](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.EN.md "English Document")
+- [English](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.EN.md "Document - English")
 
 <br>
 
 ## Changelog
-- [中文](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/CHANGELOG.md "更新日志 - 中文")
-- [English](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/CHANGELOG.EN.md "Changelog - English")
+- [中文](https://github.com/bigBear713/nb-form/blob/master/CHANGELOG.md "更新日志 - 中文")
+- [English](https://github.com/bigBear713/nb-form/blob/master/CHANGELOG.EN.md "Changelog - English")
 
 <br>
 
 ## Feature
-- Provide the common validators:`arrLength`, `fileSize`, `fileType`, `repeated`, `required`, `whitespace`. You can see the definition below;
+- Provide the common validators: `arrLength`, `equal`, `fileSize`, `fileType`, `required`, `whitespace`. You can see the definition below;
 - Support to use DI to set common error info;
 - Support the changeDetection of components as `ChangeDetectionStrategy.OnPush`;
 
 <br>
-
 
 ## Version
 ###### The nb-form's major version will keep up with the Angular's major version
@@ -322,6 +321,7 @@ destroy$.complete();
 ### Tokens
 
 #### NB_CONTROL_COMMON_ERR_INFO_TOKEN
+##### INbControlErrInfo
 ##### `v12.0.0`
 ###### Used to set common error info, so you don't need to set the common error info every where. If you set the common error info, it will auto be combined with the error info of `<nb-control-err></nb-control-err>` to be final error info.
 

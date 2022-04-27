@@ -14,16 +14,24 @@ Angular common form lib by bigBear713.
 
 ## Document
 - [中文](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md "文档 - 中文")
-- [English](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.EN.md "English Document")
+- [English](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.EN.md "Document - English")
 
 ## Changelog
-- [中文](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/CHANGELOG.md "更新日志 - 中文")
-- [English](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/CHANGELOG.EN.md "Changelog - English")
+- [中文](https://github.com/bigBear713/nb-form/blob/master/CHANGELOG.md "更新日志 - 中文")
+- [English](https://github.com/bigBear713/nb-form/blob/master/CHANGELOG.EN.md "Changelog - English")
 
 ## Feature
-- Provide the common validators:`arrLength`, `fileSize`, `fileType`, `repeated`, `required`, `whitespace`. You can see the definition below;
+- Provide the common validators: `arrLength`, `equal`, `fileSize`, `fileType`, `required`, `whitespace`;
 - Support to use DI to set common error info;
 - Support the changeDetection of components as `ChangeDetectionStrategy.OnPush`;
+
+<br>
+
+## Version
+###### The nb-form's major version will keep up with the Angular's major version
+- "@bigbear713/nb-form":"^12.0.0" - "@angular/core": "^12.0.0"
+
+<br>
 
 ## Installation
 ```bash

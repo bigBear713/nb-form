@@ -14,16 +14,24 @@ Angular common form lib by bigBear713.
 
 ## Document
 - [中文](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md "文档 - 中文")
-- [English](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.EN.md "English Document")
+- [English](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.EN.md "Document - English")
 
 ## Changelog
-- [中文](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/CHANGELOG.md "更新日志 - 中文")
-- [English](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/CHANGELOG.EN.md "Changelog - English")
+- [中文](https://github.com/bigBear713/nb-form/blob/master/CHANGELOG.md "更新日志 - 中文")
+- [English](https://github.com/bigBear713/nb-form/blob/master/CHANGELOG.EN.md "Changelog - English")
 
 ## Feature
-- 提供常用的表单控件校验器：`arrLength`, `fileSize`, `fileType`, `repeated`, `required`, `whitespace`。具体见下方校验器的定义;
+- 提供常用的表单控件校验器：`arrLength`, `equal`, `fileSize`, `fileType`, `required`, `whitespace`;
 - 支持通过DI设置common error info;
 - 支持组件的更新策略为`ChangeDetectionStrategy.OnPush`;
+
+<br>
+
+## Version
+###### nb-form的大版本和Angular的大版本保持对应关系
+- "@bigbear713/nb-form":"^12.0.0" - "@angular/core": "^12.0.0"
+
+<br>
 
 ## Installation
 ```bash

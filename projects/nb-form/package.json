@@ -1,13 +1,13 @@
 {
   "name": "@bigbear713/nb-form",
-  "version": "12.1.0",
+  "version": "13.0.0",
   "homepage": "https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md",
   "description": "Angular common form lib by bigBear713.",
   "keywords": [
     "ng",
     "angular",
     "angular2+",
-    "angular12",
+    "angular13",
     "form",
     "validators",
     "bigBear713"
@@ -21,12 +21,12 @@
     "url": "https://github.com/bigBear713/nb-form/issues"
   },
   "peerDependencies": {
-    "@angular/common": "^12.2.0",
-    "@angular/core": "^12.2.0",
-    "@angular/forms": "^12.2.0"
+    "@angular/common": "^13.0.0",
+    "@angular/core": "^13.0.0",
+    "@angular/forms": "^13.0.0"
   },
   "dependencies": {
-    "@bigbear713/nb-common": "^12.1.0",
+    "@bigbear713/nb-common": "^13.0.0",
     "lodash-es": "^4.17.21",
     "tslib": "^2.3.0"
   },

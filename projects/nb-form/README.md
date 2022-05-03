@@ -36,6 +36,7 @@ Angular common form lib by bigBear713.
 ## Version
 ###### nb-form的大版本和Angular的大版本保持对应关系
 - "@bigbear713/nb-form":"^12.0.0" - "@angular/core": "^12.0.0"
+- "@bigbear713/nb-form":"^13.0.0" - "@angular/core": "^13.0.0"
 
 <br>
 

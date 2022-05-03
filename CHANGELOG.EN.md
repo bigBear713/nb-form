@@ -1,3 +1,9 @@
+# v13.0.0
+## Breaking Changes
+- feat: Upgrade `angular` to `v13`;
+
+<br/>
+
 # v12.1.0
 ## [Validators](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.EN.md#Validators "Validators")
 ### [NbFormValidators.equal](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.EN.md#nbformvalidatorsequal "NbFormValidators.equal")

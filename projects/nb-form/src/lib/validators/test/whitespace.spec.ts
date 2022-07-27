@@ -1,4 +1,4 @@
-import { FormControl } from "@angular/forms";
+import { UntypedFormControl } from "@angular/forms";
 import { NbControlErrTypeEnum } from "../../constants";
 import { NbFormValidators } from "../index";
 
@@ -54,7 +54,7 @@ describe('NbFormValidators.whitespace', () => {
     },
   ].forEach(item => {
     it(item.title, () => {
-      const control = new FormControl(
+      const control = new UntypedFormControl(
         item.params.controlValue,
         [NbFormValidators.whitespace(item.params.canWhitespace)]
       );

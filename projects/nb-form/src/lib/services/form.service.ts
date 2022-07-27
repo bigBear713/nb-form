@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AbstractControl, FormArray, FormGroup, ValidatorFn } from '@angular/forms';
+import { AbstractControl, UntypedFormArray, UntypedFormGroup, ValidatorFn } from '@angular/forms';
 import { isEqual } from 'lodash-es';
 import { combineLatest, Subject, Subscription } from 'rxjs';
 import { distinctUntilChanged, startWith, takeUntil, tap } from 'rxjs/operators';
@@ -32,9 +32,9 @@ export class NbFormService {
     control?.markAsDirty(opts);
 
     const fn = (controlItem: NbAbstractControl): void => this.markAllAsDirty(controlItem, opts)
-    if (control instanceof FormArray) {
+    if (control instanceof UntypedFormArray) {
       this.formTools.doFormArrayFn(control, fn);
-    } else if (control instanceof FormGroup) {
+    } else if (control instanceof UntypedFormGroup) {
       this.formTools.doFormGroupFn(control, fn);
     }
   }
@@ -49,9 +49,9 @@ export class NbFormService {
     control?.updateValueAndValidity(opts);
 
     const fn = (controlItem: NbAbstractControl): void => this.updateAllValueAndValidity(controlItem, opts)
-    if (control instanceof FormArray) {
+    if (control instanceof UntypedFormArray) {
       this.formTools.doFormArrayFn(control, fn);
-    } else if (control instanceof FormGroup) {
+    } else if (control instanceof UntypedFormGroup) {
       this.formTools.doFormGroupFn(control, fn);
     }
   }

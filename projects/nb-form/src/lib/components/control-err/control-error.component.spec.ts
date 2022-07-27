@@ -5,7 +5,7 @@ import { NbFormTestingModule } from '../../testing';
 import { NB_CONTROL_COMMON_ERR_INFO_TOKEN } from '../../constants';
 import { ChangeDetectorRef, SimpleChange } from '@angular/core';
 import { INbControlErrInfo } from '../../models';
-import { AbstractControl, FormControl } from '@angular/forms';
+import { AbstractControl, UntypedFormControl } from '@angular/forms';
 import { NbFormValidators } from '../../validators';
 import { NbFormService } from '../../services';
 
@@ -39,7 +39,7 @@ describe('NbControlErrComponent', () => {
       {
         title: 'The control is valid and dirty is false',
         testData: {
-          control: new FormControl(),
+          control: new UntypedFormControl(),
           operateControl: (control: AbstractControl) => { },
         },
         expect: {
@@ -49,7 +49,7 @@ describe('NbControlErrComponent', () => {
       {
         title: 'The control is valid and dirty is true',
         testData: {
-          control: new FormControl(),
+          control: new UntypedFormControl(),
           operateControl: (control: AbstractControl) => {
             const service: NbFormService = TestBed.inject(NbFormService);
             service.showAllErrInfo(control);
@@ -62,7 +62,7 @@ describe('NbControlErrComponent', () => {
       {
         title: 'The control is invalid and dirty is true',
         testData: {
-          control: new FormControl('', [NbFormValidators.required(true)]),
+          control: new UntypedFormControl('', [NbFormValidators.required(true)]),
           operateControl: (control: AbstractControl) => {
             const service: NbFormService = TestBed.inject(NbFormService);
             service.showAllErrInfo(control);
@@ -75,7 +75,7 @@ describe('NbControlErrComponent', () => {
       {
         title: 'The control is invalid and dirty is false',
         testData: {
-          control: new FormControl('', [NbFormValidators.required(true)]),
+          control: new UntypedFormControl('', [NbFormValidators.required(true)]),
           operateControl: (control: AbstractControl) => { },
         },
         expect: {
@@ -99,7 +99,7 @@ describe('NbControlErrComponent', () => {
     });
 
     it('The control is in initial status, and the dirty is true, status is invalid', () => {
-      const control = new FormControl('', [NbFormValidators.required(true)]);
+      const control = new UntypedFormControl('', [NbFormValidators.required(true)]);
       control.markAsDirty();
 
       component.control = control;
@@ -117,7 +117,7 @@ describe('NbControlErrComponent', () => {
       const instance = createComponent();
       const fixture = instance.fixture;
       const component = instance.component;
-      component.control = new FormControl('', [NbFormValidators.required(true)]);
+      component.control = new UntypedFormControl('', [NbFormValidators.required(true)]);
       const service: NbFormService = TestBed.inject(NbFormService);
 
       const changes = {
@@ -209,7 +209,7 @@ describe('NbControlErrComponent', () => {
 function createComponent() {
   const fixture = TestBed.createComponent(NbControlErrComponent);
   const component = fixture.componentInstance;
-  component.control = new FormControl();
+  component.control = new UntypedFormControl();
   fixture.detectChanges();
   return { fixture, component };
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormArray, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { UntypedFormArray, UntypedFormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { INbControlConfig, NbAbstractControl } from '../models';
 import { NbFormValidators } from '../validators';
 
@@ -10,11 +10,11 @@ export class NbFormToolsService {
 
   constructor() { }
 
-  doFormArrayFn(control: FormArray, fn: (item: NbAbstractControl) => void): void {
+  doFormArrayFn(control: UntypedFormArray, fn: (item: NbAbstractControl) => void): void {
     control.controls.forEach(item => fn(item));
   }
 
-  doFormGroupFn(control: FormGroup, fn: (item: NbAbstractControl) => void): void {
+  doFormGroupFn(control: UntypedFormGroup, fn: (item: NbAbstractControl) => void): void {
     Object.keys(control.controls).forEach(key => fn(control.get(key)));
   }
 

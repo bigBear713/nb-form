@@ -1,4 +1,4 @@
-import { FormControl } from "@angular/forms";
+import { UntypedFormControl } from "@angular/forms";
 import { NbControlErrTypeEnum } from "../../constants";
 import { NbFormValidators } from "../index";
 
@@ -93,7 +93,7 @@ describe('NbFormValidators.fileSize', () => {
     },
   ].forEach(item => {
     it(item.title, () => {
-      const control = new FormControl(
+      const control = new UntypedFormControl(
         item.params.controlValue,
         [NbFormValidators.fileSize(item.params.fileSize)]
       );

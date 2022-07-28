@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormArray, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { NbAbstractControl } from '../../models';
 import { NbFormTestingModule } from '../../testing';
 import { NbFormToolsService } from '../form-tools.service';
@@ -26,8 +26,8 @@ describe('Service: FormTools', () => {
     };
     spyOn(fnObj, 'doFn').and.callThrough();
 
-    const control = new FormControl();
-    const form = new FormArray([control]);
+    const control = new UntypedFormControl();
+    const form = new UntypedFormArray([control]);
     service.doFormArrayFn(form, fnObj.doFn);
 
     expect(fnObj.doFn).toHaveBeenCalledTimes(form.length);
@@ -40,8 +40,8 @@ describe('Service: FormTools', () => {
     };
     spyOn(fnObj, 'doFn').and.callThrough();
 
-    const control = new FormControl();
-    const form = new FormGroup({
+    const control = new UntypedFormControl();
+    const form = new UntypedFormGroup({
       control,
     });
     service.doFormGroupFn(form, fnObj.doFn);

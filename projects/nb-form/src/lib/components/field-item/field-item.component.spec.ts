@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { INbControlErrInfo } from '../../models';
 import { NbFormTestingModule } from '../../testing';
 import { NbFieldItemComponent } from './field-item.component';
@@ -16,7 +16,7 @@ import { NbFieldItemComponent } from './field-item.component';
   `
 })
 class UIComponent {
-  control!: FormControl;
+  control!: UntypedFormControl;
   errInfo!: INbControlErrInfo;
   required: boolean | undefined = true;
 }
@@ -36,7 +36,7 @@ describe('NbFieldItemComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(NbFieldItemComponent);
     component = fixture.componentInstance;
-    component.control = new FormControl();
+    component.control = new UntypedFormControl();
     fixture.detectChanges();
   });
 
@@ -52,7 +52,7 @@ describe('NbFieldItemComponent', () => {
     beforeEach(() => {
       uiFixture = TestBed.createComponent(UIComponent);
       uiComponent = uiFixture.componentInstance;
-      uiComponent.control = new FormControl();
+      uiComponent.control = new UntypedFormControl();
       uiFixture.detectChanges();
       uiHostEle = uiFixture.debugElement.nativeElement;
     });

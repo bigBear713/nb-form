@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { NbTransLangEnum, NbTransService } from '@bigbear713/nb-trans';
 import { NbControlErrTypeEnum, NbFormService, NbFormValidators } from 'nb-form';
 
@@ -10,7 +10,7 @@ import { NbControlErrTypeEnum, NbFormService, NbFormValidators } from 'nb-form';
 })
 export class AppComponent implements OnInit {
 
-  form: FormGroup | undefined;
+  form: UntypedFormGroup | undefined;
 
   errInfo1 = {
     [NbControlErrTypeEnum.REQUIRED]: this.transService.translationAsync('errors.required'),
@@ -21,32 +21,32 @@ export class AppComponent implements OnInit {
     [NbControlErrTypeEnum.FILE_MAX_SIZE]: 'The file max size is 500kb!',
   };
 
-  get field1Ctrl(): FormControl {
-    return this.form?.get('field1') as FormControl;
+  get field1Ctrl(): UntypedFormControl {
+    return this.form?.get('field1') as UntypedFormControl;
   }
 
-  get field2Ctrl(): FormControl {
-    return this.form?.get('field2') as FormControl;
+  get field2Ctrl(): UntypedFormControl {
+    return this.form?.get('field2') as UntypedFormControl;
   }
 
-  get field3Ctrl(): FormControl {
-    return this.form?.get('field3') as FormControl;
+  get field3Ctrl(): UntypedFormControl {
+    return this.form?.get('field3') as UntypedFormControl;
   }
 
-  get field4Ctrl(): FormControl {
-    return this.form?.get('field4') as FormControl;
+  get field4Ctrl(): UntypedFormControl {
+    return this.form?.get('field4') as UntypedFormControl;
   }
 
-  get field5Ctrl(): FormControl {
-    return this.form?.get('field5') as FormControl;
+  get field5Ctrl(): UntypedFormControl {
+    return this.form?.get('field5') as UntypedFormControl;
   }
 
-  get field6Ctrl(): FormControl {
-    return this.form?.get('field6') as FormControl;
+  get field6Ctrl(): UntypedFormControl {
+    return this.form?.get('field6') as UntypedFormControl;
   }
 
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private formService: NbFormService,
     private transService: NbTransService,
   ) { }

@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { AbstractControl, FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, UntypedFormArray, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { NbFormTestingModule } from '../../testing';
 import { NbFormValidators } from '../../validators';
@@ -177,7 +177,7 @@ describe('NbFormService', () => {
       {
         title: 'mark formControl as dirty with options',
         params: {
-          target: new FormControl(),
+          target: new UntypedFormControl(),
           opts: { onlySelf: false, emitEvent: true }
         },
         expectCallTimes: { doFormArrayFn: 0, doFormGroupFn: 0, }
@@ -185,7 +185,7 @@ describe('NbFormService', () => {
       {
         title: 'mark formControl as dirty without options',
         params: {
-          target: new FormControl(),
+          target: new UntypedFormControl(),
           opts: undefined
         },
         expectCallTimes: { doFormArrayFn: 0, doFormGroupFn: 0, }
@@ -193,7 +193,7 @@ describe('NbFormService', () => {
       {
         title: 'mark formArray as dirty with options',
         params: {
-          target: new FormArray([new FormControl()]),
+          target: new UntypedFormArray([new UntypedFormControl()]),
           opts: { onlySelf: false, emitEvent: true }
         },
         expectCallTimes: { doFormArrayFn: 1, doFormGroupFn: 0, }
@@ -201,7 +201,7 @@ describe('NbFormService', () => {
       {
         title: 'mark formArray as dirty without options',
         params: {
-          target: new FormArray([new FormControl()]),
+          target: new UntypedFormArray([new UntypedFormControl()]),
           opts: undefined
         },
         expectCallTimes: { doFormArrayFn: 1, doFormGroupFn: 0, }
@@ -209,7 +209,7 @@ describe('NbFormService', () => {
       {
         title: 'mark formGroup as dirty with options',
         params: {
-          target: new FormGroup({ control: new FormControl() }),
+          target: new UntypedFormGroup({ control: new UntypedFormControl() }),
           opts: { onlySelf: false, emitEvent: true }
         },
         expectCallTimes: { doFormArrayFn: 0, doFormGroupFn: 1, }
@@ -217,7 +217,7 @@ describe('NbFormService', () => {
       {
         title: 'mark formGroup as dirty without options',
         params: {
-          target: new FormGroup({ control: new FormControl() }),
+          target: new UntypedFormGroup({ control: new UntypedFormControl() }),
           opts: undefined
         },
         expectCallTimes: { doFormArrayFn: 0, doFormGroupFn: 1, }
@@ -258,37 +258,37 @@ describe('NbFormService', () => {
       {
         title: 'when the control is formControl with options',
         params: {
-          target: new FormControl(), opts: { onlySelf: false, emitEvent: true }
+          target: new UntypedFormControl(), opts: { onlySelf: false, emitEvent: true }
         },
       },
       {
         title: 'when the control is formControl without options',
         params: {
-          target: new FormControl(), opts: undefined
+          target: new UntypedFormControl(), opts: undefined
         },
       },
       {
         title: 'when the control is formArray with options',
         params: {
-          target: new FormArray([new FormControl()]), opts: { onlySelf: false, emitEvent: true }
+          target: new UntypedFormArray([new UntypedFormControl()]), opts: { onlySelf: false, emitEvent: true }
         },
       },
       {
         title: 'when the control is formArray without options',
         params: {
-          target: new FormArray([new FormControl()]), opts: undefined
+          target: new UntypedFormArray([new UntypedFormControl()]), opts: undefined
         },
       },
       {
         title: 'when the control is formGroup with options',
         params: {
-          target: new FormGroup({ control: new FormControl() }), opts: { onlySelf: false, emitEvent: true }
+          target: new UntypedFormGroup({ control: new UntypedFormControl() }), opts: { onlySelf: false, emitEvent: true }
         },
       },
       {
         title: 'when the control is formArray without options',
         params: {
-          target: new FormGroup({ control: new FormControl() }), opts: undefined
+          target: new UntypedFormGroup({ control: new UntypedFormControl() }), opts: undefined
         },
       }
     ].forEach(item => {
@@ -310,8 +310,8 @@ describe('NbFormService', () => {
     let controls: { target: AbstractControl; compared: AbstractControl };
 
     beforeEach(() => {
-      const target = new FormControl('', [NbFormValidators.required(true)]);
-      const compared = new FormControl('', [NbFormValidators.required(true)]);
+      const target = new UntypedFormControl('', [NbFormValidators.required(true)]);
+      const compared = new UntypedFormControl('', [NbFormValidators.required(true)]);
       controls = { target, compared };
       spyOn(controls.target, 'updateValueAndValidity').and.callThrough();
       spyOn(controls.compared, 'updateValueAndValidity').and.callThrough();

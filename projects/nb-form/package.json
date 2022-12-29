@@ -30,7 +30,7 @@
   "dependencies": {
     "@bigbear713/nb-common": "^15.0.0",
     "lodash-es": "^4.17.21",
-    "tslib": "^2.4.1"
+    "tslib": "^2.3.0"
   },
   "devDependencies": {
     "@types/lodash-es": "^4.17.6"

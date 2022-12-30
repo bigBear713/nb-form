@@ -1,5 +1,5 @@
 import { AbstractControl, ValidatorFn } from "@angular/forms";
-import { NbControlErrTypeEnum } from "../constants";
+import { NbControlErrType } from "../constants";
 
 export const arrLength = (arrLength: { max?: number; min?: number }): ValidatorFn => {
   return (control: AbstractControl) => {
@@ -9,11 +9,11 @@ export const arrLength = (arrLength: { max?: number; min?: number }): ValidatorF
     }
 
     if (arrLength.max && control.value.length > arrLength.max) {
-      return { [NbControlErrTypeEnum.ARR_MAX_LENGTH]: true };
+      return { [NbControlErrType.ARR_MAX_LENGTH]: true };
     }
 
     if (arrLength.min && control.value.length < arrLength.min) {
-      return { [NbControlErrTypeEnum.ARR_MIN_LENGTH]: true };
+      return { [NbControlErrType.ARR_MIN_LENGTH]: true };
     }
 
     return null;

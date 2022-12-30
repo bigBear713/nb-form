@@ -1,5 +1,5 @@
 import { UntypedFormControl } from "@angular/forms";
-import { NbControlErrTypeEnum } from "../../constants";
+import { NbControlErrType } from "../../constants";
 import { NbFormValidators } from "../index";
 
 describe('NbFormValidators.fileType', () => {
@@ -34,7 +34,7 @@ describe('NbFormValidators.fileType', () => {
         controlValue: new File([], 'fileType.png', { type: 'image/png' }),
         fileType: ['text/plain', 'image/jpeg'],
       },
-      expect: { [NbControlErrTypeEnum.FILE_TYPE]: true }
+      expect: { [NbControlErrType.FILE_TYPE]: true }
     },
     {
       title: 'When control value is a jpg file',

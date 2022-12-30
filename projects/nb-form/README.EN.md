@@ -73,15 +73,15 @@ $ yarn add @bigbear713/nb-form
 ##### Return
 | Type  | Description  |
 | ------------ | ------------ |
-| `{ [NbControlErrTypeEnum.ARR_MAX_LENGTH]?: true;[NbControlErrTypeEnum.ARR_MIN_LENGTH]?: true; }｜null`  | The result. If it is null, the condition is met or the value of control is not a array value. If the result is `{ [NbControlErrTypeEnum.ARR_MAX_LENGTH]: true }`, the control array value's length is greater than max limit value. If the result is `{ [NbControlErrTypeEnum.ARR_MIN_LENGTH]: true }`, the control array value's length is less than the min limit value. |
+| `{ [NbControlErrType.ARR_MAX_LENGTH]?: true;[NbControlErrType.ARR_MIN_LENGTH]?: true; }｜null`  | The result. If it is null, the condition is met or the value of control is not a array value. If the result is `{ [NbControlErrType.ARR_MAX_LENGTH]: true }`, the control array value's length is greater than max limit value. If the result is `{ [NbControlErrType.ARR_MIN_LENGTH]: true }`, the control array value's length is less than the min limit value. |
 
 ##### Usage
 ```ts
 const maxControl = new FormArray([1,2,3,4,5,6],[NbFormValidators.arrLength({max:5,min:3})]);
-console.log(maxControl.errors); // { [NbControlErrTypeEnum.ARR_MAX_LENGTH]: true }
+console.log(maxControl.errors); // { [NbControlErrType.ARR_MAX_LENGTH]: true }
 
 const minControl = new FormArray([1,2],[NbFormValidators.arrLength({max:5,min:3})]);
-console.log(minC  ontrol.errors); // { [NbControlErrTypeEnum.ARR_MIN_LENGTH]: true }
+console.log(minC  ontrol.errors); // { [NbControlErrType.ARR_MIN_LENGTH]: true }
 ```
 
 <br>
@@ -99,14 +99,14 @@ console.log(minC  ontrol.errors); // { [NbControlErrTypeEnum.ARR_MIN_LENGTH]: tr
 ##### Return
 | Type  | Description  |
 | ------------ | ------------ |
-| `{ [NbControlErrTypeEnum.NOT_EQUAL]: true; }｜null`  | The result. If the two control's values are equal, the result is null. If the valus are not equal, the result is `{ [NbControlErrTypeEnum.NOT_EQUAL]: true }`. When the values are not equal, the compared control will has the no equal error info. |
+| `{ [NbControlErrType.NOT_EQUAL]: true; }｜null`  | The result. If the two control's values are equal, the result is null. If the valus are not equal, the result is `{ [NbControlErrType.NOT_EQUAL]: true }`. When the values are not equal, the compared control will has the no equal error info. |
 
 ##### Usage
 ```ts
 const targetControl = new FormControl('');
 const compareControl = new FormControl(null);
 targetControl.setValidators([NbFormValidators.equal(compareControl)]);
-console.log(targetControl.errors); // { [NbControlErrTypeEnum.NOT_EQUAL]: true; }
+console.log(targetControl.errors); // { [NbControlErrType.NOT_EQUAL]: true; }
 
 
 const targetControl = new FormControl('');
@@ -116,7 +116,7 @@ console.log(targetControl.errors); // null
 
 compareControl.markAsDirty();
 targetControl.updateValueAndValidity();
-console.log(targetControl.errors); // { [NbControlErrTypeEnum.NOT_EQUAL]: true; }
+console.log(targetControl.errors); // { [NbControlErrType.NOT_EQUAL]: true; }
 ```
 
 <br>
@@ -133,12 +133,12 @@ console.log(targetControl.errors); // { [NbControlErrTypeEnum.NOT_EQUAL]: true; 
 ##### Return
 | Type  | Description  |
 | ------------ | ------------ |
-| `{ [NbControlErrTypeEnum.FILE_MAX_SIZE]?: true;[NbControlErrTypeEnum.FILE_MIN_SIZE]?: true; }｜null`  | The result. If is is null, the condition is met or the control's value is not a `File` type value. If the result is `{ [NbControlErrTypeEnum.FILE_MAX_SIZE]: true }`, the file size is greater than the max limit value. If the result is `{ [NbControlErrTypeEnum.FILE_MIN_SIZE]: true }`, the file size is less than the min limit value. |
+| `{ [NbControlErrType.FILE_MAX_SIZE]?: true;[NbControlErrType.FILE_MIN_SIZE]?: true; }｜null`  | The result. If is is null, the condition is met or the control's value is not a `File` type value. If the result is `{ [NbControlErrType.FILE_MAX_SIZE]: true }`, the file size is greater than the max limit value. If the result is `{ [NbControlErrType.FILE_MIN_SIZE]: true }`, the file size is less than the min limit value. |
 
 ##### Usage
 ```ts
 const control = new FormControl(new File(),[NbFormValidators.fileSize({max:5,min:3})]);
-console.log(control.errors); // { [NbControlErrTypeEnum.FILE_MAX_SIZE]: true; } / { [NbControlErrTypeEnum.FILE_MIN_SIZE]?: true; }
+console.log(control.errors); // { [NbControlErrType.FILE_MAX_SIZE]: true; } / { [NbControlErrType.FILE_MIN_SIZE]?: true; }
 ```
 
 <br>
@@ -155,12 +155,12 @@ console.log(control.errors); // { [NbControlErrTypeEnum.FILE_MAX_SIZE]: true; } 
 ##### Return
 | Type  | Description  |
 | ------------ | ------------ |
-| `{ [NbControlErrTypeEnum.FILE_TYPE]: true; }｜null`  | The result. If it is null, the condition is met or the value of control is not a `File`value. If the result is `{ [NbControlErrTypeEnum.FILE_TYPE]: true }`, the control's file type is among the types to be supported |
+| `{ [NbControlErrType.FILE_TYPE]: true; }｜null`  | The result. If it is null, the condition is met or the value of control is not a `File`value. If the result is `{ [NbControlErrType.FILE_TYPE]: true }`, the control's file type is among the types to be supported |
 
 ##### Usage
 ```ts
 const control = new FormControl(new File(),[NbFormValidators.fileType(['image/jpeg','image/png'])]);
-console.log(control.errors); // { [NbControlErrTypeEnum.FILE_TYPE]: true; }
+console.log(control.errors); // { [NbControlErrType.FILE_TYPE]: true; }
 ```
 
 <br>
@@ -177,12 +177,12 @@ console.log(control.errors); // { [NbControlErrTypeEnum.FILE_TYPE]: true; }
 ##### Return
 | Type  | Description  |
 | ------------ | ------------ |
-| `{ [NbControlErrTypeEnum.REQUIRED]: true; }｜null`  | The result. If it is null, the condition is met. If the result is `{ [NbControlErrTypeEnum.REQUIRED]: true }`, the control's value shoule be required. |
+| `{ [NbControlErrType.REQUIRED]: true; }｜null`  | The result. If it is null, the condition is met. If the result is `{ [NbControlErrType.REQUIRED]: true }`, the control's value shoule be required. |
 
 ##### Usage
 ```ts
 const control = new FormControl('',[NbFormValidators.required(true)])
-console.log(control.errors); // { [NbControlErrTypeEnum.REQUIRED]: true; }
+console.log(control.errors); // { [NbControlErrType.REQUIRED]: true; }
 ```
 
 <br>
@@ -199,12 +199,12 @@ console.log(control.errors); // { [NbControlErrTypeEnum.REQUIRED]: true; }
 ##### Return
 | Type  | Description  |
 | ------------ | ------------ |
-| `{ [NbControlErrTypeEnum.WHITESPACE]: true; }｜null`  | The result. If it is null, the condition is met. If the result is `{ [NbControlErrTypeEnum.WHITESPACE]: true }`, the condition is not met. |
+| `{ [NbControlErrType.WHITESPACE]: true; }｜null`  | The result. If it is null, the condition is met. If the result is `{ [NbControlErrType.WHITESPACE]: true }`, the condition is not met. |
 
 ##### Usage
 ```ts
 const control =new FormControl('    ',[NbFormValidators.whitespace(false)])
-console.log(control.errors); // { [NbControlErrTypeEnum.WHITESPACE]: true; }
+console.log(control.errors); // { [NbControlErrType.WHITESPACE]: true; }
 ```
 
 <br>
@@ -323,9 +323,12 @@ destroy$.complete();
 
 ### Tokens
 
+#### NB_CONTROL_COMMON_ERR_INFO
+##### INbControlErrInfo
+##### `v15.0.0`
 #### NB_CONTROL_COMMON_ERR_INFO_TOKEN
 ##### INbControlErrInfo
-##### `v12.0.0`
+##### `v12.0.0`, `@deprecated` from `v15.0.0`
 ###### Used to set common error info, so you don't need to set the common error info every where. If you set the common error info, it will auto be combined with the error info of `<nb-control-err></nb-control-err>` to be final error info.
 
 ##### Usage
@@ -333,10 +336,10 @@ destroy$.complete();
   providers: [
     // ...
     {
-      provide: NB_CONTROL_COMMON_ERR_INFO_TOKEN,
+      provide: NB_CONTROL_COMMON_ERR_INFO,
       useFactory: (transService: NbTransService) => ({
-        [NbControlErrTypeEnum.FILE_TYPE]: transService.translationAsync('fileType'),
-        [NbControlErrTypeEnum.FILE_MIN_SIZE]: 'The file min file is 50KB!',
+        [NbControlErrType.FILE_TYPE]: transService.translationAsync('fileType'),
+        [NbControlErrType.FILE_MIN_SIZE]: 'The file min file is 50KB!',
       }),
       deps: [NbTransService]
     },
@@ -396,8 +399,10 @@ destroy$.complete();
 <br>
 
 ### Enums
+#### NbControlErrType
+##### `v15.0.0`
 #### NbControlErrTypeEnum
-##### `v12.0.0`
+##### `v12.0.0`, `@deprecated` from `v15.0.0`
 ###### Common error enum
 | Key  | Value  | Description  | Version |
 | ------------ | ------------ | ------------ | ------------ |  

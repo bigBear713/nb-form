@@ -1,5 +1,5 @@
 import { AbstractControl, ValidatorFn } from '@angular/forms';
-import { NbControlErrTypeEnum } from '../constants';
+import { NbControlErrType } from '../constants';
 
 export const fileType = (types: string[]): ValidatorFn => {
   return (control: AbstractControl) => {
@@ -14,7 +14,7 @@ export const fileType = (types: string[]): ValidatorFn => {
     }
 
     if (!types.includes(file.type)) {
-      return { [NbControlErrTypeEnum.FILE_TYPE]: true };
+      return { [NbControlErrType.FILE_TYPE]: true };
     }
 
     return null;

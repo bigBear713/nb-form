@@ -53,7 +53,7 @@
 - feat: [`<nb-field-item></nb-field-item>`](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nb-field-itemnb-field-item) - 提供常见的字段布局，以及控件错误信息，常用于表单中
 
 ## [Tokens](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#Tokens "Tokens")
-- feat: [NB_CONTROL_COMMON_ERR_INFO_TOKEN](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nb_control_common_err_info_token) - 通过DI设置常见的错误信息，便于在`<nb-control-err></nb-control-err>`中使用
+- feat: [NB_CONTROL_COMMON_ERR_INFO](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nb_control_common_err_info) - 通过DI设置常见的错误信息，便于在`<nb-control-err></nb-control-err>`中使用
 
 ## [Interfaces](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#Interfaces "Interfaces")
 - feat: [NbAbstractControl](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nbabstractcontrol) - 抽象控件类型
@@ -62,4 +62,4 @@
 - feat: [INbControlErrInfo](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#inbformconfigs) - 控件错误信息
 
 ## [Enums](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#Enums "Enums")
-- feat: [NbControlErrTypeEnum](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nbcontrolerrtypeenum) - 常用表单错误枚举
+- feat: [NbControlErrType](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nbcontrolerrtype) - 常用表单错误枚举

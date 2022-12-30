@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import { AbstractControl, UntypedFormControl } from '@angular/forms';
 import { INbControlErrInfo } from '../../models';
-import { NB_CONTROL_COMMON_ERR_INFO_TOKEN } from '../../constants';
+import { NB_CONTROL_COMMON_ERR_INFO } from '../../constants';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -51,7 +51,7 @@ export class NbControlErrComponent implements OnChanges, OnDestroy {
   private destroy$ = new Subject();
 
   constructor(
-    @Inject(NB_CONTROL_COMMON_ERR_INFO_TOKEN)
+    @Inject(NB_CONTROL_COMMON_ERR_INFO)
     @Optional()
     private commonErrInfo: INbControlErrInfo = {},
     private changeDR: ChangeDetectorRef,

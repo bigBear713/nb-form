@@ -1,5 +1,5 @@
 import { UntypedFormControl } from "@angular/forms";
-import { NbControlErrTypeEnum } from "../../constants";
+import { NbControlErrType } from "../../constants";
 import { NbFormValidators } from "../index";
 
 describe('NbFormValidators.equal', () => {
@@ -38,7 +38,7 @@ describe('NbFormValidators.equal', () => {
         comparedControl: new UntypedFormControl(null),
       },
       expect: {
-        target: { [NbControlErrTypeEnum.EQUAL]: true },
+        target: { [NbControlErrType.EQUAL]: true },
       }
     },
     {
@@ -48,7 +48,7 @@ describe('NbFormValidators.equal', () => {
         comparedControl: new UntypedFormControl(null, [NbFormValidators.required(true)]),
       },
       expect: {
-        target: { [NbControlErrTypeEnum.EQUAL]: true },
+        target: { [NbControlErrType.EQUAL]: true },
       }
     },
 
@@ -63,10 +63,10 @@ describe('NbFormValidators.equal', () => {
     const comparedControl = new UntypedFormControl(null, [NbFormValidators.required(true,)]);
     const control = new UntypedFormControl('control', [NbFormValidators.required(true), NbFormValidators.equal(comparedControl, true)]);
 
-    expect(control.errors).toEqual({ [NbControlErrTypeEnum.EQUAL]: true });
+    expect(control.errors).toEqual({ [NbControlErrType.EQUAL]: true });
 
     control.setValue(null);
-    expect(control.errors).toEqual({ [NbControlErrTypeEnum.REQUIRED]: true });
+    expect(control.errors).toEqual({ [NbControlErrType.REQUIRED]: true });
   });
 
   it('The error will be displayed when compared control is dirty', () => {
@@ -76,7 +76,7 @@ describe('NbFormValidators.equal', () => {
 
     comparedControl.markAsDirty();
     targetControl.updateValueAndValidity();
-    expect(targetControl.errors).toEqual({ [NbControlErrTypeEnum.EQUAL]: true });
+    expect(targetControl.errors).toEqual({ [NbControlErrType.EQUAL]: true });
   });
 
   it('The error will be displayed when the immediatelyErr param of validator has been set as true', () => {
@@ -86,6 +86,6 @@ describe('NbFormValidators.equal', () => {
 
     comparedControl.markAsDirty();
     targetControl.updateValueAndValidity();
-    expect(targetControl.errors).toEqual({ [NbControlErrTypeEnum.EQUAL]: true });
+    expect(targetControl.errors).toEqual({ [NbControlErrType.EQUAL]: true });
   });
 });

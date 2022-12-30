@@ -1,5 +1,5 @@
 import { UntypedFormControl } from "@angular/forms";
-import { NbControlErrTypeEnum } from "../../constants";
+import { NbControlErrType } from "../../constants";
 import { NbFormValidators } from "../index";
 
 describe('NbFormValidators.required', () => {
@@ -18,7 +18,7 @@ describe('NbFormValidators.required', () => {
         controlValue: null,
         required: undefined,
       },
-      expect: { [NbControlErrTypeEnum.REQUIRED]: true }
+      expect: { [NbControlErrType.REQUIRED]: true }
     },
     {
       title: 'When required is true and the value of control is null',
@@ -26,7 +26,7 @@ describe('NbFormValidators.required', () => {
         controlValue: null,
         required: true,
       },
-      expect: { [NbControlErrTypeEnum.REQUIRED]: true }
+      expect: { [NbControlErrType.REQUIRED]: true }
     },
     {
       title: 'When required is true and the value of control is string value',

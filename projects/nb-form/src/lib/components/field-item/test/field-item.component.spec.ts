@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { UntypedFormControl } from '@angular/forms';
-import { INbControlErrInfo } from '../../models';
-import { NbFormTestingModule } from '../../testing';
-import { NbFieldItemComponent } from './field-item.component';
+import { INbControlErrInfo } from '../../../models';
+import { NbFormTestingModule } from '../../../testing';
+import { NbFieldItemComponent } from '../field-item.component';
 
 @Component({
   template: `

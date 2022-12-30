@@ -1,5 +1,5 @@
 import { UntypedFormControl } from "@angular/forms";
-import { NbControlErrTypeEnum } from "../../constants";
+import { NbControlErrType } from "../../constants";
 import { NbFormValidators } from "../index";
 
 describe('NbFormValidators.arrLength', () => {
@@ -17,12 +17,12 @@ describe('NbFormValidators.arrLength', () => {
     {
       title: 'when the arr length > 5 and length limit is { max: 5}',
       params: { controlValue: [1, 2, 3, 4, 5, 6], arrLength: { max: 5 } },
-      expect: { [NbControlErrTypeEnum.ARR_MAX_LENGTH]: true }
+      expect: { [NbControlErrType.ARR_MAX_LENGTH]: true }
     },
     {
       title: 'when the arr length > 5 and length limit is { max: 5, min: 3 }',
       params: { controlValue: [1, 2, 3, 4, 5, 6], arrLength: { max: 5, min: 3 } },
-      expect: { [NbControlErrTypeEnum.ARR_MAX_LENGTH]: true }
+      expect: { [NbControlErrType.ARR_MAX_LENGTH]: true }
     },
     {
       title: 'when the arr length = 5 and length limit is { max: 5, min: 3 }',
@@ -42,12 +42,12 @@ describe('NbFormValidators.arrLength', () => {
     {
       title: 'when the arr length = 2 and length limit is { max: 5, min: 3 }',
       params: { controlValue: [1, 2], arrLength: { max: 5, min: 3 } },
-      expect: { [NbControlErrTypeEnum.ARR_MIN_LENGTH]: true }
+      expect: { [NbControlErrType.ARR_MIN_LENGTH]: true }
     },
     {
       title: 'when the arr length = 2 and length limit is { min: 3 }',
       params: { controlValue: [1, 2], arrLength: { min: 3 } },
-      expect: { [NbControlErrTypeEnum.ARR_MIN_LENGTH]: true }
+      expect: { [NbControlErrType.ARR_MIN_LENGTH]: true }
     },
   ].forEach(item => {
     it(item.title, () => {

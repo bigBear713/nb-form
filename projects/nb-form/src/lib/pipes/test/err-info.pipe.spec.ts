@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { NbCommonTestingModule, NbValueTypeService } from '@bigbear713/nb-common';
 import { of } from 'rxjs';
-import { NbControlErrTypeEnum } from '../../constants';
+import { NbControlErrType } from '../../constants';
 import { NbErrInfoPipe } from '../err-info.pipe';
 
 describe('NbErrInfoPipe', () => {
@@ -37,7 +37,7 @@ describe('NbErrInfoPipe', () => {
       {
         title: 'the errors has a required err and the errMapping is undefined',
         params: {
-          errors: { [NbControlErrTypeEnum.REQUIRED]: true },
+          errors: { [NbControlErrType.REQUIRED]: true },
           errMapping: undefined
         },
         expect: { isString: true, isObservable: false }
@@ -45,16 +45,16 @@ describe('NbErrInfoPipe', () => {
       {
         title: 'the errors has a required err and the errMapping has a string value',
         params: {
-          errors: { [NbControlErrTypeEnum.REQUIRED]: true },
-          errMapping: { [NbControlErrTypeEnum.REQUIRED]: 'This field is required!' }
+          errors: { [NbControlErrType.REQUIRED]: true },
+          errMapping: { [NbControlErrType.REQUIRED]: 'This field is required!' }
         },
         expect: { isString: true, isObservable: false }
       },
       {
         title: 'the errors has a required err and the errMapping has a observable value',
         params: {
-          errors: { [NbControlErrTypeEnum.REQUIRED]: true },
-          errMapping: { [NbControlErrTypeEnum.REQUIRED]: of('This field is required!') }
+          errors: { [NbControlErrType.REQUIRED]: true },
+          errMapping: { [NbControlErrType.REQUIRED]: of('This field is required!') }
         },
         expect: { isString: false, isObservable: true }
       }

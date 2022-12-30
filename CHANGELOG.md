@@ -1,20 +1,21 @@
 # v15.0.0
 ## 破坏性更新
-- feat: `angular`升级到`v15`; 
-- feat: `@bigbear713/nb-common`升级到`v15.0.0`;
-- feat: `tslib`升级到`v2.4.1`;
+- feat: `angular`升级到`^15.0.0`; 
+- feat: `@bigbear713/nb-common`升级到`^15.0.0`;
 
 <br/>
 
 # v14.0.0
 ## 破坏性更新
-- feat: `angular`升级到`v14`;
+- feat: `angular`升级到`^14.0.0`;
+- feat: `@bigbear713/nb-common`升级到`^14.0.0`;
 
 <br/>
 
 # v13.0.0
 ## 破坏性更新
-- feat: `angular`升级到`v13`;
+- feat: `angular`升级到`^13.0.0`;
+- feat: `@bigbear713/nb-common`升级到`^13.0.0`;
 
 <br/>
 

@@ -1,20 +1,21 @@
 # v15.0.0
 ## Breaking Changes
-- feat: Upgrade `angular` to `v15`;
-- feat: Upgrade `@bigbear713/nb-common` to `v15.0.0`;
-- feat: Upgrade `tslib` to `v2.4.1`;
+- feat: Upgrade `angular` to `^15.0.0`;
+- feat: Upgrade `@bigbear713/nb-common` to `^15.0.0`;
 
 <br/>
 
 # v14.0.0
 ## Breaking Changes
-- feat: Upgrade `angular` to `v14`;
+- feat: Upgrade `angular` to `^14.0.0`;
+- feat: Upgrade `@bigbear713/nb-common` to `v14.0.0`;
 
 <br/>
 
 # v13.0.0
 ## Breaking Changes
-- feat: Upgrade `angular` to `v13`;
+- feat: Upgrade `angular` to `^13.0.0`;
+- feat: Upgrade `@bigbear713/nb-common` to `v13.0.0`;
 
 <br/>
 

@@ -24,6 +24,7 @@ Angular common form lib by bigBear713.
 - 提供常用的表单控件校验器：`arrLength`, `equal`, `fileSize`, `fileType`, `required`, `whitespace`;
 - 支持通过DI设置common error info;
 - 支持组件的更新策略为`ChangeDetectionStrategy.OnPush`;
+- 支持在`standalone component`中使用；
 
 <br>
 
@@ -52,6 +53,11 @@ npm i
 - 编译nb-form库
 ```bash
 npm run build:lib
+```
+
+- 运行nb-form单元测试
+```bash
+npm run test:lib
 ```
 
 - 启动demo项目

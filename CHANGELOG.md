@@ -3,6 +3,15 @@
 - feat: `angular`升级到`^15.0.0`; 
 - feat: `@bigbear713/nb-common`升级到`^15.0.0`;
 
+## [Tokens](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#Tokens "Tokens")
+- feat: 增加[NB_CONTROL_COMMON_ERR_INFO](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nb_control_common_err_info)，`NB_CONTROL_COMMON_ERR_INFO_TOKEN`标记为`deprecated`；
+
+## [Enums](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#Enums "Enums")
+- feat: [NbControlErrType](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nbcontrolerrtype)，`NbControlErrTypeEnum`标记为`deprecated`；
+
+## [Services](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#Services "Services")
+- refactor: 优化[NbFormService](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nbformservice "NbFormService")的`getValidatorsFromControlConfig()`方法;
+
 <br/>
 
 # v14.0.0

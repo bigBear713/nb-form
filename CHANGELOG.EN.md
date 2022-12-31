@@ -3,19 +3,28 @@
 - feat: Upgrade `angular` to `^15.0.0`;
 - feat: Upgrade `@bigbear713/nb-common` to `^15.0.0`;
 
+## [Tokens](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.EN.md#Tokens "Tokens")
+- feat: Add [NB_CONTROL_COMMON_ERR_INFO](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.EN.md#nb_control_common_err_info), mark `NB_CONTROL_COMMON_ERR_INFO_TOKEN` as `deprecated`;
+
+## [Enums](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.EN.md#Enums "Enums")
+- feat: Add [NbControlErrType](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.EN.md#nbcontrolerrtype), mark `NbControlErrTypeEnum` as `deprecated`;
+
+## [Services](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.EN.md#Services "Services")
+- refactor: optimize the function `getValidatorsFromControlConfig()` of [NbFormService](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.EN.md#nbformservice "NbFormService");
+
 <br/>
 
 # v14.0.0
 ## Breaking Changes
 - feat: Upgrade `angular` to `^14.0.0`;
-- feat: Upgrade `@bigbear713/nb-common` to `v14.0.0`;
+- feat: Upgrade `@bigbear713/nb-common` to `^14.0.0`;
 
 <br/>
 
 # v13.0.0
 ## Breaking Changes
 - feat: Upgrade `angular` to `^13.0.0`;
-- feat: Upgrade `@bigbear713/nb-common` to `v13.0.0`;
+- feat: Upgrade `@bigbear713/nb-common` to `^13.0.0`;
 
 <br/>
 

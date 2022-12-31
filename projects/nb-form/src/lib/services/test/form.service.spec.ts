@@ -60,16 +60,16 @@ describe('NbFormService', () => {
         expect: {
           validatorsLength: 12,
           callTimes: {
-            required: 2,
-            max: 2,
-            min: 2,
-            maxLength: 2,
-            minLength: 2,
-            arrLength: 4,
-            fileSize: 4,
-            fileType: 2,
-            pattern: 2,
-            whitespace: 2,
+            required: 1,
+            max: 1,
+            min: 1,
+            maxLength: 1,
+            minLength: 1,
+            arrLength: 2,
+            fileSize: 2,
+            fileType: 1,
+            pattern: 1,
+            whitespace: 1,
           }
         }
       },
@@ -92,7 +92,7 @@ describe('NbFormService', () => {
         expect: {
           validatorsLength: 2,
           callTimes: {
-            required: 2,
+            required: 1,
             max: 0,
             min: 0,
             maxLength: 0,
@@ -101,7 +101,7 @@ describe('NbFormService', () => {
             fileSize: 0,
             fileType: 0,
             pattern: 0,
-            whitespace: 2,
+            whitespace: 1,
           }
         }
       },

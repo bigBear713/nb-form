@@ -9,9 +9,7 @@ import { NbFormToolsService } from './form-tools.service';
 
 interface IComparedControls { target: AbstractControl; compared: AbstractControl };
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class NbFormService {
 
   constructor(private formTools: NbFormToolsService) { }
@@ -19,8 +17,8 @@ export class NbFormService {
   getValidatorsFromControlConfig(config: INbControlConfig): ValidatorFn[] {
     const strategies: { [key: string]: any } = formValidatorStrategies;
     return Object.keys(config)
-      .filter(key => !!strategies[key]?.(config))
-      .map(key => strategies[key]?.(config));
+      .map(key => strategies[key]?.(config))
+      .filter(item => !!item);
   }
 
   markAllAsDirty(control: NbAbstractControl, opts?: { onlySelf?: boolean; emitEvent?: boolean; }): void {

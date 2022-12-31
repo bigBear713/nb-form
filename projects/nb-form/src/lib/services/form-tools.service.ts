@@ -2,9 +2,7 @@ import { Injectable } from '@angular/core';
 import { UntypedFormArray, UntypedFormGroup } from '@angular/forms';
 import { NbAbstractControl } from '../models';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class NbFormToolsService {
 
   constructor() { }

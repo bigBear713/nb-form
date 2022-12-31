@@ -38,6 +38,7 @@ Angular common form lib by bigBear713.
 - "@bigbear713/nb-form":"^12.0.0" - "@angular/core": "^12.0.0"
 - "@bigbear713/nb-form":"^13.0.0" - "@angular/core": "^13.0.0"
 - "@bigbear713/nb-form":"^14.0.0" - "@angular/core": "^14.0.0"
+- "@bigbear713/nb-trans":"^15.0.0" - "@angular/core": "^15.0.0"
 
 <br>
 
@@ -74,15 +75,15 @@ $ yarn add @bigbear713/nb-form
 ##### Return
 | Type  | Description  |
 | ------------ | ------------ |
-| `{ [NbControlErrTypeEnum.ARR_MAX_LENGTH]?: true;[NbControlErrTypeEnum.ARR_MIN_LENGTH]?: true; }｜null`  | 返回null表示符合条件，或者要校验的内容不是一个数组。返回`{ [NbControlErrTypeEnum.ARR_MAX_LENGTH]: true }`表示数组长度超出最大长度限制。返回`{ [NbControlErrTypeEnum.ARR_MIN_LENGTH]: true }`表示数组长度小于最小长度限制。  |
+| `{ [NbControlErrType.ARR_MAX_LENGTH]?: true;[NbControlErrType.ARR_MIN_LENGTH]?: true; }｜null`  | 返回null表示符合条件，或者要校验的内容不是一个数组。返回`{ [NbControlErrType.ARR_MAX_LENGTH]: true }`表示数组长度超出最大长度限制。返回`{ [NbControlErrType.ARR_MIN_LENGTH]: true }`表示数组长度小于最小长度限制。  |
 
 ##### Usage
 ```ts
 const maxControl = new FormArray([1,2,3,4,5,6],[NbFormValidators.arrLength({max:5,min:3})]);
-console.log(maxControl.errors); // { [NbControlErrTypeEnum.ARR_MAX_LENGTH]: true }
+console.log(maxControl.errors); // { [NbControlErrType.ARR_MAX_LENGTH]: true }
 
 const minControl = new FormArray([1,2],[NbFormValidators.arrLength({max:5,min:3})]);
-console.log(minControl.errors); // { [NbControlErrTypeEnum.ARR_MIN_LENGTH]: true }
+console.log(minControl.errors); // { [NbControlErrType.ARR_MIN_LENGTH]: true }
 ```
 
 <br>
@@ -100,14 +101,14 @@ console.log(minControl.errors); // { [NbControlErrTypeEnum.ARR_MIN_LENGTH]: true
 ##### Return
 | Type  | Description  |
 | ------------ | ------------ |
-| `{ [NbControlErrTypeEnum.NOT_EQUAL]: true; }｜null`  | 校验结果。返回null表示两个表单控件的值相等。返回`{ [NbControlErrTypeEnum.NOT_EQUAL]: true }`表示两个表单控件值不相等。 |
+| `{ [NbControlErrType.NOT_EQUAL]: true; }｜null`  | 校验结果。返回null表示两个表单控件的值相等。返回`{ [NbControlErrType.NOT_EQUAL]: true }`表示两个表单控件值不相等。 |
 
 ##### Usage
 ```ts
 const targetControl = new FormControl('');
 const compareControl = new FormControl(null);
 targetControl.setValidators([NbFormValidators.equal(compareControl)]);
-console.log(targetControl.errors); // { [NbControlErrTypeEnum.NOT_EQUAL]: true; }
+console.log(targetControl.errors); // { [NbControlErrType.NOT_EQUAL]: true; }
 
 
 const targetControl = new FormControl('');
@@ -117,7 +118,7 @@ console.log(targetControl.errors); // null
 
 compareControl.markAsDirty();
 targetControl.updateValueAndValidity();
-console.log(targetControl.errors); // { [NbControlErrTypeEnum.NOT_EQUAL]: true; }
+console.log(targetControl.errors); // { [NbControlErrType.NOT_EQUAL]: true; }
 ```
 
 <br>
@@ -134,12 +135,12 @@ console.log(targetControl.errors); // { [NbControlErrTypeEnum.NOT_EQUAL]: true; 
 ##### Return
 | Type  | Description  |
 | ------------ | ------------ |
-| `{ [NbControlErrTypeEnum.FILE_MAX_SIZE]?: true;[NbControlErrTypeEnum.FILE_MIN_SIZE]?: true; }｜null`  | 校验结果。返回null表示符合条件，或者要校验的内容不是一个`File`类型。返回`{ [NbControlErrTypeEnum.FILE_MAX_SIZE]: true }`表示文件大小超出最大值限制。返回`{ [NbControlErrTypeEnum.FILE_MIN_SIZE]: true }`表示文件大小小于最小值限制。 |
+| `{ [NbControlErrType.FILE_MAX_SIZE]?: true;[NbControlErrType.FILE_MIN_SIZE]?: true; }｜null`  | 校验结果。返回null表示符合条件，或者要校验的内容不是一个`File`类型。返回`{ [NbControlErrType.FILE_MAX_SIZE]: true }`表示文件大小超出最大值限制。返回`{ [NbControlErrType.FILE_MIN_SIZE]: true }`表示文件大小小于最小值限制。 |
 
 ##### Usage
 ```ts
 const control = new FormControl(new File(),[NbFormValidators.fileSize({max:5,min:3})]);
-console.log(control.errors); // { [NbControlErrTypeEnum.FILE_MAX_SIZE]: true; } / { [NbControlErrTypeEnum.FILE_MIN_SIZE]?: true; }
+console.log(control.errors); // { [NbControlErrType.FILE_MAX_SIZE]: true; } / { [NbControlErrType.FILE_MIN_SIZE]?: true; }
 ```
 
 <br>
@@ -156,12 +157,12 @@ console.log(control.errors); // { [NbControlErrTypeEnum.FILE_MAX_SIZE]: true; } 
 ##### Return
 | Type  | Description  |
 | ------------ | ------------ |
-| `{ [NbControlErrTypeEnum.FILE_TYPE]: true; }｜null`  | 校验结果。返回null表示符合条件，或者要校验的内容不是一个`File`类型。返回`{ [NbControlErrTypeEnum.FILE_TYPE]: true }`表示文件类型不在要支持的类型中。 |
+| `{ [NbControlErrType.FILE_TYPE]: true; }｜null`  | 校验结果。返回null表示符合条件，或者要校验的内容不是一个`File`类型。返回`{ [NbControlErrType.FILE_TYPE]: true }`表示文件类型不在要支持的类型中。 |
 
 ##### Usage
 ```ts
 const control = new FormControl(new File(),[NbFormValidators.fileType(['image/jpeg','image/png'])]);
-console.log(control.errors); // { [NbControlErrTypeEnum.FILE_TYPE]: true; }
+console.log(control.errors); // { [NbControlErrType.FILE_TYPE]: true; }
 ```
 
 <br>
@@ -178,12 +179,12 @@ console.log(control.errors); // { [NbControlErrTypeEnum.FILE_TYPE]: true; }
 ##### Return
 | Type  | Description  |
 | ------------ | ------------ |
-| `{ [NbControlErrTypeEnum.REQUIRED]: true; }｜null`  | 校验结果。返回null表示符合条件。返回`{ [NbControlErrTypeEnum.REQUIRED]: true }`表示表单控件不符合必填校验 |
+| `{ [NbControlErrType.REQUIRED]: true; }｜null`  | 校验结果。返回null表示符合条件。返回`{ [NbControlErrType.REQUIRED]: true }`表示表单控件不符合必填校验 |
 
 ##### Usage
 ```ts
 const control = new FormControl('',[NbFormValidators.required(true)])
-console.log(control.errors); // { [NbControlErrTypeEnum.REQUIRED]: true; }
+console.log(control.errors); // { [NbControlErrType.REQUIRED]: true; }
 ```
 
 <br>
@@ -200,12 +201,12 @@ console.log(control.errors); // { [NbControlErrTypeEnum.REQUIRED]: true; }
 ##### Return
 | Type  | Description  |
 | ------------ | ------------ |
-| `{ [NbControlErrTypeEnum.WHITESPACE]: true; }｜null`  | 校验结果。返回null表示符合条件。返回`{ [NbControlErrTypeEnum.WHITESPACE]: true }`表示不允许都是空格的情况下，表单控件值都是空格 |
+| `{ [NbControlErrType.WHITESPACE]: true; }｜null`  | 校验结果。返回null表示符合条件。返回`{ [NbControlErrType.WHITESPACE]: true }`表示不允许都是空格的情况下，表单控件值都是空格 |
 
 ##### Usage
 ```ts
 const control =new FormControl('    ',[NbFormValidators.whitespace(false)])
-console.log(control.errors); // { [NbControlErrTypeEnum.WHITESPACE]: true; }
+console.log(control.errors); // { [NbControlErrType.WHITESPACE]: true; }
 ```
 
 <br>
@@ -323,9 +324,12 @@ destroy$.complete();
 
 ### Tokens
 
+#### NB_CONTROL_COMMON_ERR_INFO
+##### INbControlErrInfo
+##### `v15.0.0`
 #### NB_CONTROL_COMMON_ERR_INFO_TOKEN
 ##### INbControlErrInfo
-##### `v12.0.0`
+##### `v12.0.0`, 从`v15.0.0`开始为`@deprecated`
 ###### 用于设置常见的错误信息，避免每个地方都需要设置一遍。设置后，会和每个`<nb-control-err></nb-control-err>`组件中传入的错误信息组合成最终的错误信息。
 
 ##### Usage
@@ -333,10 +337,10 @@ destroy$.complete();
   providers: [
     // ...
     {
-      provide: NB_CONTROL_COMMON_ERR_INFO_TOKEN,
+      provide: NB_CONTROL_COMMON_ERR_INFO,
       useFactory: (transService: NbTransService) => ({
-        [NbControlErrTypeEnum.FILE_TYPE]: transService.translationAsync('fileType'),
-        [NbControlErrTypeEnum.FILE_MIN_SIZE]: 'The file min file is 50KB!',
+        [NbControlErrType.FILE_TYPE]: transService.translationAsync('fileType'),
+        [NbControlErrType.FILE_MIN_SIZE]: 'The file min file is 50KB!',
       }),
       deps: [NbTransService]
     },
@@ -396,8 +400,10 @@ destroy$.complete();
 <br>
 
 ### Enums
+#### NbControlErrType
+##### `v15.0.0`
 #### NbControlErrTypeEnum
-##### `v12.0.0`
+##### `v12.0.0`, 从`v15.0.0`开始为`@deprecated`
 ###### 常用表单错误枚举
 | Key  | Value  | Description  | Version |
 | ------------ | ------------ | ------------ | ------------ |  

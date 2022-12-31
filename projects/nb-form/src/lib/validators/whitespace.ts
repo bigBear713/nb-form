@@ -1,6 +1,6 @@
 import { AbstractControl, ValidatorFn } from '@angular/forms';
 import { isString } from 'lodash-es';
-import { NbControlErrTypeEnum } from '../constants';
+import { NbControlErrType } from '../constants';
 
 export const whitespace = (canWhitespace: boolean = true): ValidatorFn => {
   return (control: AbstractControl) => {
@@ -20,6 +20,6 @@ export const whitespace = (canWhitespace: boolean = true): ValidatorFn => {
       return null;
     }
 
-    return { [NbControlErrTypeEnum.WHITESPACE]: true };
+    return { [NbControlErrType.WHITESPACE]: true };
   };
 };

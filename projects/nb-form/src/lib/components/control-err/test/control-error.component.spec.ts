@@ -1,13 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NbControlErrComponent } from './control-err.component';
-import { NbFormTestingModule } from '../../testing';
-import { NB_CONTROL_COMMON_ERR_INFO_TOKEN } from '../../constants';
-import { ChangeDetectorRef, SimpleChange } from '@angular/core';
-import { INbControlErrInfo } from '../../models';
+import { NbControlErrComponent } from '../control-err.component';
+import { NbFormTestingModule } from '../../../testing';
+import { NB_CONTROL_COMMON_ERR_INFO } from '../../../constants';
+import { SimpleChange } from '@angular/core';
+import { INbControlErrInfo } from '../../../models';
 import { AbstractControl, UntypedFormControl } from '@angular/forms';
-import { NbFormValidators } from '../../validators';
-import { NbFormService } from '../../services';
+import { NbFormValidators } from '../../../validators';
+import { NbFormService } from '../../../services';
 
 describe('NbControlErrComponent', () => {
 
@@ -177,7 +177,7 @@ describe('NbControlErrComponent', () => {
             imports: [NbFormTestingModule],
             providers: [
               {
-                provide: NB_CONTROL_COMMON_ERR_INFO_TOKEN,
+                provide: NB_CONTROL_COMMON_ERR_INFO,
                 useValue: item.testData.defaultInfo,
               }
             ]

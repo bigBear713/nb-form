@@ -1,12 +1,30 @@
+# v15.0.0
+## 破坏性更新
+- feat: `angular`升级到`^15.0.0`; 
+- feat: `@bigbear713/nb-common`升级到`^15.0.0`;
+
+## [Tokens](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#Tokens "Tokens")
+- feat: 增加[NB_CONTROL_COMMON_ERR_INFO](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nb_control_common_err_info)，`NB_CONTROL_COMMON_ERR_INFO_TOKEN`标记为`deprecated`；
+
+## [Enums](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#Enums "Enums")
+- feat: [NbControlErrType](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nbcontrolerrtype)，`NbControlErrTypeEnum`标记为`deprecated`；
+
+## [Services](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#Services "Services")
+- refactor: 优化[NbFormService](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nbformservice "NbFormService")的`getValidatorsFromControlConfig()`方法;
+
+<br/>
+
 # v14.0.0
 ## 破坏性更新
-- feat: `angular`升级到`v14`;
+- feat: `angular`升级到`^14.0.0`;
+- feat: `@bigbear713/nb-common`升级到`^14.0.0`;
 
 <br/>
 
 # v13.0.0
 ## 破坏性更新
-- feat: `angular`升级到`v13`;
+- feat: `angular`升级到`^13.0.0`;
+- feat: `@bigbear713/nb-common`升级到`^13.0.0`;
 
 <br/>
 
@@ -44,7 +62,7 @@
 - feat: [`<nb-field-item></nb-field-item>`](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nb-field-itemnb-field-item) - 提供常见的字段布局，以及控件错误信息，常用于表单中
 
 ## [Tokens](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#Tokens "Tokens")
-- feat: [NB_CONTROL_COMMON_ERR_INFO_TOKEN](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nb_control_common_err_info_token) - 通过DI设置常见的错误信息，便于在`<nb-control-err></nb-control-err>`中使用
+- feat: [NB_CONTROL_COMMON_ERR_INFO](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nb_control_common_err_info) - 通过DI设置常见的错误信息，便于在`<nb-control-err></nb-control-err>`中使用
 
 ## [Interfaces](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#Interfaces "Interfaces")
 - feat: [NbAbstractControl](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nbabstractcontrol) - 抽象控件类型
@@ -53,4 +71,4 @@
 - feat: [INbControlErrInfo](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#inbformconfigs) - 控件错误信息
 
 ## [Enums](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#Enums "Enums")
-- feat: [NbControlErrTypeEnum](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nbcontrolerrtypeenum) - 常用表单错误枚举
+- feat: [NbControlErrType](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nbcontrolerrtype) - 常用表单错误枚举

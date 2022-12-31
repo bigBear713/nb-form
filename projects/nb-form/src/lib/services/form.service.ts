@@ -3,29 +3,22 @@ import { AbstractControl, UntypedFormArray, UntypedFormGroup, ValidatorFn } from
 import { isEqual } from 'lodash-es';
 import { combineLatest, Subject, Subscription } from 'rxjs';
 import { distinctUntilChanged, startWith, takeUntil, tap } from 'rxjs/operators';
+import { formValidatorStrategies } from '../constants';
 import { INbControlConfig, NbAbstractControl } from '../models';
 import { NbFormToolsService } from './form-tools.service';
 
 interface IComparedControls { target: AbstractControl; compared: AbstractControl };
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class NbFormService {
 
   constructor(private formTools: NbFormToolsService) { }
 
   getValidatorsFromControlConfig(config: INbControlConfig): ValidatorFn[] {
-    const strategies: { [key: string]: any } = this.formTools.getFormValidatorStrategies();
-    const validators: ValidatorFn[] = [];
-    Object.keys(config).forEach((key) => {
-      const validatorFn: ValidatorFn | undefined = strategies[key]?.(config);
-      if (validatorFn) {
-        validators.push(validatorFn);
-      }
-    });
-
-    return validators;
+    const strategies: { [key: string]: any } = formValidatorStrategies;
+    return Object.keys(config)
+      .map(key => strategies[key]?.(config))
+      .filter(item => !!item);
   }
 
   markAllAsDirty(control: NbAbstractControl, opts?: { onlySelf?: boolean; emitEvent?: boolean; }): void {

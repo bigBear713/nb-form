@@ -1,5 +1,5 @@
 import { UntypedFormControl } from "@angular/forms";
-import { NbControlErrTypeEnum } from "../../constants";
+import { NbControlErrType } from "../../constants";
 import { NbFormValidators } from "../index";
 
 describe('NbFormValidators.whitespace', () => {
@@ -42,7 +42,7 @@ describe('NbFormValidators.whitespace', () => {
         controlValue: '    ',
         canWhitespace: false,
       },
-      expect: { [NbControlErrTypeEnum.WHITESPACE]: true }
+      expect: { [NbControlErrType.WHITESPACE]: true }
     },
     {
       title: 'When the value of control is not all whitespace and canWhitespace is false',

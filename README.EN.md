@@ -24,6 +24,7 @@ Angular common form lib by bigBear713.
 - Provide the common validators: `arrLength`, `equal`, `fileSize`, `fileType`, `required`, `whitespace`;
 - Support to use DI to set common error info;
 - Support the changeDetection of components as `ChangeDetectionStrategy.OnPush`;
+- Support to used in `standalone component`;
 
 <br>
 
@@ -32,6 +33,7 @@ Angular common form lib by bigBear713.
 - "@bigbear713/nb-form":"^12.0.0" - "@angular/core": "^12.0.0"
 - "@bigbear713/nb-form":"^13.0.0" - "@angular/core": "^13.0.0"
 - "@bigbear713/nb-form":"^14.0.0" - "@angular/core": "^14.0.0"
+- "@bigbear713/nb-trans":"^15.0.0" - "@angular/core": "^15.0.0"
 
 <br>
 
@@ -51,6 +53,11 @@ npm i
 - Build the nb-form lib
 ```bash
 npm run build:lib
+```
+
+- Run the nb-form unit test
+```bash
+npm run test:lib
 ```
 
 - Start the demo

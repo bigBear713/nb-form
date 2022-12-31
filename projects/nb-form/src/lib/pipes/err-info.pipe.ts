@@ -5,9 +5,7 @@ import { INbControlErrInfo } from '../models';
 
 type ErrorsInfo = ValidationErrors | null | undefined;
 
-@Pipe({
-  name: 'nbErrInfo'
-})
+@Pipe({ name: 'nbErrInfo' })
 export class NbErrInfoPipe implements PipeTransform {
 
   transform(errors: ErrorsInfo, errInfo?: INbControlErrInfo): string | Observable<string> {

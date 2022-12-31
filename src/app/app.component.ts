@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { NbTransLangEnum, NbTransService } from '@bigbear713/nb-trans';
-import { NbControlErrTypeEnum, NbFormService, NbFormValidators } from 'nb-form';
+import { NbControlErrType, NbFormService, NbFormValidators } from 'nb-form';
 
 @Component({
   selector: 'app-root',
@@ -13,12 +13,12 @@ export class AppComponent implements OnInit {
   form: UntypedFormGroup | undefined;
 
   errInfo1 = {
-    [NbControlErrTypeEnum.REQUIRED]: this.transService.translationAsync('errors.required'),
-    [NbControlErrTypeEnum.WHITESPACE]: this.transService.translationAsync('errors.required'),
+    [NbControlErrType.REQUIRED]: this.transService.translationAsync('errors.required'),
+    [NbControlErrType.WHITESPACE]: this.transService.translationAsync('errors.required'),
   };
 
   errInfo2 = {
-    [NbControlErrTypeEnum.FILE_MAX_SIZE]: 'The file max size is 500kb!',
+    [NbControlErrType.FILE_MAX_SIZE]: 'The file max size is 500kb!',
   };
 
   get field1Ctrl(): UntypedFormControl {

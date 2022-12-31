@@ -1,5 +1,5 @@
 import { UntypedFormControl } from "@angular/forms";
-import { NbControlErrTypeEnum } from "../../constants";
+import { NbControlErrType } from "../../constants";
 import { NbFormValidators } from "../index";
 
 const testData = {
@@ -33,7 +33,7 @@ describe('NbFormValidators.fileSize', () => {
         controlValue: new File([testData['3']], 'filesize.txt'),
         fileSize: { max: 20, min: 10 },
       },
-      expect: { [NbControlErrTypeEnum.FILE_MIN_SIZE]: true }
+      expect: { [NbControlErrType.FILE_MIN_SIZE]: true }
     },
     {
       title: 'When the file size < 10b, and only set the min size limit',
@@ -41,7 +41,7 @@ describe('NbFormValidators.fileSize', () => {
         controlValue: new File([testData['3']], 'filesize.txt'),
         fileSize: { min: 10 },
       },
-      expect: { [NbControlErrTypeEnum.FILE_MIN_SIZE]: true }
+      expect: { [NbControlErrType.FILE_MIN_SIZE]: true }
     },
     {
       title: 'When the file size = 10b',
@@ -65,7 +65,7 @@ describe('NbFormValidators.fileSize', () => {
         controlValue: new File([testData['26']], 'filesize.txt'),
         fileSize: { max: 20, min: 10 },
       },
-      expect: { [NbControlErrTypeEnum.FILE_MAX_SIZE]: true }
+      expect: { [NbControlErrType.FILE_MAX_SIZE]: true }
     },
     {
       title: 'When the file size > 20b, and only set the max size limit',
@@ -73,7 +73,7 @@ describe('NbFormValidators.fileSize', () => {
         controlValue: new File([testData['26']], 'filesize.txt'),
         fileSize: { max: 20 },
       },
-      expect: { [NbControlErrTypeEnum.FILE_MAX_SIZE]: true }
+      expect: { [NbControlErrType.FILE_MAX_SIZE]: true }
     },
     {
       title: 'When the file size = 20b',

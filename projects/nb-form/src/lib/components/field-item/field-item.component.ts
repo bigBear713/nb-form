@@ -1,8 +1,15 @@
+import { NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input, } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
 import { INbControlErrInfo } from '../../models';
+import { NbControlErrComponent } from '../control-err/control-err.component';
+
+const importsFromNgCommon = [NgIf];
+const importsFromSelf = [NbControlErrComponent];
 
 @Component({
+  standalone: true,
+  imports: [...importsFromNgCommon, ...importsFromSelf],
   selector: 'nb-field-item',
   template: `
     <label class="field-label">
@@ -18,11 +25,9 @@ import { INbControlErrInfo } from '../../models';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NbFieldItemComponent {
-
   @Input() control: AbstractControl | undefined;
 
   @Input() errInfo: INbControlErrInfo = {};
 
   @Input() required: boolean | undefined = false;
-
 }

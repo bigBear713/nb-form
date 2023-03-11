@@ -3,9 +3,6 @@
 - feat: [`<nb-control-err></nb-control-err>`](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nb-control-errnb-control-err) - Support to be imported as a `standalone component`
 - feat: [`<nb-field-item></nb-field-item>`](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nb-field-itemnb-field-item) - Support to be imported as a `standalone component`
 
-## [Pipes](https://github.com/bigBear713/nb-common/blob/master/projects/nb-common/README.md#Pipes "Pipes")
-- feat: [nbTrans](https://github.com/bigBear713/nb-trans/blob/master/projects/nb-trans/README.md#nbtrans-transformkey-string-options-inbtransoptions-string) - Support to be imported as a `standalone component`
-
 <br/>
 
 # v15.0.0

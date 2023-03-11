@@ -14,8 +14,17 @@ import { INbControlErrInfo } from '../../models';
 import { NB_CONTROL_COMMON_ERR_INFO } from '../../constants';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { NgIf } from '@angular/common';
+import { NbErrInfoPipe } from '../../pipes/err-info.pipe';
+import { NbRStrComponent } from '@bigbear713/nb-common';
+
+const importsFromNgCommon = [NgIf];
+const importsFromNbCommon = [NbRStrComponent];
+const importsFromSelf = [NbErrInfoPipe];
 
 @Component({
+  standalone: true,
+  imports: [...importsFromNgCommon, ...importsFromNbCommon, ...importsFromSelf],
   selector: 'nb-control-err',
   template: `<div *ngIf="control&&hasErr" class="err-info" [nb-r-str]="control.errors|nbErrInfo:allErrInfo"></div>`,
   styles: [`

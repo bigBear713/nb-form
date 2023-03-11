@@ -25,16 +25,16 @@ Angular common form lib by bigBear713.
 - [English](https://github.com/bigBear713/nb-form/blob/master/README.md "Document - English")
 
 ## Feature
-- Provide the common validators: `arrLength`, `equal`, `fileSize`, `fileType`, `required`, `whitespace`;
-- Support to use DI to set common error info;
-- Support the changeDetection of components as `ChangeDetectionStrategy.OnPush`;
-- Support to used in `standalone component`;
-- Support to be imported as a `standalone component`;
+- 提供常用的表单控件校验器：`arrLength`, `equal`, `fileSize`, `fileType`, `required`, `whitespace`;
+- 支持通过DI设置common error info;
+- 支持组件的更新策略为`ChangeDetectionStrategy.OnPush`;
+- 支持在`standalone component`中使用；
+- 支持以`standalone component`的方式引入
 
 <br>
 
 ## Version
-###### The nb-form's major version will keep up with the Angular's major version
+###### nb-form的大版本和Angular的大版本保持对应关系
 | @bigbear713/nb-form | @angular/core |
 | ---                   | ---           |
 | ^12.0.0               | ^12.0.0       |
@@ -51,34 +51,34 @@ $ npm i @bigbear713/nb-form
 $ yarn add @bigbear713/nb-form
 ```
 
-## Start the demo project
-- Install the dependencies:
+## 启动demo项目
+- 安装依赖：
 ```bash
 npm i
 ```
 
-- Build the nb-form lib
+- 编译nb-form库
 ```bash
 npm run build:lib
 ```
 
-- Run the nb-form unit test
+- 运行nb-form单元测试
 ```bash
 npm run test:lib
 ```
 
-- Start the demo
+- 启动demo项目
 ```bash
 npm start
 ```
 
-- build the demo
+- 部署demo
 ```bash
 npm run build
 ```
 
-## Contribution
-> Feature and PR are welcome to make this project better together
+## 贡献者
+> 欢迎提feature和PR，一起使该项目更好
 
 <a href="https://github.com/bigBear713" target="_blank"><img src="https://avatars.githubusercontent.com/u/12368900?v=4" alt="bigBear713" width="30px" height="30px"></a>
 

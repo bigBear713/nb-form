@@ -1,74 +1,74 @@
 # v15.0.0
-## 破坏性更新
-- feat: `angular`升级到`^15.0.0`; 
-- feat: `@bigbear713/nb-common`升级到`^15.0.0`;
+## Breaking Changes
+- feat: Upgrade `angular` to `^15.0.0`;
+- feat: Upgrade `@bigbear713/nb-common` to `^15.0.0`;
 
 ## [Tokens](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#Tokens "Tokens")
-- feat: 增加[NB_CONTROL_COMMON_ERR_INFO](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nb_control_common_err_info)，`NB_CONTROL_COMMON_ERR_INFO_TOKEN`标记为`deprecated`；
+- feat: Add [NB_CONTROL_COMMON_ERR_INFO](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nb_control_common_err_info), mark `NB_CONTROL_COMMON_ERR_INFO_TOKEN` as `deprecated`;
 
 ## [Enums](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#Enums "Enums")
-- feat: [NbControlErrType](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nbcontrolerrtype)，`NbControlErrTypeEnum`标记为`deprecated`；
+- feat: Add [NbControlErrType](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nbcontrolerrtype), mark `NbControlErrTypeEnum` as `deprecated`;
 
 ## [Services](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#Services "Services")
-- refactor: 优化[NbFormService](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nbformservice "NbFormService")的`getValidatorsFromControlConfig()`方法;
+- refactor: optimize the function `getValidatorsFromControlConfig()` of [NbFormService](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nbformservice "NbFormService");
 
 <br/>
 
 # v14.0.0
-## 破坏性更新
-- feat: `angular`升级到`^14.0.0`;
-- feat: `@bigbear713/nb-common`升级到`^14.0.0`;
+## Breaking Changes
+- feat: Upgrade `angular` to `^14.0.0`;
+- feat: Upgrade `@bigbear713/nb-common` to `^14.0.0`;
 
 <br/>
 
 # v13.0.0
-## 破坏性更新
-- feat: `angular`升级到`^13.0.0`;
-- feat: `@bigbear713/nb-common`升级到`^13.0.0`;
+## Breaking Changes
+- feat: Upgrade `angular` to `^13.0.0`;
+- feat: Upgrade `@bigbear713/nb-common` to `^13.0.0`;
 
 <br/>
 
 # v12.1.0
 ## [Validators](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#Validators "Validators")
 ### [NbFormValidators.equal](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nbformvalidatorsequal "NbFormValidators.equal")
-- feat: 增加`immediately`参数，默认为`true`; 
+- feat: Add `immediately` param, the default is `true`; 
 
 ## [Services](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#Services "Services")
 ### [NbFormService](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nbformservice "NbFormService")
-- feat: `updateEqualControlsValidities()`可以更便捷的更新两个期望相等的控件的有效性;
+- feat: Add `updateEqualControlsValidities()` function so that you can more convenient to update the validities of the two controls which want to be equal;
 
 ## [Components](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#Components "Components")
 ### [`<nb-control-err></nb-control-err>`](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nb-control-errnb-control-err "<nb-control-err></nb-control-err>")
-- fix: 控件初始时为`dirty`，组件不显示错误信息;
+- fix: When the control is in init status and it is dirty, the component will not display the error information;
 
 # v12.0.0
 ## [Module](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#Module "Module")
-- feat: [NbFormModule](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nbformmodule) - 提供可用的`component`
-- feat: [NbFormTestingModule](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nbformtestingmodule) - 提供单元测试环境
+- feat: [NbFormModule](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nbformmodule) - provide some useful `component`
+- feat: [NbFormTestingModule](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nbformtestingmodule) - provide the env to unit test;
 
 ## [Validators](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#Validators "Validators")
-- feat: [NbFormValidators.arrLength](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nbformvalidatorsarrlength) - 数组长度校验器
-- feat: [NbFormValidators.equal](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nbformvalidatorsequal) - 控件值是否相等校验器
-- feat: [NbFormValidators.fileSize](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nbformvalidatorsfilesize) - 文件大小校验器
-- feat: [NbFormValidators.fileType](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nbformvalidatorsfiletype) - 文件类型校验器
-- feat: [NbFormValidators.required](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nbformvalidatorsrequired) - 必填校验器
-- feat: [NbFormValidators.whitespace](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nbformvalidatorswhitespace) - 是否允许都为空格校验器
+- feat: [NbFormValidators.arrLength](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nbformvalidatorsarrlength) - array length validator
+- feat: [NbFormValidators.equal](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nbformvalidatorsequal) - values are equal validator
+- feat: [NbFormValidators.fileSize](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nbformvalidatorsfilesize) - file size validator
+- feat: [NbFormValidators.fileType](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nbformvalidatorsfiletype) - file type validator
+- feat: [NbFormValidators.required](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nbformvalidatorsrequired) - required validator
+- feat: [NbFormValidators.whitespace](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nbformvalidatorswhitespace) - can all be whitespace validator
 
 ## [Services](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#Services "Services")
-- feat: [NbFormService](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nbformservice "NbFormService") - 提供常用表单功能
+- feat: [NbFormService](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nbformservice "NbFormService") - a `service` which provide some common function about form
 
 ## [Components](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#Components "Components")
-- feat: [`<nb-control-err></nb-control-err>`](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nb-control-errnb-control-err "<nb-control-err></nb-control-err>") - 显示控件错误信息
-- feat: [`<nb-field-item></nb-field-item>`](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nb-field-itemnb-field-item) - 提供常见的字段布局，以及控件错误信息，常用于表单中
+- feat: [`<nb-control-err></nb-control-err>`](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nb-control-errnb-control-err "<nb-control-err></nb-control-err>") - the component is used to show error info of the control
+- feat: [`<nb-field-item></nb-field-item>`](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nb-field-itemnb-field-item) - it has common layout and can show error info
 
 ## [Tokens](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#Tokens "Tokens")
-- feat: [NB_CONTROL_COMMON_ERR_INFO](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nb_control_common_err_info) - 通过DI设置常见的错误信息，便于在`<nb-control-err></nb-control-err>`中使用
+- feat: [NB_CONTROL_COMMON_ERR_INFO](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nb_control_common_err_info) - used to set common error info via DI, and the error information will be used in `<nb-control-err></nb-control-err>`
 
 ## [Interfaces](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#Interfaces "Interfaces")
-- feat: [NbAbstractControl](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nbabstractcontrol) - 抽象控件类型
-- feat: [INbFormConfigs](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#inbcontrolconfig) - 表单的控件配置
-- feat: [INbControlConfig](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#inbcontrolerrinfo) - 控件配置
-- feat: [INbControlErrInfo](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#inbformconfigs) - 控件错误信息
+- feat: [NbAbstractControl](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nbabstractcontrol) - abstract control type
+- feat: [INbFormConfigs](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#inbcontrolconfig) - form control configs
+- feat: [INbControlConfig](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#inbcontrolerrinfo) - control config
+- feat: [INbControlErrInfo](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#inbformconfigs) - error information of the control
 
 ## [Enums](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#Enums "Enums")
-- feat: [NbControlErrType](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nbcontrolerrtype) - 常用表单错误枚举
+- feat: [NbControlErrType](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nbcontrolerrtype) - common error enum

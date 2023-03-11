@@ -25,7 +25,6 @@ class UIComponent {
 
 describe('NbFieldItemComponent', () => {
   describe('used in normal component', () => {
-
     let component: NbFieldItemComponent;
     let fixture: ComponentFixture<NbFieldItemComponent>;
 
@@ -115,8 +114,6 @@ describe('NbFieldItemComponent', () => {
     })
   });
 });
-
-
 
 const StandaloneCompConfig = {
   standalone: true,

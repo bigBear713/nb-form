@@ -33,7 +33,7 @@
     <input type="text" [formControl]="field5Ctrl">
   </nb-field-item>
   <nb-field-item [control]="field6Ctrl" [errInfo]="errInfo1">
-    <span field-label>{{"demoContent.field6"|nbTrans}}：</span>
+    <span field-label><i>+</i>{{"demoContent.field6"|nbTrans}}：</span>
     <input type="text" [formControl]="field6Ctrl">
   </nb-field-item>
 </form>
@@ -56,8 +56,11 @@
   <p>{{'demoContent.desc5'|nbTrans}}</p>
   <p>{{'demoContent.desc6'|nbTrans}}</p>
   <p>{{'demoContent.desc7'|nbTrans}}</p>
+  <p>{{'demoContent.desc8'|nbTrans}}</p>
 </div>
 
 <hr>
 <h2>children router component</h2>
 <router-outlet></router-outlet>
+
+<ng-template #requiredIcon>+</ng-template>

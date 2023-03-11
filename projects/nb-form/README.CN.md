@@ -24,7 +24,6 @@ Angular common form lib by bigBear713.
 
 <br>
 
-
 ## Feature
 - 提供常用的表单控件校验器：`arrLength`, `equal`, `fileSize`, `fileType`, `required`, `whitespace`。具体见下方校验器的定义;
 - 支持通过DI设置common error info;
@@ -32,7 +31,6 @@ Angular common form lib by bigBear713.
 - 支持在`standalone component`中使用；
 
 <br>
-
 
 ## Version
 ###### nb-form的大版本和Angular的大版本保持对应关系
@@ -54,6 +52,7 @@ $ yarn add @bigbear713/nb-form
 
 <br>
 
+## API
 ### Module
 
 #### NbFormModule
@@ -277,6 +276,7 @@ destroy$.complete();
 
 #### `<nb-control-err></nb-control-err>`
 ##### `v12.0.0`
+##### 从`v15.1.0`开始为`standalone component`
 ###### 显示控件错误信息时使用的组件。错误信息支持`string`和`Observable<string>`, 以便适合多语言场景。可在`providers`中设置常用的错误信息，和单独传入该组件的错误信息将合并成最终使用的错误信息
 
 ##### Input
@@ -296,6 +296,7 @@ destroy$.complete();
 
 #### `<nb-field-item></nb-field-item>`
 ##### `v12.0.0`
+##### 从`v15.1.0`开始为`standalone component`
 ###### 字段项组件，常用于表单中。提供常见的字段布局，以及错误信息的展示
 ##### `[field-label]`
 ###### 字段标签

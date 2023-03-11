@@ -20,6 +20,10 @@ Angular common form lib by bigBear713.
 - [中文](https://github.com/bigBear713/nb-form/blob/master/CHANGELOG.CN.md "更新日志 - 中文")
 - [English](https://github.com/bigBear713/nb-form/blob/master/CHANGELOG.md "Changelog - English")
 
+## Readme
+- [中文](https://github.com/bigBear713/nb-form/blob/master/README.CN.md "文档 - 中文")
+- [English](https://github.com/bigBear713/nb-form/blob/master/README.md "Document - English")
+
 ## Feature
 - 提供常用的表单控件校验器：`arrLength`, `equal`, `fileSize`, `fileType`, `required`, `whitespace`;
 - 支持通过DI设置common error info;

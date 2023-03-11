@@ -52,6 +52,7 @@ $ yarn add @bigbear713/nb-form
 
 <br>
 
+## API
 ### Module
 
 #### NbFormModule
@@ -276,6 +277,7 @@ destroy$.complete();
 
 #### `<nb-control-err></nb-control-err>`
 ##### `v12.0.0`
+##### Be a `standalone component` from `v15.1.0`
 ###### The component is used to show error info of the control. The error info support `string` and `Observable<string>` type, so you can use it in i18n. You can set common error info in `providers`, it will combined with error info which is inputed from the component.
 
 ##### Input
@@ -295,6 +297,7 @@ destroy$.complete();
 
 #### `<nb-field-item></nb-field-item>`
 ##### `v12.0.0`
+##### Be a `standalone component` from `v15.1.0`
 ###### The file item component, is used in form in common. It has common layout and can show error info
 ##### `[field-label]`
 ###### The file item's label

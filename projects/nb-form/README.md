@@ -29,6 +29,7 @@ Angular common form lib by bigBear713.
 - Support to use DI to set common error info;
 - Support the changeDetection of components as `ChangeDetectionStrategy.OnPush`;
 - Support to used in `standalone component`;
+- Support to be imported as a `standalone component`;
 
 <br>
 
@@ -292,6 +293,23 @@ destroy$.complete();
 <!-- errInfo = {required:'This field is required!'} -->
 <nb-control-err [control]="control" [errInfo]="errInfo"></nb-control-err>
 ```
+```ts
+// New in the v15.1.0
+// imported in NgModule
+@NgModule({
+  imports:[NbControlErrComponent],
+  // ...
+})
+export class XXXModule{}
+
+// imported in standalone component
+@Component({
+  standalone:true,
+  imports:[NbControlErrComponent],
+  // ...
+})
+export class XXXComponent{}
+```
 
 <br>
 
@@ -322,7 +340,23 @@ destroy$.complete();
   <ng-container field-label>field 2</ng-container>
   <input>
 </nb-field-item>
+```
+```ts
+// New in the v15.1.0
+// imported in NgModule
+@NgModule({
+  imports:[NbFieldItemComponent],
+  // ...
+})
+export class XXXModule{}
 
+// imported in standalone component
+@Component({
+  standalone:true,
+  imports:[NbFieldItemComponent],
+  // ...
+})
+export class XXXComponent{}
 ```
 
 <br>

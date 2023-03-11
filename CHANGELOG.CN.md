@@ -1,3 +1,13 @@
+# v15.1.0
+## [Components](https://github.com/bigBear713/nb-trans/blob/master/projects/nb-trans/README.CN.md#Components "Components")
+- feat: [`<nb-control-err></nb-control-err>`](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.CN.md#nb-control-errnb-control-err) - 支持以`standalone component`的方式引入
+- feat: [`<nb-field-item></nb-field-item>`](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.CN.md#nb-field-itemnb-field-item) - 支持以`standalone component`的方式引入
+
+## [Pipes](https://github.com/bigBear713/nb-trans/blob/master/projects/nb-trans/README.CN.md#Pipes "Pipes")
+- feat: [nbTrans](https://github.com/bigBear713/nb-trans/blob/master/projects/nb-trans/README.CN.md#nbtrans-transformkey-string-options-inbtransoptions-string) - 支持以`standalone component`的方式引入
+
+<br/>
+
 # v15.0.0
 ## 破坏性更新
 - feat: `angular`升级到`^15.0.0`; 

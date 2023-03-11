@@ -25,10 +25,11 @@ Angular common form lib by bigBear713.
 <br>
 
 ## Feature
-- 提供常用的表单控件校验器：`arrLength`, `equal`, `fileSize`, `fileType`, `required`, `whitespace`。具体见下方校验器的定义;
-- 支持通过DI设置common error info;
-- 支持组件的更新策略为`ChangeDetectionStrategy.OnPush`;
+- 提供常用的表单控件校验器：`arrLength`, `equal`, `fileSize`, `fileType`, `required`, `whitespace`。具体见下方校验器的定义；
+- 支持通过DI设置common error info；
+- 支持组件的更新策略为`ChangeDetectionStrategy.OnPush`；
 - 支持在`standalone component`中使用；
+- 支持以`standalone component`的方式引入；
 
 <br>
 
@@ -291,6 +292,23 @@ destroy$.complete();
 <!-- errInfo = {required:'这个字段必填！'} -->
 <nb-control-err [control]="control" [errInfo]="errInfo"></nb-control-err>
 ```
+```ts
+// v15.1.0新增
+// 在NgModule中引入
+@NgModule({
+  imports:[NbControlErrComponent],
+  // ...
+})
+export class XXXModule{}
+
+// 在standalone component中引入
+@Component({
+  standalone:true,
+  imports:[NbControlErrComponent],
+  // ...
+})
+export class XXXComponent{}
+```
 
 <br>
 
@@ -321,7 +339,23 @@ destroy$.complete();
   <ng-container field-label>field 2</ng-container>
   <input>
 </nb-field-item>
+```
+```ts
+// v15.1.0新增
+// 在NgModule中引入
+@NgModule({
+  imports:[NbFieldItemComponent],
+  // ...
+})
+export class XXXModule{}
 
+// 在standalone component中引入
+@Component({
+  standalone:true,
+  imports:[NbFieldItemComponent],
+  // ...
+})
+export class XXXComponent{}
 ```
 
 <br>

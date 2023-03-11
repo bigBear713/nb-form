@@ -29,6 +29,7 @@ Angular common form lib by bigBear713.
 - Support to use DI to set common error info;
 - Support the changeDetection of components as `ChangeDetectionStrategy.OnPush`;
 - Support to used in `standalone component`;
+- Support to be imported as a `standalone component`;
 
 <br>
 

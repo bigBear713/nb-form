@@ -9,7 +9,7 @@ import {
   Optional,
   SimpleChanges
 } from '@angular/core';
-import { AbstractControl, UntypedFormControl } from '@angular/forms';
+import { AbstractControl } from '@angular/forms';
 import { INbControlErrInfo } from '../../models';
 import { NB_CONTROL_COMMON_ERR_INFO } from '../../constants';
 import { Subject } from 'rxjs';
@@ -52,8 +52,6 @@ export class NbControlErrComponent implements OnChanges, OnDestroy {
   @Input() errInfo: INbControlErrInfo = {};
 
   allErrInfo: INbControlErrInfo = {};
-
-  errControl = new UntypedFormControl();
 
   hasErr: boolean = false;
 

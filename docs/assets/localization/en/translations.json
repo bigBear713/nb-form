@@ -20,6 +20,7 @@
     "desc4": "The error info about required error and file type support i18n",
     "desc5": "The values of field 4 and field 5 should be equal",
     "desc6": "The common error info is supported to be set via DI, the common error will be combined with the error info from <nb-control-err></nb-control-err> component",
-    "desc7": "The error info of field 6 will be displayed at the beginning"
+    "desc7": "The error info of field 6 will be displayed at the beginning",
+    "desc8": "The required icon of field 6 is customised"
   }
 }

@@ -5,18 +5,15 @@ import {
   Inject,
   Input,
   OnChanges,
-  OnDestroy,
   Optional,
   SimpleChanges
 } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
 import { INbControlErrInfo } from '../../models';
 import { NB_CONTROL_COMMON_ERR_INFO } from '../../constants';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 import { NgIf } from '@angular/common';
 import { NbErrInfoPipe } from '../../pipes/err-info.pipe';
-import { NbRStrComponent } from '@bigbear713/nb-common';
+import { NbRStrComponent, UnsubscribeService } from '@bigbear713/nb-common';
 
 const importsFromNgCommon = [NgIf];
 const importsFromNbCommon = [NbRStrComponent];
@@ -43,9 +40,10 @@ const importsFromSelf = [NbErrInfoPipe];
       word-break: break-word;
     }
   `],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [UnsubscribeService]
 })
-export class NbControlErrComponent implements OnChanges, OnDestroy {
+export class NbControlErrComponent implements OnChanges {
 
   @Input() control!: AbstractControl;
 
@@ -55,13 +53,12 @@ export class NbControlErrComponent implements OnChanges, OnDestroy {
 
   hasErr: boolean = false;
 
-  private destroy$ = new Subject();
-
   constructor(
     @Inject(NB_CONTROL_COMMON_ERR_INFO)
     @Optional()
     private commonErrInfo: INbControlErrInfo = {},
     private changeDR: ChangeDetectorRef,
+    private unsubscribeService: UnsubscribeService,
   ) { }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -74,9 +71,12 @@ export class NbControlErrComponent implements OnChanges, OnDestroy {
     }
   }
 
-  ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.complete();
+  private subscribeControlChange(): void {
+    this.updateHasErr(this.control);
+    const subscription = this.control.statusChanges.subscribe(
+      _ => this.updateHasErr(this.control)
+    );
+    this.unsubscribeService.collectASubscriptionByKey('control-status-changes', subscription);
   }
 
   private updateAllErrInfo(): void {
@@ -85,15 +85,6 @@ export class NbControlErrComponent implements OnChanges, OnDestroy {
       ...this.errInfo,
     };
     this.changeDR.markForCheck();
-  }
-
-  private subscribeControlChange(): void {
-    this.updateHasErr(this.control);
-    this.control.statusChanges.pipe(
-      takeUntil(this.destroy$)
-    ).subscribe(
-      _ => this.updateHasErr(this.control)
-    );
   }
 
   private updateHasErr(control: AbstractControl): void {

@@ -1,9 +1,19 @@
+# v16.0.0
+## 破坏性更新
+- feat: `angular`升级到`^16.0.0`;
+- feat: `@bigbear713/nb-common`升级到`^16.0.0`;
+
+## [Components](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.CN.md#Components "Components")
+- fix: [`<nb-control-err></nb-control-err>`](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.CN.md#nb-control-errnb-control-err "<nb-control-err></nb-control-err>") - 使用UnsubscribeService管理rxjs的订阅
+  
+---
+
 # v15.1.0
 ## [Components](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.CN.md#Components "Components")
 - feat: [`<nb-control-err></nb-control-err>`](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.CN.md#nb-control-errnb-control-err) - 支持以`standalone component`的方式引入
 - feat: [`<nb-field-item></nb-field-item>`](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.CN.md#nb-field-itemnb-field-item) - 支持以`standalone component`的方式引入
 
-<br/>
+---
 
 # v15.0.0
 ## 破坏性更新
@@ -19,34 +29,33 @@
 ## [Services](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.CN.md#Services "Services")
 - refactor: 优化[NbFormService](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.CN.md#nbformservice "NbFormService")的`getValidatorsFromControlConfig()`方法;
 
-<br/>
+---
 
 # v14.0.0
 ## 破坏性更新
 - feat: `angular`升级到`^14.0.0`;
 - feat: `@bigbear713/nb-common`升级到`^14.0.0`;
 
-<br/>
+---
 
 # v13.0.0
 ## 破坏性更新
 - feat: `angular`升级到`^13.0.0`;
 - feat: `@bigbear713/nb-common`升级到`^13.0.0`;
 
-<br/>
+---
 
 # v12.1.0
 ## [Validators](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.CN.md#Validators "Validators")
-### [NbFormValidators.equal](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.CN.md#nbformvalidatorsequal "NbFormValidators.equal")
-- feat: 增加`immediately`参数，默认为`true`; 
+- feat: [NbFormValidators.equal](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.CN.md#nbformvalidatorsequal "NbFormValidators.equal") - 增加`immediately`参数，默认为`true`; 
 
 ## [Services](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.CN.md#Services "Services")
-### [NbFormService](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.CN.md#nbformservice "NbFormService")
-- feat: `updateEqualControlsValidities()`可以更便捷的更新两个期望相等的控件的有效性;
+- feat: [NbFormService](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.CN.md#nbformservice "NbFormService") - `updateEqualControlsValidities()`可以更便捷的更新两个期望相等的控件的有效性;
 
 ## [Components](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.CN.md#Components "Components")
-### [`<nb-control-err></nb-control-err>`](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.CN.md#nb-control-errnb-control-err "<nb-control-err></nb-control-err>")
-- fix: 控件初始时为`dirty`，组件不显示错误信息;
+- fix: [`<nb-control-err></nb-control-err>`](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.CN.md#nb-control-errnb-control-err "<nb-control-err></nb-control-err>") - 控件初始时为`dirty`，组件不显示错误信息;
+
+---
 
 # v12.0.0
 ## [Module](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.CN.md#Module "Module")

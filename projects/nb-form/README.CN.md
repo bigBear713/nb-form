@@ -18,11 +18,15 @@ Angular common form lib by bigBear713.
 
 <br>
 
+---
+
 ## Changelog
 - [中文](https://github.com/bigBear713/nb-form/blob/master/CHANGELOG.CN.md "更新日志 - 中文")
 - [English](https://github.com/bigBear713/nb-form/blob/master/CHANGELOG.md "Changelog - English")
 
 <br>
+
+---
 
 ## Feature
 - 提供常用的表单控件校验器：`arrLength`, `equal`, `fileSize`, `fileType`, `required`, `whitespace`。具体见下方校验器的定义；
@@ -33,6 +37,8 @@ Angular common form lib by bigBear713.
 
 <br>
 
+---
+
 ## Version
 ###### nb-form的大版本和Angular的大版本保持对应关系
 | @bigbear713/nb-form | @angular/core |
@@ -41,8 +47,11 @@ Angular common form lib by bigBear713.
 | ^13.0.0               | ^13.0.0       |
 | ^14.0.0               | ^14.0.0       |
 | ^15.0.0               | ^15.0.0       |
+| ^16.0.0               | ^16.0.0       |
 
 <br>
+
+---
 
 ## Installation
 ```bash
@@ -52,6 +61,8 @@ $ yarn add @bigbear713/nb-form
 ```
 
 <br>
+
+---
 
 ## API
 ### Module
@@ -63,6 +74,8 @@ $ yarn add @bigbear713/nb-form
 ###### 表单测试模块。用于Unit Test。
 
 <br>
+
+---
 
 ### Validators
 
@@ -214,6 +227,8 @@ console.log(control.errors); // { [NbControlErrType.WHITESPACE]: true; }
 
 <br>
 
+---
+
 ### Services
 
 #### NbFormService
@@ -272,6 +287,8 @@ destroy$.complete();
 ```
 
 <br>
+
+---
 
 ### Components
 
@@ -360,6 +377,8 @@ export class XXXComponent{}
 
 <br>
 
+---
+
 ### Tokens
 
 #### NB_CONTROL_COMMON_ERR_INFO
@@ -387,6 +406,8 @@ export class XXXComponent{}
 ```
 
 <br>
+
+---
 
 ### Interfaces
 
@@ -437,6 +458,8 @@ export class XXXComponent{}
 
 <br>
 
+---
+
 ### Enums
 #### NbControlErrType
 ##### `v15.0.0`
@@ -458,12 +481,16 @@ export class XXXComponent{}
 
 <br>
 
+---
+
 ## 贡献
 > 欢迎提feature和PR，一起使该项目更好
 
 <a href="https://github.com/bigBear713" target="_blank"><img src="https://avatars.githubusercontent.com/u/12368900?v=4" alt="bigBear713" width="30px" height="30px"></a>
 
 <br>
+
+---
 
 ## License
 MIT

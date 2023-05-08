@@ -13,7 +13,7 @@ import { INbControlErrInfo } from '../../models';
 import { NB_CONTROL_COMMON_ERR_INFO } from '../../constants';
 import { NgIf } from '@angular/common';
 import { NbErrInfoPipe } from '../../pipes/err-info.pipe';
-import { NbRStrComponent, UnsubscribeService } from '@bigbear713/nb-common';
+import { NbRStrComponent, NbUnsubscribeService } from '@bigbear713/nb-common';
 
 const importsFromNgCommon = [NgIf];
 const importsFromNbCommon = [NbRStrComponent];
@@ -41,7 +41,7 @@ const importsFromSelf = [NbErrInfoPipe];
     }
   `],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [UnsubscribeService]
+  providers: [NbUnsubscribeService]
 })
 export class NbControlErrComponent implements OnChanges {
 
@@ -58,7 +58,7 @@ export class NbControlErrComponent implements OnChanges {
     @Optional()
     private commonErrInfo: INbControlErrInfo = {},
     private changeDR: ChangeDetectorRef,
-    private unsubscribeService: UnsubscribeService,
+    private unsubscribeService: NbUnsubscribeService,
   ) { }
 
   ngOnChanges(changes: SimpleChanges) {

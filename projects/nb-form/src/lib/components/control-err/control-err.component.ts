@@ -45,7 +45,7 @@ const importsFromSelf = [NbErrInfoPipe];
 })
 export class NbControlErrComponent implements OnChanges {
 
-  @Input() control!: AbstractControl;
+  @Input({ required: true }) control!: AbstractControl;
 
   @Input() errInfo: INbControlErrInfo = {};
 

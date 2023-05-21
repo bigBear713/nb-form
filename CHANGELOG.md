@@ -4,7 +4,8 @@
 - feat: Upgrade `@bigbear713/nb-common` to `^16.0.0`;
 
 ## [Components](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#Components "Components")
-- fix: [`<nb-control-err></nb-control-err>`](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nb-control-errnb-control-err "<nb-control-err></nb-control-err>") - Using UnsubscribeService to manage rxjs subscriptions
+- perf: [`<nb-control-err></nb-control-err>`](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nb-control-errnb-control-err "<nb-control-err></nb-control-err>") - Using UnsubscribeService to manage rxjs subscriptions
+- feat: [`<nb-control-err></nb-control-err>`](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nb-control-errnb-control-err "<nb-control-err></nb-control-err>") - The `control` is required: [issue/17](https://github.com/bigBear713/nb-form/issues/17)；
 
 ---
 

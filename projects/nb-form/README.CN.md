@@ -298,16 +298,19 @@ destroy$.complete();
 ###### 显示控件错误信息时使用的组件。错误信息支持`string`和`Observable<string>`, 以便适合多语言场景。可在`providers`中设置常用的错误信息，和单独传入该组件的错误信息将合并成最终使用的错误信息
 
 ##### Input
-| Name  | Type  | Default  | Description  | Version |
-| ------------ | ------------ | ------------ | ------------ | ------------ |
-| control  | `AbstractControl`  | `-`  | 要显示的错误信息所属的控件  | `v12.0.0` |
-| errInfo  | `INbControlErrInfo`  | `{}`  | 当前控件的错误信息，会和`providers`中设置常用的错误信息一起组合成最终使用的错误信息。如果不传，则只会显示`providers`中设置常用的错误信息  | `v12.0.0` |
+| Name  | Type | Mandatory | Default  | Description  | Version |
+| ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
+| control  | `AbstractControl` | true | `-`  | 要显示的错误信息所属的控件。从`v16.0.0`开始，为必需属性 | `v12.0.0` |
+| errInfo  | `INbControlErrInfo` | false | `{}`  | 当前控件的错误信息，会和`providers`中设置常用的错误信息一起组合成最终使用的错误信息。如果不传，则只会显示`providers`中设置常用的错误信息  | `v12.0.0` |
 
 ##### Usage
 ```html
 <!-- control = new FormControl() -->
 <!-- errInfo = {required:'这个字段必填！'} -->
-<nb-control-err [control]="control" [errInfo]="errInfo"></nb-control-err>
+<nb-control-err [control]="control" [errInfo]="errInfo" />
+
+<!-- If the control is missing, an error will be reported -->
+<nb-control-err [errInfo]="errInfo" />
 ```
 ```ts
 // v15.1.0新增
@@ -337,11 +340,11 @@ export class XXXComponent{}
 ###### 字段标签
 
 ##### Input
-| Name  | Type  | Default  | Description  | Version |
-| ------------ | ------------ | ------------ | ------------ | ------------ |
-| control  | `AbstractControl ｜ undefined`  | `-`  | 要显示错误信息的控件。 | `v12.0.0` |
-| errInfo  | `INbControlErrInfo`  | `{}` | 要显示的错误信息。如果不传，则只会显示`providers`中设置常用的错误信息 | `v12.0.0` |
-| required  | `boolean`  | `false` | 该字段是否必填。如果必填，字段标签左侧会出现一个"*"。默认为false | `v12.0.0` |
+| Name  | Type | Mandatory | Default  | Description  | Version |
+| ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
+| control  | `AbstractControl ｜ undefined` | false | `-`  | 要显示错误信息的控件。 | `v12.0.0` |
+| errInfo  | `INbControlErrInfo` | false | `{}` | 要显示的错误信息。如果不传，则只会显示`providers`中设置常用的错误信息 | `v12.0.0` |
+| required  | `boolean`  | `false` | false | 该字段是否必填。如果必填，字段标签左侧会出现一个"*"。默认为false | `v12.0.0` |
 
 ##### Usage
 ```html

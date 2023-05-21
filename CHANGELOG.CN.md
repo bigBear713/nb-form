@@ -4,7 +4,8 @@
 - feat: `@bigbear713/nb-common`升级到`^16.0.0`;
 
 ## [Components](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.CN.md#Components "Components")
-- fix: [`<nb-control-err></nb-control-err>`](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.CN.md#nb-control-errnb-control-err "<nb-control-err></nb-control-err>") - 使用UnsubscribeService管理rxjs的订阅
+- perf: [`<nb-control-err></nb-control-err>`](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.CN.md#nb-control-errnb-control-err "<nb-control-err></nb-control-err>") - 使用UnsubscribeService管理rxjs的订阅
+- feat: [`<nb-control-err></nb-control-err>`](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.CN.md#nb-control-errnb-control-err "<nb-control-err></nb-control-err>") - `control`属性添加必填校验：[issue/17](https://github.com/bigBear713/nb-form/issues/17)；
   
 ---
 

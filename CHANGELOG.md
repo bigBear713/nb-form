@@ -1,9 +1,20 @@
+# v16.0.0
+## Breaking Changes
+- feat: Upgrade `angular` to `^16.0.0`;
+- feat: Upgrade `@bigbear713/nb-common` to `^16.0.0`;
+
+## [Components](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#Components "Components")
+- perf: [`<nb-control-err></nb-control-err>`](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nb-control-errnb-control-err "<nb-control-err></nb-control-err>") - Using UnsubscribeService to manage rxjs subscriptions
+- feat: [`<nb-control-err></nb-control-err>`](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nb-control-errnb-control-err "<nb-control-err></nb-control-err>") - The `control` is required: [issue/17](https://github.com/bigBear713/nb-form/issues/17)；
+
+---
+
 # v15.1.0
 ## [Components](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#Components "Components")
 - feat: [`<nb-control-err></nb-control-err>`](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nb-control-errnb-control-err) - Support to be imported as a `standalone component`
 - feat: [`<nb-field-item></nb-field-item>`](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nb-field-itemnb-field-item) - Support to be imported as a `standalone component`
 
-<br/>
+---
 
 # v15.0.0
 ## Breaking Changes
@@ -19,34 +30,33 @@
 ## [Services](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#Services "Services")
 - refactor: optimize the function `getValidatorsFromControlConfig()` of [NbFormService](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nbformservice "NbFormService");
 
-<br/>
+---
 
 # v14.0.0
 ## Breaking Changes
 - feat: Upgrade `angular` to `^14.0.0`;
 - feat: Upgrade `@bigbear713/nb-common` to `^14.0.0`;
 
-<br/>
+---
 
 # v13.0.0
 ## Breaking Changes
 - feat: Upgrade `angular` to `^13.0.0`;
 - feat: Upgrade `@bigbear713/nb-common` to `^13.0.0`;
 
-<br/>
+---
 
 # v12.1.0
 ## [Validators](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#Validators "Validators")
-### [NbFormValidators.equal](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nbformvalidatorsequal "NbFormValidators.equal")
-- feat: Add `immediately` param, the default is `true`; 
+- feat: [NbFormValidators.equal](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nbformvalidatorsequal "NbFormValidators.equal") - Add `immediately` param, the default is `true`; 
 
 ## [Services](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#Services "Services")
-### [NbFormService](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nbformservice "NbFormService")
-- feat: Add `updateEqualControlsValidities()` function so that you can more convenient to update the validities of the two controls which want to be equal;
+- feat: [NbFormService](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nbformservice "NbFormService") - Add `updateEqualControlsValidities()` function so that you can more convenient to update the validities of the two controls which want to be equal;
 
 ## [Components](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#Components "Components")
-### [`<nb-control-err></nb-control-err>`](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nb-control-errnb-control-err "<nb-control-err></nb-control-err>")
-- fix: When the control is in init status and it is dirty, the component will not display the error information;
+- fix: [`<nb-control-err></nb-control-err>`](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#nb-control-errnb-control-err "<nb-control-err></nb-control-err>") - When the control is in init status and it is dirty, the component will not display the error information;
+
+---
 
 # v12.0.0
 ## [Module](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md#Module "Module")

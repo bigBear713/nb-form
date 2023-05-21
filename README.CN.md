@@ -12,17 +12,25 @@ Angular common form lib by bigBear713.
 
 </div>
 
+---
+
 ## Document
 - [中文](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.CN.md "文档 - 中文")
 - [English](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md "Document - English")
+
+---
 
 ## Changelog
 - [中文](https://github.com/bigBear713/nb-form/blob/master/CHANGELOG.CN.md "更新日志 - 中文")
 - [English](https://github.com/bigBear713/nb-form/blob/master/CHANGELOG.md "Changelog - English")
 
+---
+
 ## Readme
 - [中文](https://github.com/bigBear713/nb-form/blob/master/README.CN.md "文档 - 中文")
 - [English](https://github.com/bigBear713/nb-form/blob/master/README.md "Document - English")
+
+---
 
 ## Feature
 - 提供常用的表单控件校验器：`arrLength`, `equal`, `fileSize`, `fileType`, `required`, `whitespace`;
@@ -31,7 +39,7 @@ Angular common form lib by bigBear713.
 - 支持在`standalone component`中使用；
 - 支持以`standalone component`的方式引入
 
-<br>
+---
 
 ## Version
 ###### nb-form的大版本和Angular的大版本保持对应关系
@@ -41,8 +49,9 @@ Angular common form lib by bigBear713.
 | ^13.0.0               | ^13.0.0       |
 | ^14.0.0               | ^14.0.0       |
 | ^15.0.0               | ^15.0.0       |
+| ^16.0.0               | ^16.0.0       |
 
-<br>
+---
 
 ## Installation
 ```bash

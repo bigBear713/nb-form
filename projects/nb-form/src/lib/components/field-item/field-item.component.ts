@@ -25,6 +25,7 @@ const importsFromSelf = [NbControlErrComponent];
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NbFieldItemComponent {
+
   @Input() control: AbstractControl | undefined;
 
   @Input() errInfo: INbControlErrInfo = {};

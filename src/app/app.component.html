@@ -42,7 +42,7 @@
 <h5>{{"demoContent.useComp"|nbTrans}}</h5>
 <form *ngIf="form" style="margin-bottom: 20px;width: 200px;" [formGroup]="form">
   <input type="text" formControlName="field1">
-  <nb-control-err [control]="field1Ctrl" [errInfo]="errInfo1"></nb-control-err>
+  <nb-control-err [control]="field1Ctrl" [errInfo]="errInfo1" />
 </form>
 <hr>
 <button type="button" (click)="onSubmit()">{{'demoContent.submit'|nbTrans}}</button>
@@ -61,6 +61,6 @@
 
 <hr>
 <h2>children router component</h2>
-<router-outlet></router-outlet>
+<router-outlet />
 
 <ng-template #requiredIcon>+</ng-template>

@@ -18,11 +18,15 @@ Angular common form lib by bigBear713.
 
 <br>
 
+---
+
 ## Changelog
 - [中文](https://github.com/bigBear713/nb-form/blob/master/CHANGELOG.CN.md "更新日志 - 中文")
 - [English](https://github.com/bigBear713/nb-form/blob/master/CHANGELOG.md "Changelog - English")
 
 <br>
+
+---
 
 ## Feature
 - Provide the common validators: `arrLength`, `equal`, `fileSize`, `fileType`, `required`, `whitespace`. You can see the definition below;
@@ -33,6 +37,8 @@ Angular common form lib by bigBear713.
 
 <br>
 
+---
+
 ## Version
 ###### The nb-form's major version will keep up with the Angular's major version
 | @bigbear713/nb-form | @angular/core |
@@ -41,8 +47,11 @@ Angular common form lib by bigBear713.
 | ^13.0.0               | ^13.0.0       |
 | ^14.0.0               | ^14.0.0       |
 | ^15.0.0               | ^15.0.0       |
+| ^16.0.0               | ^16.0.0       |
 
 <br>
+
+---
 
 ## Installation
 ```bash
@@ -52,6 +61,8 @@ $ yarn add @bigbear713/nb-form
 ```
 
 <br>
+
+---
 
 ## API
 ### Module
@@ -63,6 +74,8 @@ $ yarn add @bigbear713/nb-form
 ###### Form testing module, used fo unit test.
 
 <br>
+
+---
 
 ### Validators
 
@@ -214,6 +227,8 @@ console.log(control.errors); // { [NbControlErrType.WHITESPACE]: true; }
 
 <br>
 
+---
+
 ### Services
 
 #### NbFormService
@@ -274,6 +289,8 @@ destroy$.complete();
 
 <br>
 
+---
+
 ### Components
 
 #### `<nb-control-err></nb-control-err>`
@@ -282,16 +299,19 @@ destroy$.complete();
 ###### The component is used to show error info of the control. The error info support `string` and `Observable<string>` type, so you can use it in i18n. You can set common error info in `providers`, it will combined with error info which is inputed from the component.
 
 ##### Input
-| Name  | Type  | Default  | Description  | Version |
-| ------------ | ------------ | ------------ | ------------ | ------------ |
-| control  | `AbstractControl`  | `-`  | The control which the error info belong.  | `v12.0.0` |
-| errInfo  | `INbControlErrInfo`  | `{}`  | Error information which only belong the control. It will combined with the common error infos which are set in `providers`.  | `v12.0.0` |
+| Name  | Type | Mandatory | Default | Description  | Version |
+| ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
+| control  | `AbstractControl` | true | `-`  | The control which the error info belong. The prop is required start from `v16.0.0`.  | `v12.0.0` |
+| errInfo  | `INbControlErrInfo` | false | `{}`  | Error information which only belong the control. It will combined with the common error infos which are set in `providers`.  | `v12.0.0` |
 
 ##### Usage
 ```html
 <!-- control = new FormControl() -->
 <!-- errInfo = {required:'This field is required!'} -->
-<nb-control-err [control]="control" [errInfo]="errInfo"></nb-control-err>
+<nb-control-err [control]="control" [errInfo]="errInfo" />
+
+<!-- If the control is missing, an error will be reported -->
+<nb-control-err [errInfo]="errInfo" />
 ```
 ```ts
 // New in the v15.1.0
@@ -321,11 +341,11 @@ export class XXXComponent{}
 ###### The file item's label
 
 ##### Input
-| Name  | Type  | Default  | Description  | Version |
-| ------------ | ------------ | ------------ | ------------ | ------------ |
-| control  | `AbstractControl ｜ undefined`  | `-`  | The control which error info belong. | `v12.0.0` |
-| errInfo  | `INbControlErrInfo`  | `{}` | The error information. If it is undefined, the final error info is only the common error info from `providers` | `v12.0.0` |
-| required  | `boolean`  | `false` | Is the field required? If is is `true`, there will display "*". The default is `false` | `v12.0.0` |
+| Name  | Type | Mandatory | Default  | Description  | Version |
+| ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
+| control  | `AbstractControl ｜ undefined` | false | `-`  | The control which error info belong. | `v12.0.0` |
+| errInfo  | `INbControlErrInfo` | false | `{}` | The error information. If it is undefined, the final error info is only the common error info from `providers` | `v12.0.0` |
+| required  | `boolean` | false | `false` | Is the field required? If is is `true`, there will display "*". The default is `false` | `v12.0.0` |
 
 ##### Usage
 ```html
@@ -361,6 +381,8 @@ export class XXXComponent{}
 
 <br>
 
+---
+
 ### Tokens
 
 #### NB_CONTROL_COMMON_ERR_INFO
@@ -388,6 +410,8 @@ export class XXXComponent{}
 ```
 
 <br>
+
+---
 
 ### Interfaces
 
@@ -438,6 +462,8 @@ export class XXXComponent{}
 
 <br>
 
+---
+
 ### Enums
 #### NbControlErrType
 ##### `v15.0.0`
@@ -459,12 +485,16 @@ export class XXXComponent{}
 
 <br>
 
+---
+
 ### Contribution
 > Feature and PR are welcome to make this project better together
 
 <a href="https://github.com/bigBear713" target="_blank"><img src="https://avatars.githubusercontent.com/u/12368900?v=4" alt="bigBear713" width="30px" height="30px"></a>
 
 <br>
+
+---
 
 ### License
 MIT

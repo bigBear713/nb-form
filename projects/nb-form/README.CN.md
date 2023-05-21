@@ -18,11 +18,15 @@ Angular common form lib by bigBear713.
 
 <br>
 
+---
+
 ## Changelog
 - [中文](https://github.com/bigBear713/nb-form/blob/master/CHANGELOG.CN.md "更新日志 - 中文")
 - [English](https://github.com/bigBear713/nb-form/blob/master/CHANGELOG.md "Changelog - English")
 
 <br>
+
+---
 
 ## Feature
 - 提供常用的表单控件校验器：`arrLength`, `equal`, `fileSize`, `fileType`, `required`, `whitespace`。具体见下方校验器的定义；
@@ -33,6 +37,8 @@ Angular common form lib by bigBear713.
 
 <br>
 
+---
+
 ## Version
 ###### nb-form的大版本和Angular的大版本保持对应关系
 | @bigbear713/nb-form | @angular/core |
@@ -41,8 +47,11 @@ Angular common form lib by bigBear713.
 | ^13.0.0               | ^13.0.0       |
 | ^14.0.0               | ^14.0.0       |
 | ^15.0.0               | ^15.0.0       |
+| ^16.0.0               | ^16.0.0       |
 
 <br>
+
+---
 
 ## Installation
 ```bash
@@ -52,6 +61,8 @@ $ yarn add @bigbear713/nb-form
 ```
 
 <br>
+
+---
 
 ## API
 ### Module
@@ -63,6 +74,8 @@ $ yarn add @bigbear713/nb-form
 ###### 表单测试模块。用于Unit Test。
 
 <br>
+
+---
 
 ### Validators
 
@@ -214,6 +227,8 @@ console.log(control.errors); // { [NbControlErrType.WHITESPACE]: true; }
 
 <br>
 
+---
+
 ### Services
 
 #### NbFormService
@@ -273,6 +288,8 @@ destroy$.complete();
 
 <br>
 
+---
+
 ### Components
 
 #### `<nb-control-err></nb-control-err>`
@@ -281,16 +298,19 @@ destroy$.complete();
 ###### 显示控件错误信息时使用的组件。错误信息支持`string`和`Observable<string>`, 以便适合多语言场景。可在`providers`中设置常用的错误信息，和单独传入该组件的错误信息将合并成最终使用的错误信息
 
 ##### Input
-| Name  | Type  | Default  | Description  | Version |
-| ------------ | ------------ | ------------ | ------------ | ------------ |
-| control  | `AbstractControl`  | `-`  | 要显示的错误信息所属的控件  | `v12.0.0` |
-| errInfo  | `INbControlErrInfo`  | `{}`  | 当前控件的错误信息，会和`providers`中设置常用的错误信息一起组合成最终使用的错误信息。如果不传，则只会显示`providers`中设置常用的错误信息  | `v12.0.0` |
+| Name  | Type | Mandatory | Default  | Description  | Version |
+| ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
+| control  | `AbstractControl` | true | `-`  | 要显示的错误信息所属的控件。从`v16.0.0`开始，为必需属性 | `v12.0.0` |
+| errInfo  | `INbControlErrInfo` | false | `{}`  | 当前控件的错误信息，会和`providers`中设置常用的错误信息一起组合成最终使用的错误信息。如果不传，则只会显示`providers`中设置常用的错误信息  | `v12.0.0` |
 
 ##### Usage
 ```html
 <!-- control = new FormControl() -->
 <!-- errInfo = {required:'这个字段必填！'} -->
-<nb-control-err [control]="control" [errInfo]="errInfo"></nb-control-err>
+<nb-control-err [control]="control" [errInfo]="errInfo" />
+
+<!-- If the control is missing, an error will be reported -->
+<nb-control-err [errInfo]="errInfo" />
 ```
 ```ts
 // v15.1.0新增
@@ -320,11 +340,11 @@ export class XXXComponent{}
 ###### 字段标签
 
 ##### Input
-| Name  | Type  | Default  | Description  | Version |
-| ------------ | ------------ | ------------ | ------------ | ------------ |
-| control  | `AbstractControl ｜ undefined`  | `-`  | 要显示错误信息的控件。 | `v12.0.0` |
-| errInfo  | `INbControlErrInfo`  | `{}` | 要显示的错误信息。如果不传，则只会显示`providers`中设置常用的错误信息 | `v12.0.0` |
-| required  | `boolean`  | `false` | 该字段是否必填。如果必填，字段标签左侧会出现一个"*"。默认为false | `v12.0.0` |
+| Name  | Type | Mandatory | Default  | Description  | Version |
+| ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
+| control  | `AbstractControl ｜ undefined` | false | `-`  | 要显示错误信息的控件。 | `v12.0.0` |
+| errInfo  | `INbControlErrInfo` | false | `{}` | 要显示的错误信息。如果不传，则只会显示`providers`中设置常用的错误信息 | `v12.0.0` |
+| required  | `boolean`  | `false` | false | 该字段是否必填。如果必填，字段标签左侧会出现一个"*"。默认为false | `v12.0.0` |
 
 ##### Usage
 ```html
@@ -360,6 +380,8 @@ export class XXXComponent{}
 
 <br>
 
+---
+
 ### Tokens
 
 #### NB_CONTROL_COMMON_ERR_INFO
@@ -387,6 +409,8 @@ export class XXXComponent{}
 ```
 
 <br>
+
+---
 
 ### Interfaces
 
@@ -437,6 +461,8 @@ export class XXXComponent{}
 
 <br>
 
+---
+
 ### Enums
 #### NbControlErrType
 ##### `v15.0.0`
@@ -458,12 +484,16 @@ export class XXXComponent{}
 
 <br>
 
+---
+
 ## 贡献
 > 欢迎提feature和PR，一起使该项目更好
 
 <a href="https://github.com/bigBear713" target="_blank"><img src="https://avatars.githubusercontent.com/u/12368900?v=4" alt="bigBear713" width="30px" height="30px"></a>
 
 <br>
+
+---
 
 ## License
 MIT

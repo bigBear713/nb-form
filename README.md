@@ -12,17 +12,25 @@ Angular common form lib by bigBear713.
 
 </div>
 
+---
+
 ## Document
 - [中文](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.CN.md "文档 - 中文")
 - [English](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md "Document - English")
+
+---
 
 ## Changelog
 - [中文](https://github.com/bigBear713/nb-form/blob/master/CHANGELOG.CN.md "更新日志 - 中文")
 - [English](https://github.com/bigBear713/nb-form/blob/master/CHANGELOG.md "Changelog - English")
 
+---
+
 ## Readme
 - [中文](https://github.com/bigBear713/nb-form/blob/master/README.CN.md "文档 - 中文")
 - [English](https://github.com/bigBear713/nb-form/blob/master/README.md "Document - English")
+
+---
 
 ## Feature
 - Provide the common validators: `arrLength`, `equal`, `fileSize`, `fileType`, `required`, `whitespace`;
@@ -31,7 +39,7 @@ Angular common form lib by bigBear713.
 - Support to used in `standalone component`;
 - Support to be imported as a `standalone component`;
 
-<br>
+---
 
 ## Version
 ###### The nb-form's major version will keep up with the Angular's major version
@@ -41,8 +49,9 @@ Angular common form lib by bigBear713.
 | ^13.0.0               | ^13.0.0       |
 | ^14.0.0               | ^14.0.0       |
 | ^15.0.0               | ^15.0.0       |
+| ^16.0.0               | ^16.0.0       |
 
-<br>
+---
 
 ## Installation
 ```bash

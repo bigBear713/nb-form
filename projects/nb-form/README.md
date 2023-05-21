@@ -299,16 +299,19 @@ destroy$.complete();
 ###### The component is used to show error info of the control. The error info support `string` and `Observable<string>` type, so you can use it in i18n. You can set common error info in `providers`, it will combined with error info which is inputed from the component.
 
 ##### Input
-| Name  | Type  | Default  | Description  | Version |
-| ------------ | ------------ | ------------ | ------------ | ------------ |
-| control  | `AbstractControl`  | `-`  | The control which the error info belong.  | `v12.0.0` |
-| errInfo  | `INbControlErrInfo`  | `{}`  | Error information which only belong the control. It will combined with the common error infos which are set in `providers`.  | `v12.0.0` |
+| Name  | Type | Mandatory | Default | Description  | Version |
+| ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
+| control  | `AbstractControl` | true | `-`  | The control which the error info belong. The prop is required start from `v16.0.0`.  | `v12.0.0` |
+| errInfo  | `INbControlErrInfo` | false | `{}`  | Error information which only belong the control. It will combined with the common error infos which are set in `providers`.  | `v12.0.0` |
 
 ##### Usage
 ```html
 <!-- control = new FormControl() -->
 <!-- errInfo = {required:'This field is required!'} -->
-<nb-control-err [control]="control" [errInfo]="errInfo"></nb-control-err>
+<nb-control-err [control]="control" [errInfo]="errInfo" />
+
+<!-- If the control is missing, an error will be reported -->
+<nb-control-err [errInfo]="errInfo" />
 ```
 ```ts
 // New in the v15.1.0
@@ -338,11 +341,11 @@ export class XXXComponent{}
 ###### The file item's label
 
 ##### Input
-| Name  | Type  | Default  | Description  | Version |
-| ------------ | ------------ | ------------ | ------------ | ------------ |
-| control  | `AbstractControl ｜ undefined`  | `-`  | The control which error info belong. | `v12.0.0` |
-| errInfo  | `INbControlErrInfo`  | `{}` | The error information. If it is undefined, the final error info is only the common error info from `providers` | `v12.0.0` |
-| required  | `boolean`  | `false` | Is the field required? If is is `true`, there will display "*". The default is `false` | `v12.0.0` |
+| Name  | Type | Mandatory | Default  | Description  | Version |
+| ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
+| control  | `AbstractControl ｜ undefined` | false | `-`  | The control which error info belong. | `v12.0.0` |
+| errInfo  | `INbControlErrInfo` | false | `{}` | The error information. If it is undefined, the final error info is only the common error info from `providers` | `v12.0.0` |
+| required  | `boolean` | false | `false` | Is the field required? If is is `true`, there will display "*". The default is `false` | `v12.0.0` |
 
 ##### Usage
 ```html

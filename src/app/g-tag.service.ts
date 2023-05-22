@@ -47,7 +47,6 @@ export class GTagService {
       send_to: libs_ga_id,
       website_id,
     };
-    console.log(trackLibsProps);
     gtag('event', eventName, trackCurrProps);
     gtag('event', eventName, trackLibsProps);
   }

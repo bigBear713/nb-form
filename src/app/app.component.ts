@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
-import { NbTransLangEnum, NbTransService } from '@bigbear713/nb-trans';
+import { NbTransLang, NbTransService } from '@bigbear713/nb-trans';
 import { NbControlErrType, NbFormService, NbFormValidators } from 'nb-form';
+import { GTagService } from './g-tag.service';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +20,17 @@ export class AppComponent implements OnInit {
 
   errInfo2 = {
     [NbControlErrType.FILE_MAX_SIZE]: 'The file max size is 500kb!',
+  };
+
+  links = {
+    changelog: {
+      title: 'Changelog',
+      link: 'https://github.com/bigBear713/nb-form/blob/master/CHANGELOG.md',
+    },
+    document: {
+      title: 'Document',
+      link: 'https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md',
+    },
   };
 
   get field1Ctrl(): UntypedFormControl {
@@ -48,23 +60,38 @@ export class AppComponent implements OnInit {
   constructor(
     private fb: UntypedFormBuilder,
     private formService: NbFormService,
+    private gtagService: GTagService,
     private transService: NbTransService,
   ) { }
 
   ngOnInit(): void {
+    this.trackPage();
     this.buildForm();
     // you can use it to unsubscribe when destroy the form/component
     const subscription = this.formService.updateEqualControlsValidities({ target: this.field4Ctrl, compared: this.field5Ctrl });
   }
 
   changeLanguage(langKey: string) {
-    this.transService.changeLangSync(
-      langKey === 'en' ? NbTransLangEnum.EN : NbTransLangEnum.ZH_CN
-    );
+    const lang = langKey === 'en' ? NbTransLang.EN : NbTransLang.ZH_CN;
+    this.transService.changeLangSync(lang);
+    this.gtagService.trackButton({
+      button_name: 'zh-CN' === lang ? '切换为中文' : 'switch as English',
+      language: lang,
+    });
+  }
+
+  go2Link(target: { title: string, link: string }): void {
+    this.gtagService.trackLink({
+      link_name: target.title,
+      link: target.link,
+    });
   }
 
   resetCtrl1() {
     this.field1Ctrl.reset();
+    this.gtagService.trackButton({
+      button_name: 'reset field',
+    });
   }
 
   onChangeFile($event: Event): void {
@@ -77,6 +104,9 @@ export class AppComponent implements OnInit {
 
   onSubmit() {
     this.formService.showAllErrInfo(this.form);
+    this.gtagService.trackButton({
+      button_name: 'submit',
+    });
   }
 
   private buildForm(): void {
@@ -95,5 +125,11 @@ export class AppComponent implements OnInit {
     this.field5Ctrl.setValidators([NbFormValidators.equal(this.field4Ctrl, false)]);
 
     this.field6Ctrl.markAsDirty();
+  }
+
+  private trackPage() {
+    this.gtagService.trackPage({
+      page_name: 'homepage',
+    });
   }
 }

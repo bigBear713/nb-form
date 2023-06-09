@@ -15,20 +15,20 @@ Angular common form lib by bigBear713.
 ---
 
 ## Document
-- [中文](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.CN.md "文档 - 中文")
-- [English](https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md "Document - English")
+- [中文](https://github.com/bigBear713/nb-form/blob/main/projects/nb-form/README.CN.md "文档 - 中文")
+- [English](https://github.com/bigBear713/nb-form/blob/main/projects/nb-form/README.md "Document - English")
 
 ---
 
 ## Changelog
-- [中文](https://github.com/bigBear713/nb-form/blob/master/CHANGELOG.CN.md "更新日志 - 中文")
-- [English](https://github.com/bigBear713/nb-form/blob/master/CHANGELOG.md "Changelog - English")
+- [中文](https://github.com/bigBear713/nb-form/blob/main/CHANGELOG.CN.md "更新日志 - 中文")
+- [English](https://github.com/bigBear713/nb-form/blob/main/CHANGELOG.md "Changelog - English")
 
 ---
 
 ## Readme
-- [中文](https://github.com/bigBear713/nb-form/blob/master/README.CN.md "文档 - 中文")
-- [English](https://github.com/bigBear713/nb-form/blob/master/README.md "Document - English")
+- [中文](https://github.com/bigBear713/nb-form/blob/main/README.CN.md "文档 - 中文")
+- [English](https://github.com/bigBear713/nb-form/blob/main/README.md "Document - English")
 
 ---
 

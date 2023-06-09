@@ -1,7 +1,7 @@
 {
   "name": "@bigbear713/nb-form",
   "version": "16.0.0",
-  "homepage": "https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md",
+  "homepage": "https://github.com/bigBear713/nb-form/blob/main/projects/nb-form/README.md",
   "description": "Angular common form lib by bigBear713.",
   "keywords": [
     "ng",

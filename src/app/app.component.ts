@@ -25,11 +25,11 @@ export class AppComponent implements OnInit {
   links = {
     changelog: {
       title: 'Changelog',
-      link: 'https://github.com/bigBear713/nb-form/blob/master/CHANGELOG.md',
+      link: 'https://github.com/bigBear713/nb-form/blob/main/CHANGELOG.md',
     },
     document: {
       title: 'Document',
-      link: 'https://github.com/bigBear713/nb-form/blob/master/projects/nb-form/README.md',
+      link: 'https://github.com/bigBear713/nb-form/blob/main/projects/nb-form/README.md',
     },
   };
 

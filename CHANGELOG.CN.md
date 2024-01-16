@@ -1,5 +1,12 @@
 # v16.0.0
 ## 破坏性更新
+- feat: `angular`升级到`^17.0.0`;
+- feat: `@bigbear713/nb-common`升级到`^17.0.0`;
+  
+---
+
+# v16.0.0
+## 破坏性更新
 - feat: `angular`升级到`^16.0.0`;
 - feat: `@bigbear713/nb-common`升级到`^16.0.0`;
 

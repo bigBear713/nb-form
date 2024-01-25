@@ -72,10 +72,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "nb-form-demo:build:production"
+              "buildTarget": "nb-form-demo:build:production"
             },
             "development": {
-              "browserTarget": "nb-form-demo:build:development"
+              "buildTarget": "nb-form-demo:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -83,7 +83,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "nb-form-demo:build"
+            "buildTarget": "nb-form-demo:build"
           }
         },
         "test": {

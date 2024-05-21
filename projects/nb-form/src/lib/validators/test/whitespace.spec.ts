@@ -1,6 +1,6 @@
-import { UntypedFormControl } from "@angular/forms";
-import { NbControlErrType } from "../../constants";
-import { NbFormValidators } from "../index";
+import { UntypedFormControl } from '@angular/forms';
+import { NbControlErrType } from '../../constants';
+import { NbFormValidators } from '../index';
 
 describe('NbFormValidators.whitespace', () => {
   [
@@ -10,7 +10,7 @@ describe('NbFormValidators.whitespace', () => {
         controlValue: null,
         canWhitespace: false,
       },
-      expect: null
+      expect: null,
     },
     {
       title: 'When the value of control is number',
@@ -18,7 +18,7 @@ describe('NbFormValidators.whitespace', () => {
         controlValue: 123,
         canWhitespace: false,
       },
-      expect: null
+      expect: null,
     },
     {
       title: 'When canWhitespace is undefined',
@@ -26,7 +26,7 @@ describe('NbFormValidators.whitespace', () => {
         controlValue: '    ',
         canWhitespace: undefined,
       },
-      expect: null
+      expect: null,
     },
     {
       title: 'When canWhitespace is true',
@@ -34,7 +34,7 @@ describe('NbFormValidators.whitespace', () => {
         controlValue: '    ',
         canWhitespace: true,
       },
-      expect: null
+      expect: null,
     },
     {
       title: 'When the value of control is all whitespace and canWhitespace is false',
@@ -42,7 +42,7 @@ describe('NbFormValidators.whitespace', () => {
         controlValue: '    ',
         canWhitespace: false,
       },
-      expect: { [NbControlErrType.WHITESPACE]: true }
+      expect: { [NbControlErrType.WHITESPACE]: true },
     },
     {
       title: 'When the value of control is not all whitespace and canWhitespace is false',
@@ -50,14 +50,13 @@ describe('NbFormValidators.whitespace', () => {
         controlValue: '    controlValue',
         canWhitespace: false,
       },
-      expect: null
+      expect: null,
     },
   ].forEach(item => {
     it(item.title, () => {
-      const control = new UntypedFormControl(
-        item.params.controlValue,
-        [NbFormValidators.whitespace(item.params.canWhitespace)]
-      );
+      const control = new UntypedFormControl(item.params.controlValue, [
+        NbFormValidators.whitespace(item.params.canWhitespace),
+      ]);
       expect(control.errors).toEqual(item.expect);
     });
   });

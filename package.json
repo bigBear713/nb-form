@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "start:lib": "ng build --watch nb-form",
-    "build:lib": "ng build nb-form && npm run copy:readmeCN && npm run copy:changelog && npm run copy:license",
+    "build:lib": "npm run lint:lib && ng build nb-form && npm run copy:readmeCN && npm run copy:changelog && npm run copy:license",
     "build:analyze": "npm run build -- --source-map && npm run view:analyze",
     "view:analyze": "node_modules/.bin/source-map-explorer dist/nb-form-demo/*",
     "test:lib": "ng test nb-form",
@@ -18,7 +18,8 @@
     "copy:changelog": "cp CHANGELOG.* dist/nb-form/",
     "copy:license": "cp LICENSE dist/nb-form/",
     "pack:lib": "cd ./dist/nb-form && npm pack",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "lint:lib": "ng lint nb-form"
   },
   "private": true,
   "dependencies": {

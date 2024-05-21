@@ -1,5 +1,5 @@
-import { AbstractControl, ValidatorFn } from "@angular/forms";
-import { NbControlErrType } from "../constants";
+import { AbstractControl, ValidatorFn } from '@angular/forms';
+import { NbControlErrType } from '../constants';
 
 export const arrLength = (arrLength: { max?: number; min?: number }): ValidatorFn => {
   return (control: AbstractControl) => {

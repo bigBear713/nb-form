@@ -7,24 +7,30 @@ import { formValidatorStrategies } from '../constants';
 import { INbControlConfig, NbAbstractControl } from '../models';
 import { NbFormToolsService } from './form-tools.service';
 
-interface IComparedControls { target: AbstractControl; compared: AbstractControl };
+interface IComparedControls {
+  target: AbstractControl;
+  compared: AbstractControl;
+}
 
 @Injectable({ providedIn: 'root' })
 export class NbFormService {
-
-  constructor(private formTools: NbFormToolsService) { }
+  constructor(private formTools: NbFormToolsService) {}
 
   getValidatorsFromControlConfig(config: INbControlConfig): ValidatorFn[] {
-    const strategies: { [key: string]: any } = formValidatorStrategies;
+    const strategies: { [key: string]: (config: INbControlConfig) => ValidatorFn | undefined } =
+      formValidatorStrategies;
     return Object.keys(config)
       .map(key => strategies[key]?.(config))
-      .filter(item => !!item);
+      .filter(item => !!item) as ValidatorFn[];
   }
 
-  markAllAsDirty(control: NbAbstractControl, opts?: { onlySelf?: boolean; emitEvent?: boolean; }): void {
+  markAllAsDirty(
+    control: NbAbstractControl,
+    opts?: { onlySelf?: boolean; emitEvent?: boolean }
+  ): void {
     control?.markAsDirty(opts);
 
-    const fn = (controlItem: NbAbstractControl): void => this.markAllAsDirty(controlItem, opts)
+    const fn = (controlItem: NbAbstractControl): void => this.markAllAsDirty(controlItem, opts);
     if (control instanceof UntypedFormArray) {
       this.formTools.doFormArrayFn(control, fn);
     } else if (control instanceof UntypedFormGroup) {
@@ -32,16 +38,23 @@ export class NbFormService {
     }
   }
 
-  showAllErrInfo(control: NbAbstractControl, opts?: { onlySelf?: boolean; emitEvent?: boolean; }): void {
+  showAllErrInfo(
+    control: NbAbstractControl,
+    opts?: { onlySelf?: boolean; emitEvent?: boolean }
+  ): void {
     control?.markAllAsTouched();
     this.markAllAsDirty(control, opts);
     this.updateAllValueAndValidity(control, opts);
   }
 
-  updateAllValueAndValidity(control: NbAbstractControl, opts?: { onlySelf?: boolean; emitEvent?: boolean; }): void {
+  updateAllValueAndValidity(
+    control: NbAbstractControl,
+    opts?: { onlySelf?: boolean; emitEvent?: boolean }
+  ): void {
     control?.updateValueAndValidity(opts);
 
-    const fn = (controlItem: NbAbstractControl): void => this.updateAllValueAndValidity(controlItem, opts)
+    const fn = (controlItem: NbAbstractControl): void =>
+      this.updateAllValueAndValidity(controlItem, opts);
     if (control instanceof UntypedFormArray) {
       this.formTools.doFormArrayFn(control, fn);
     } else if (control instanceof UntypedFormGroup) {
@@ -49,18 +62,23 @@ export class NbFormService {
     }
   }
 
-  updateEqualControlsValidities(controls: IComparedControls, destroy$?: Subject<any>): Subscription {
+  updateEqualControlsValidities(
+    controls: IComparedControls,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    destroy$?: Subject<any>
+  ): Subscription {
     const { target, compared } = controls;
     return combineLatest([
       target.statusChanges.pipe(startWith(target.status)),
       compared.statusChanges.pipe(startWith(compared.status)),
-    ]).pipe(
-      distinctUntilChanged((prev, curr) => isEqual(prev, curr)),
-      destroy$ ? takeUntil(destroy$) : tap(() => { })
-    ).subscribe(_ => {
-      target.updateValueAndValidity();
-      compared.updateValueAndValidity();
-    });
+    ])
+      .pipe(
+        distinctUntilChanged((prev, curr) => isEqual(prev, curr)),
+        destroy$ ? takeUntil(destroy$) : tap(() => {})
+      )
+      .subscribe(() => {
+        target.updateValueAndValidity();
+        compared.updateValueAndValidity();
+      });
   }
-
 }

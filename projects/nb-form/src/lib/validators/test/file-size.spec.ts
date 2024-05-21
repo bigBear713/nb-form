@@ -1,6 +1,6 @@
-import { UntypedFormControl } from "@angular/forms";
-import { NbControlErrType } from "../../constants";
-import { NbFormValidators } from "../index";
+import { UntypedFormControl } from '@angular/forms';
+import { NbControlErrType } from '../../constants';
+import { NbFormValidators } from '../index';
 
 const testData = {
   '3': '123',
@@ -17,7 +17,7 @@ describe('NbFormValidators.fileSize', () => {
         controlValue: null,
         fileSize: { max: 100, min: 10 },
       },
-      expect: null
+      expect: null,
     },
     {
       title: 'When the value of control is string value',
@@ -25,7 +25,7 @@ describe('NbFormValidators.fileSize', () => {
         controlValue: 'controlValue',
         fileSize: { max: 100, min: 10 },
       },
-      expect: null
+      expect: null,
     },
     {
       title: 'When the file size < 10b',
@@ -33,7 +33,7 @@ describe('NbFormValidators.fileSize', () => {
         controlValue: new File([testData['3']], 'filesize.txt'),
         fileSize: { max: 20, min: 10 },
       },
-      expect: { [NbControlErrType.FILE_MIN_SIZE]: true }
+      expect: { [NbControlErrType.FILE_MIN_SIZE]: true },
     },
     {
       title: 'When the file size < 10b, and only set the min size limit',
@@ -41,7 +41,7 @@ describe('NbFormValidators.fileSize', () => {
         controlValue: new File([testData['3']], 'filesize.txt'),
         fileSize: { min: 10 },
       },
-      expect: { [NbControlErrType.FILE_MIN_SIZE]: true }
+      expect: { [NbControlErrType.FILE_MIN_SIZE]: true },
     },
     {
       title: 'When the file size = 10b',
@@ -49,7 +49,7 @@ describe('NbFormValidators.fileSize', () => {
         controlValue: new File([testData['10']], 'filesize.txt'),
         fileSize: { minSize: 10 },
       },
-      expect: null
+      expect: null,
     },
     {
       title: 'When the file size > 10b',
@@ -57,7 +57,7 @@ describe('NbFormValidators.fileSize', () => {
         controlValue: new File([testData['20']], 'filesize.txt'),
         fileSize: { minSize: 10 },
       },
-      expect: null
+      expect: null,
     },
     {
       title: 'When the file size > 20b',
@@ -65,7 +65,7 @@ describe('NbFormValidators.fileSize', () => {
         controlValue: new File([testData['26']], 'filesize.txt'),
         fileSize: { max: 20, min: 10 },
       },
-      expect: { [NbControlErrType.FILE_MAX_SIZE]: true }
+      expect: { [NbControlErrType.FILE_MAX_SIZE]: true },
     },
     {
       title: 'When the file size > 20b, and only set the max size limit',
@@ -73,7 +73,7 @@ describe('NbFormValidators.fileSize', () => {
         controlValue: new File([testData['26']], 'filesize.txt'),
         fileSize: { max: 20 },
       },
-      expect: { [NbControlErrType.FILE_MAX_SIZE]: true }
+      expect: { [NbControlErrType.FILE_MAX_SIZE]: true },
     },
     {
       title: 'When the file size = 20b',
@@ -81,7 +81,7 @@ describe('NbFormValidators.fileSize', () => {
         controlValue: new File([testData['20']], 'filesize.txt'),
         fileSize: { max: 20 },
       },
-      expect: null
+      expect: null,
     },
     {
       title: 'When the file size < 20b',
@@ -89,14 +89,13 @@ describe('NbFormValidators.fileSize', () => {
         controlValue: new File([testData['10']], 'filesize.txt'),
         fileSize: { max: 20 },
       },
-      expect: null
+      expect: null,
     },
   ].forEach(item => {
     it(item.title, () => {
-      const control = new UntypedFormControl(
-        item.params.controlValue,
-        [NbFormValidators.fileSize(item.params.fileSize)]
-      );
+      const control = new UntypedFormControl(item.params.controlValue, [
+        NbFormValidators.fileSize(item.params.fileSize),
+      ]);
       expect(control.errors).toEqual(item.expect);
     });
   });

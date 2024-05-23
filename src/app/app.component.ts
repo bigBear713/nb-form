@@ -7,10 +7,9 @@ import { GTagService } from './g-tag.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-
   form: UntypedFormGroup | undefined;
 
   errInfo1 = {
@@ -61,14 +60,18 @@ export class AppComponent implements OnInit {
     private fb: UntypedFormBuilder,
     private formService: NbFormService,
     private gtagService: GTagService,
-    private transService: NbTransService,
-  ) { }
+    private transService: NbTransService
+  ) {}
 
   ngOnInit(): void {
     this.trackPage();
     this.buildForm();
     // you can use it to unsubscribe when destroy the form/component
-    const subscription = this.formService.updateEqualControlsValidities({ target: this.field4Ctrl, compared: this.field5Ctrl });
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const subscription = this.formService.updateEqualControlsValidities({
+      target: this.field4Ctrl,
+      compared: this.field5Ctrl,
+    });
   }
 
   changeLanguage(langKey: string) {
@@ -80,7 +83,7 @@ export class AppComponent implements OnInit {
     });
   }
 
-  go2Link(target: { title: string, link: string }): void {
+  go2Link(target: { title: string; link: string }): void {
     this.gtagService.trackLink({
       link_name: target.title,
       link: target.link,
@@ -113,10 +116,14 @@ export class AppComponent implements OnInit {
     this.form = this.fb.group({
       field1: [null, [NbFormValidators.required(true)]],
       field2: [null, [NbFormValidators.whitespace(false)]],
-      field3: [undefined, this.formService.getValidatorsFromControlConfig({
-        fileType: ['image/svg+xml', 'image/jpeg'],
-        maxFileSize: 500 * 1000, minFileSize: 100 * 1000
-      })],
+      field3: [
+        undefined,
+        this.formService.getValidatorsFromControlConfig({
+          fileType: ['image/svg+xml', 'image/jpeg'],
+          maxFileSize: 500 * 1000,
+          minFileSize: 100 * 1000,
+        }),
+      ],
       field4: [''],
       field5: [null],
       field6: [null, [NbFormValidators.required(true)]],

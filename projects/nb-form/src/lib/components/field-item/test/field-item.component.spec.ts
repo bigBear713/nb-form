@@ -9,13 +9,11 @@ import { NbFieldItemComponent } from '../field-item.component';
 
 @Component({
   template: `
-    <nb-field-item [control]="control" 
-                   [errInfo]="errInfo" 
-                   [required]="required">
-    <ng-container field-label>fieldLabel</ng-container> 
-    <input>              
+    <nb-field-item [control]="control" [errInfo]="errInfo" [required]="required">
+      <ng-container field-label>fieldLabel</ng-container>
+      <input />
     </nb-field-item>
-  `
+  `,
 })
 class UIComponent {
   control!: UntypedFormControl;
@@ -31,9 +29,8 @@ describe('NbFieldItemComponent', () => {
     beforeEach(async () => {
       TestBed.configureTestingModule({
         imports: [NbFormTestingModule],
-        declarations: [UIComponent]
-      })
-        .compileComponents();
+        declarations: [UIComponent],
+      }).compileComponents();
     });
 
     beforeEach(() => {
@@ -83,12 +80,12 @@ describe('NbFieldItemComponent', () => {
       it('verify the field content', () => {
         const fieldContentEle: HTMLElement | null = uiHostEle.querySelector('.field-content');
         expect(fieldContentEle?.querySelector('input')).toBeTruthy();
-      })
+      });
 
       it('verify the control error', () => {
         const fieldContentEle: HTMLElement | null = uiHostEle.querySelector('.field-content');
         expect(fieldContentEle?.querySelector('nb-control-err')).toBeTruthy();
-      })
+      });
     });
   });
 
@@ -96,12 +93,12 @@ describe('NbFieldItemComponent', () => {
     [
       {
         title: 'imported by standalone component',
-        createComp: () => TestBed.createComponent(StandaloneComponent)
+        createComp: () => TestBed.createComponent(StandaloneComponent),
       },
       {
         title: 'imported by ngModule',
-        createComp: () => TestBed.createComponent(StandaloneComponentWithNgModule)
-      }
+        createComp: () => TestBed.createComponent(StandaloneComponentWithNgModule),
+      },
     ].forEach(item => {
       it(item.title, () => {
         const fixture = item.createComp();
@@ -111,7 +108,7 @@ describe('NbFieldItemComponent', () => {
 
         expect(component.textContent).toEqual('The field is required!');
       });
-    })
+    });
   });
 });
 
@@ -130,11 +127,12 @@ class StandaloneComponent {
     return this.elementRef.nativeElement.textContent?.trim();
   }
 
-  constructor(private elementRef: ElementRef<HTMLElement>) { }
+  constructor(private elementRef: ElementRef<HTMLElement>) {}
 }
 
 @Component({
   ...StandaloneCompConfig,
   imports: [NbFormTestingModule],
 })
-class StandaloneComponentWithNgModule extends StandaloneComponent { }
+// eslint-disable-next-line @angular-eslint/component-class-suffix
+class StandaloneComponentWithNgModule extends StandaloneComponent {}

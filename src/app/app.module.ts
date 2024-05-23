@@ -2,18 +2,12 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NbTransLang, NbTransModule, NbTransService, NB_TRANS_LOADER } from '@bigbear713/nb-trans';
-import {
-  NbFormModule,
-  NbControlErrType,
-  NB_CONTROL_COMMON_ERR_INFO,
-} from 'nb-form';
+import { NbFormModule, NbControlErrType, NB_CONTROL_COMMON_ERR_INFO } from 'nb-form';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 @NgModule({
-  declarations: [	
-    AppComponent,
-   ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -21,7 +15,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     NbFormModule,
     NbTransModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [
     {
@@ -31,7 +25,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
         [NbControlErrType.FILE_MIN_SIZE]: 'The file min size is 100KB!!!!',
         [NbControlErrType.EQUAL]: '两个控件值不相等',
       }),
-      deps: [NbTransService]
+      deps: [NbTransService],
     },
     {
       provide: NB_TRANS_LOADER,
@@ -41,9 +35,9 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
           [NbTransLang.EN]: () => http.get('./assets/localization/en/translations.json'),
         };
       },
-      deps: [HttpClient]
+      deps: [HttpClient],
     },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

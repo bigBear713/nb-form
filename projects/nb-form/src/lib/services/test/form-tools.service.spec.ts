@@ -8,7 +8,7 @@ describe('Service: FormTools', () => {
   let service: NbFormToolsService;
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [NbFormTestingModule]
+      providers: [NbFormTestingModule],
     });
   });
 
@@ -22,7 +22,8 @@ describe('Service: FormTools', () => {
 
   it('#doFormArrayFn()', () => {
     const fnObj = {
-      doFn: (item: NbAbstractControl) => { }
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      doFn: (item: NbAbstractControl) => {},
     };
     spyOn(fnObj, 'doFn').and.callThrough();
 
@@ -36,7 +37,8 @@ describe('Service: FormTools', () => {
 
   it('#doFormGroupFn()', () => {
     const fnObj = {
-      doFn: (item: NbAbstractControl) => { }
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      doFn: (item: NbAbstractControl) => {},
     };
     spyOn(fnObj, 'doFn').and.callThrough();
 
@@ -49,6 +51,4 @@ describe('Service: FormTools', () => {
     expect(fnObj.doFn).toHaveBeenCalledTimes(Object.keys(form.controls).length);
     expect(fnObj.doFn).toHaveBeenCalledWith(control);
   });
-
-
 });

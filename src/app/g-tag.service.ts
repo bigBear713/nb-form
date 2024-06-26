@@ -2,8 +2,8 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { NbTransService } from '@bigbear713/nb-trans';
-import * as dayjs from 'dayjs';
-import * as utc from 'dayjs/plugin/utc';
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
 dayjs.extend(utc);
 
 const defaultGtag = () => {};

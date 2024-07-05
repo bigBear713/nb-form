@@ -5,12 +5,12 @@ import { NbTransLang, NbTransModule, NbTransService, NB_TRANS_LOADER } from '@bi
 import { NbFormModule, NbControlErrType, NB_CONTROL_COMMON_ERR_INFO } from 'nb-form';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 @NgModule({
   declarations: [AppComponent],
+  bootstrap: [AppComponent],
   imports: [
     BrowserModule,
-    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     NbFormModule,
@@ -37,7 +37,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
       },
       deps: [HttpClient],
     },
+    provideHttpClient(withInterceptorsFromDi()),
   ],
-  bootstrap: [AppComponent],
 })
 export class AppModule {}

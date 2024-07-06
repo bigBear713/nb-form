@@ -1,6 +1,6 @@
-import { UntypedFormControl } from "@angular/forms";
-import { NbControlErrType } from "../../constants";
-import { NbFormValidators } from "../index";
+import { UntypedFormControl } from '@angular/forms';
+import { NbControlErrType } from '../../constants';
+import { NbFormValidators } from '../index';
 
 describe('NbFormValidators.fileType', () => {
   [
@@ -10,7 +10,7 @@ describe('NbFormValidators.fileType', () => {
         controlValue: null,
         fileType: ['text/plain', 'image/jpeg'],
       },
-      expect: null
+      expect: null,
     },
     {
       title: 'When the value of control is string value',
@@ -18,7 +18,7 @@ describe('NbFormValidators.fileType', () => {
         controlValue: 'controlValue',
         fileType: ['text/plain', 'image/jpeg'],
       },
-      expect: null
+      expect: null,
     },
     {
       title: 'When the length of file types is 0 ',
@@ -26,7 +26,7 @@ describe('NbFormValidators.fileType', () => {
         controlValue: new File([], 'fileType.txt', { type: 'text/plain' }),
         fileType: [],
       },
-      expect: null
+      expect: null,
     },
     {
       title: 'When control value is a png file',
@@ -34,7 +34,7 @@ describe('NbFormValidators.fileType', () => {
         controlValue: new File([], 'fileType.png', { type: 'image/png' }),
         fileType: ['text/plain', 'image/jpeg'],
       },
-      expect: { [NbControlErrType.FILE_TYPE]: true }
+      expect: { [NbControlErrType.FILE_TYPE]: true },
     },
     {
       title: 'When control value is a jpg file',
@@ -42,7 +42,7 @@ describe('NbFormValidators.fileType', () => {
         controlValue: new File([], 'fileType.jpg', { type: 'image/jpeg' }),
         fileType: ['text/plain', 'image/jpeg'],
       },
-      expect: null
+      expect: null,
     },
     {
       title: 'When control value is a text file',
@@ -50,14 +50,13 @@ describe('NbFormValidators.fileType', () => {
         controlValue: new File([], 'fileType.text', { type: 'text/plain' }),
         fileType: ['text/plain', 'image/jpeg'],
       },
-      expect: null
+      expect: null,
     },
   ].forEach(item => {
     it(item.title, () => {
-      const control = new UntypedFormControl(
-        item.params.controlValue,
-        [NbFormValidators.fileType(item.params.fileType)]
-      );
+      const control = new UntypedFormControl(item.params.controlValue, [
+        NbFormValidators.fileType(item.params.fileType),
+      ]);
       expect(control.errors).toEqual(item.expect);
     });
   });

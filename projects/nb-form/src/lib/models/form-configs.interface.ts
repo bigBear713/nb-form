@@ -1,4 +1,4 @@
-import { INbControlConfig } from "./control-config.interface";
+import { INbControlConfig } from './control-config.interface';
 
 export interface INbFormConfigs {
   [key: string]: INbControlConfig;

@@ -7,7 +7,6 @@ type ErrorsInfo = ValidationErrors | null | undefined;
 
 @Pipe({ standalone: true, name: 'nbErrInfo' })
 export class NbErrInfoPipe implements PipeTransform {
-
   transform(errors: ErrorsInfo, errInfo?: INbControlErrInfo): string | Observable<string> {
     const errorKey = Object.keys(errors || {})[0];
     if (!errorKey) {
@@ -15,5 +14,4 @@ export class NbErrInfoPipe implements PipeTransform {
     }
     return errInfo?.[errorKey] || '';
   }
-
 }

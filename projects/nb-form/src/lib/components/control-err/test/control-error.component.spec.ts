@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NbControlErrComponent } from '../control-err.component';
@@ -13,9 +15,8 @@ describe('NbControlErrComponent', () => {
   describe('used in normal component', () => {
     beforeEach(async () => {
       await TestBed.configureTestingModule({
-        imports: [NbFormTestingModule]
-      })
-        .compileComponents();
+        imports: [NbFormTestingModule],
+      }).compileComponents();
     });
 
     it('should create', () => {
@@ -40,11 +41,11 @@ describe('NbControlErrComponent', () => {
           title: 'The control is valid and dirty is false',
           testData: {
             control: new UntypedFormControl(),
-            operateControl: (control: AbstractControl) => { },
+            operateControl: (control: AbstractControl) => {},
           },
           expect: {
-            infoWrapperExisted: false
-          }
+            infoWrapperExisted: false,
+          },
         },
         {
           title: 'The control is valid and dirty is true',
@@ -56,8 +57,8 @@ describe('NbControlErrComponent', () => {
             },
           },
           expect: {
-            infoWrapperExisted: false
-          }
+            infoWrapperExisted: false,
+          },
         },
         {
           title: 'The control is invalid and dirty is true',
@@ -69,24 +70,24 @@ describe('NbControlErrComponent', () => {
             },
           },
           expect: {
-            infoWrapperExisted: true
-          }
+            infoWrapperExisted: true,
+          },
         },
         {
           title: 'The control is invalid and dirty is false',
           testData: {
             control: new UntypedFormControl('', [NbFormValidators.required(true)]),
-            operateControl: (control: AbstractControl) => { },
+            operateControl: (control: AbstractControl) => {},
           },
           expect: {
-            infoWrapperExisted: false
-          }
+            infoWrapperExisted: false,
+          },
         },
       ].forEach(item => {
         it(item.title, () => {
           component.control = item.testData.control;
           const changes = {
-            control: new SimpleChange(undefined, component.control, false)
+            control: new SimpleChange(undefined, component.control, false),
           };
           component.ngOnChanges(changes);
           item.testData.operateControl(component.control);
@@ -95,7 +96,6 @@ describe('NbControlErrComponent', () => {
 
           expect(!!hostEle.querySelector('div')).toEqual(item.expect.infoWrapperExisted);
         });
-
       });
 
       it('The control is in initial status, and the dirty is true, status is invalid', () => {
@@ -104,7 +104,7 @@ describe('NbControlErrComponent', () => {
 
         component.control = control;
         const changes = {
-          control: new SimpleChange(undefined, component.control, false)
+          control: new SimpleChange(undefined, component.control, false),
         };
         component.ngOnChanges(changes);
 
@@ -121,7 +121,7 @@ describe('NbControlErrComponent', () => {
         const service: NbFormService = TestBed.inject(NbFormService);
 
         const changes = {
-          control: new SimpleChange(undefined, component.control, false)
+          control: new SimpleChange(undefined, component.control, false),
         };
         component.ngOnChanges(changes);
 
@@ -134,38 +134,40 @@ describe('NbControlErrComponent', () => {
       });
     });
 
-
     describe('verify the allErrorInfo', () => {
       const testData: {
         title: string;
         testData: { defaultInfo: INbControlErrInfo | undefined; errInfo: INbControlErrInfo };
         expect: INbControlErrInfo;
       }[] = [
-          {
-            title: 'There does not have default info',
-            testData: {
-              defaultInfo: undefined,
-              errInfo: { fileType: 'The file type does not support!' }
-            },
-            expect: { fileType: 'The file type does not support!' }
+        {
+          title: 'There does not have default info',
+          testData: {
+            defaultInfo: undefined,
+            errInfo: { fileType: 'The file type does not support!' },
           },
-          {
-            title: 'There have default info',
-            testData: {
-              defaultInfo: { required: 'The filed is required' },
-              errInfo: { fileType: 'The file type does not support!' }
-            },
-            expect: { required: 'The filed is required', fileType: 'The file type does not support!' }
+          expect: { fileType: 'The file type does not support!' },
+        },
+        {
+          title: 'There have default info',
+          testData: {
+            defaultInfo: { required: 'The filed is required' },
+            errInfo: { fileType: 'The file type does not support!' },
           },
-          {
-            title: 'The errInfo is undefined',
-            testData: {
-              defaultInfo: { required: 'The filed is required' },
-              errInfo: undefined as any
-            },
-            expect: { required: 'The filed is required' }
-          }
-        ];
+          expect: {
+            required: 'The filed is required',
+            fileType: 'The file type does not support!',
+          },
+        },
+        {
+          title: 'The errInfo is undefined',
+          testData: {
+            defaultInfo: { required: 'The filed is required' },
+            errInfo: undefined as any,
+          },
+          expect: { required: 'The filed is required' },
+        },
+      ];
 
       testData.forEach(item => {
         describe(item.title, () => {
@@ -179,10 +181,9 @@ describe('NbControlErrComponent', () => {
                 {
                   provide: NB_CONTROL_COMMON_ERR_INFO,
                   useValue: item.testData.defaultInfo,
-                }
-              ]
-            })
-              .compileComponents();
+                },
+              ],
+            }).compileComponents();
           });
 
           beforeEach(() => {
@@ -194,14 +195,14 @@ describe('NbControlErrComponent', () => {
           it(`The allErrorMapping should be ${JSON.stringify(item.expect)}`, () => {
             subComponent.errInfo = item.testData.errInfo;
             const changes = {
-              errInfo: new SimpleChange(undefined, item.testData.errInfo, true)
+              errInfo: new SimpleChange(undefined, item.testData.errInfo, true),
             };
             subComponent.ngOnChanges(changes);
 
             expect(subComponent.allErrInfo).toEqual(item.expect);
           });
         });
-      })
+      });
     });
   });
 
@@ -209,12 +210,12 @@ describe('NbControlErrComponent', () => {
     [
       {
         title: 'imported by standalone component',
-        createComp: () => TestBed.createComponent(StandaloneComponent)
+        createComp: () => TestBed.createComponent(StandaloneComponent),
       },
       {
         title: 'imported by ngModule',
-        createComp: () => TestBed.createComponent(StandaloneComponentWithNgModule)
-      }
+        createComp: () => TestBed.createComponent(StandaloneComponentWithNgModule),
+      },
     ].forEach(item => {
       it(item.title, () => {
         const fixture = item.createComp();
@@ -224,9 +225,8 @@ describe('NbControlErrComponent', () => {
 
         expect(component.textContent).toEqual('The field is required!');
       });
-    })
+    });
   });
-
 });
 
 function createComponent() {
@@ -252,11 +252,12 @@ class StandaloneComponent {
     return this.elementRef.nativeElement.textContent?.trim();
   }
 
-  constructor(private elementRef: ElementRef<HTMLElement>) { }
+  constructor(private elementRef: ElementRef<HTMLElement>) {}
 }
 
 @Component({
   ...StandaloneCompConfig,
   imports: [NbFormTestingModule],
 })
-class StandaloneComponentWithNgModule extends StandaloneComponent { }
+// eslint-disable-next-line @angular-eslint/component-class-suffix
+class StandaloneComponentWithNgModule extends StandaloneComponent {}

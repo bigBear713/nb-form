@@ -6,7 +6,7 @@ import {
   Input,
   OnChanges,
   Optional,
-  SimpleChanges
+  SimpleChanges,
 } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
 import { INbControlErrInfo } from '../../models';
@@ -23,28 +23,32 @@ const importsFromSelf = [NbErrInfoPipe];
   standalone: true,
   imports: [...importsFromNgCommon, ...importsFromNbCommon, ...importsFromSelf],
   selector: 'nb-control-err',
-  template: `<div *ngIf="control&&hasErr" class="err-info" [nb-r-str]="control.errors|nbErrInfo:allErrInfo"></div>`,
-  styles: [`
-    :host {
-      position: relative;
-      top: 100%;
-      left: 0;
-      display: block;
-      font-size: 14px;
-      color: red;
-    }
-    .err-info {
-      position: absolute;
-      top: 0;
-      left: 0;
-      word-break: break-word;
-    }
-  `],
+  template: `<div
+    *ngIf="control && hasErr"
+    class="err-info"
+    [nb-r-str]="control.errors | nbErrInfo: allErrInfo"></div>`,
+  styles: [
+    `
+      :host {
+        position: relative;
+        top: 100%;
+        left: 0;
+        display: block;
+        font-size: 14px;
+        color: red;
+      }
+      .err-info {
+        position: absolute;
+        top: 0;
+        left: 0;
+        word-break: break-word;
+      }
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [NbUnsubscribeService]
+  providers: [NbUnsubscribeService],
 })
 export class NbControlErrComponent implements OnChanges {
-
   @Input({ required: true }) control!: AbstractControl;
 
   @Input() errInfo: INbControlErrInfo = {};
@@ -58,8 +62,8 @@ export class NbControlErrComponent implements OnChanges {
     @Optional()
     private commonErrInfo: INbControlErrInfo = {},
     private changeDR: ChangeDetectorRef,
-    private unsubscribeService: NbUnsubscribeService,
-  ) { }
+    private unsubscribeService: NbUnsubscribeService
+  ) {}
 
   ngOnChanges(changes: SimpleChanges) {
     const { control, errInfo } = changes;
@@ -73,8 +77,8 @@ export class NbControlErrComponent implements OnChanges {
 
   private subscribeControlChange(): void {
     this.updateHasErr(this.control);
-    const subscription = this.control.statusChanges.subscribe(
-      _ => this.updateHasErr(this.control)
+    const subscription = this.control.statusChanges.subscribe(() =>
+      this.updateHasErr(this.control)
     );
     this.unsubscribeService.collectASubscriptionByKey('control-status-changes', subscription);
   }

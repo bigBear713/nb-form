@@ -1,10 +1,10 @@
-import { NgModule } from "@angular/core";
-import { NbFormModule } from "../nb-form.module";
-import { NbFormService, NbFormToolsService } from "../services";
+import { NgModule } from '@angular/core';
+import { NbFormModule } from '../nb-form.module';
+import { NbFormService, NbFormToolsService } from '../services';
 
 @NgModule({
   imports: [NbFormModule],
   providers: [NbFormService, NbFormToolsService],
-  exports: [NbFormModule]
+  exports: [NbFormModule],
 })
-export class NbFormTestingModule { }
+export class NbFormTestingModule {}

@@ -13,9 +13,8 @@ describe('NbErrInfoPipe', () => {
 
     beforeEach(async () => {
       await TestBed.configureTestingModule({
-        imports: [NbCommonTestingModule]
-      })
-        .compileComponents();
+        imports: [NbCommonTestingModule],
+      }).compileComponents();
     });
 
     beforeEach(() => {
@@ -33,34 +32,34 @@ describe('NbErrInfoPipe', () => {
           title: 'the errors and errMapping all are undefined',
           params: {
             errors: undefined,
-            errMapping: undefined
+            errMapping: undefined,
           },
-          expect: { isString: true, isObservable: false }
+          expect: { isString: true, isObservable: false },
         },
         {
           title: 'the errors has a required err and the errMapping is undefined',
           params: {
             errors: { [NbControlErrType.REQUIRED]: true },
-            errMapping: undefined
+            errMapping: undefined,
           },
-          expect: { isString: true, isObservable: false }
+          expect: { isString: true, isObservable: false },
         },
         {
           title: 'the errors has a required err and the errMapping has a string value',
           params: {
             errors: { [NbControlErrType.REQUIRED]: true },
-            errMapping: { [NbControlErrType.REQUIRED]: 'This field is required!' }
+            errMapping: { [NbControlErrType.REQUIRED]: 'This field is required!' },
           },
-          expect: { isString: true, isObservable: false }
+          expect: { isString: true, isObservable: false },
         },
         {
           title: 'the errors has a required err and the errMapping has a observable value',
           params: {
             errors: { [NbControlErrType.REQUIRED]: true },
-            errMapping: { [NbControlErrType.REQUIRED]: of('This field is required!') }
+            errMapping: { [NbControlErrType.REQUIRED]: of('This field is required!') },
           },
-          expect: { isString: false, isObservable: true }
-        }
+          expect: { isString: false, isObservable: true },
+        },
       ].forEach(item => {
         it(item.title, () => {
           const result = pipe.transform(item.params.errors, item.params.errMapping);
@@ -75,7 +74,7 @@ describe('NbErrInfoPipe', () => {
     [
       {
         title: 'imported by standalone component',
-        createComp: () => TestBed.createComponent(StandaloneComponent)
+        createComp: () => TestBed.createComponent(StandaloneComponent),
       },
     ].forEach(item => {
       it(item.title, () => {
@@ -85,9 +84,8 @@ describe('NbErrInfoPipe', () => {
 
         expect(component.textContent).toEqual('The field is required!');
       });
-    })
+    });
   });
-
 });
 
 const StandaloneCompConfig = {
@@ -98,12 +96,12 @@ const StandaloneCompConfig = {
 
 @Component(StandaloneCompConfig)
 class StandaloneComponent {
-  errors = {[NbControlErrType.REQUIRED]:true};
-  errInfo: INbControlErrInfo = { [NbControlErrType.REQUIRED]:'The field is required!' };
+  errors = { [NbControlErrType.REQUIRED]: true };
+  errInfo: INbControlErrInfo = { [NbControlErrType.REQUIRED]: 'The field is required!' };
 
   get textContent() {
     return this.elementRef.nativeElement.textContent?.trim();
   }
 
-  constructor(private elementRef: ElementRef<HTMLDivElement>) { }
+  constructor(private elementRef: ElementRef<HTMLDivElement>) {}
 }

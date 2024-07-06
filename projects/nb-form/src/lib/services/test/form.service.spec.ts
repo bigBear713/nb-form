@@ -1,5 +1,11 @@
 import { TestBed } from '@angular/core/testing';
-import { AbstractControl, UntypedFormArray, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  UntypedFormArray,
+  UntypedFormControl,
+  UntypedFormGroup,
+  Validators,
+} from '@angular/forms';
 import { Subject } from 'rxjs';
 import { NbFormTestingModule } from '../../testing';
 import { NbFormValidators } from '../../validators';
@@ -12,7 +18,7 @@ describe('NbFormService', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NbFormTestingModule]
+      imports: [NbFormTestingModule],
     });
   });
 
@@ -55,7 +61,7 @@ describe('NbFormService', () => {
           minFileSize: 1,
           fileType: ['text/plain'],
           pattern: /d+/,
-          whitespace: true
+          whitespace: true,
         },
         expect: {
           validatorsLength: 12,
@@ -70,8 +76,8 @@ describe('NbFormService', () => {
             fileType: 1,
             pattern: 1,
             whitespace: 1,
-          }
-        }
+          },
+        },
       },
       {
         title: 'the config value are all undefined',
@@ -102,8 +108,8 @@ describe('NbFormService', () => {
             fileType: 0,
             pattern: 0,
             whitespace: 1,
-          }
-        }
+          },
+        },
       },
       {
         title: 'get empty validators',
@@ -121,13 +127,13 @@ describe('NbFormService', () => {
             fileType: 0,
             pattern: 0,
             whitespace: 0,
-          }
-        }
+          },
+        },
       },
       {
         title: 'the config key is a special key',
         params: {
-          repeatPwd: true
+          repeatPwd: true,
         },
         expect: {
           validatorsLength: 0,
@@ -142,9 +148,9 @@ describe('NbFormService', () => {
             fileType: 0,
             pattern: 0,
             whitespace: 0,
-          }
-        }
-      }
+          },
+        },
+      },
     ].forEach(item => {
       it(item.title, () => {
         const result = service.getValidatorsFromControlConfig(item.params);
@@ -170,58 +176,58 @@ describe('NbFormService', () => {
         title: 'mark undefined as dirty with options',
         params: {
           target: undefined,
-          opts: { onlySelf: false, emitEvent: true }
+          opts: { onlySelf: false, emitEvent: true },
         },
-        expectCallTimes: { doFormArrayFn: 0, doFormGroupFn: 0, }
+        expectCallTimes: { doFormArrayFn: 0, doFormGroupFn: 0 },
       },
       {
         title: 'mark formControl as dirty with options',
         params: {
           target: new UntypedFormControl(),
-          opts: { onlySelf: false, emitEvent: true }
+          opts: { onlySelf: false, emitEvent: true },
         },
-        expectCallTimes: { doFormArrayFn: 0, doFormGroupFn: 0, }
+        expectCallTimes: { doFormArrayFn: 0, doFormGroupFn: 0 },
       },
       {
         title: 'mark formControl as dirty without options',
         params: {
           target: new UntypedFormControl(),
-          opts: undefined
+          opts: undefined,
         },
-        expectCallTimes: { doFormArrayFn: 0, doFormGroupFn: 0, }
+        expectCallTimes: { doFormArrayFn: 0, doFormGroupFn: 0 },
       },
       {
         title: 'mark formArray as dirty with options',
         params: {
           target: new UntypedFormArray([new UntypedFormControl()]),
-          opts: { onlySelf: false, emitEvent: true }
+          opts: { onlySelf: false, emitEvent: true },
         },
-        expectCallTimes: { doFormArrayFn: 1, doFormGroupFn: 0, }
+        expectCallTimes: { doFormArrayFn: 1, doFormGroupFn: 0 },
       },
       {
         title: 'mark formArray as dirty without options',
         params: {
           target: new UntypedFormArray([new UntypedFormControl()]),
-          opts: undefined
+          opts: undefined,
         },
-        expectCallTimes: { doFormArrayFn: 1, doFormGroupFn: 0, }
+        expectCallTimes: { doFormArrayFn: 1, doFormGroupFn: 0 },
       },
       {
         title: 'mark formGroup as dirty with options',
         params: {
           target: new UntypedFormGroup({ control: new UntypedFormControl() }),
-          opts: { onlySelf: false, emitEvent: true }
+          opts: { onlySelf: false, emitEvent: true },
         },
-        expectCallTimes: { doFormArrayFn: 0, doFormGroupFn: 1, }
+        expectCallTimes: { doFormArrayFn: 0, doFormGroupFn: 1 },
       },
       {
         title: 'mark formGroup as dirty without options',
         params: {
           target: new UntypedFormGroup({ control: new UntypedFormControl() }),
-          opts: undefined
+          opts: undefined,
         },
-        expectCallTimes: { doFormArrayFn: 0, doFormGroupFn: 1, }
-      }
+        expectCallTimes: { doFormArrayFn: 0, doFormGroupFn: 1 },
+      },
     ].forEach(item => {
       it(`#markAllAsDirty() - ${item.title}`, () => {
         spyOn(formTools, 'doFormArrayFn').and.callThrough();
@@ -230,7 +236,8 @@ describe('NbFormService', () => {
 
         service.markAllAsDirty(item.params.target, item.params.opts);
 
-        item.params.target && expect(item.params.target.markAsDirty).toHaveBeenCalledWith(item.params.opts);
+        item.params.target &&
+          expect(item.params.target.markAsDirty).toHaveBeenCalledWith(item.params.opts);
         expect(formTools.doFormArrayFn).toHaveBeenCalledTimes(item.expectCallTimes.doFormArrayFn);
         expect(formTools.doFormGroupFn).toHaveBeenCalledTimes(item.expectCallTimes.doFormGroupFn);
       });
@@ -252,45 +259,52 @@ describe('NbFormService', () => {
       {
         title: 'when the control is undefined',
         params: {
-          target: undefined, opts: { onlySelf: false, emitEvent: true }
+          target: undefined,
+          opts: { onlySelf: false, emitEvent: true },
         },
       },
       {
         title: 'when the control is formControl with options',
         params: {
-          target: new UntypedFormControl(), opts: { onlySelf: false, emitEvent: true }
+          target: new UntypedFormControl(),
+          opts: { onlySelf: false, emitEvent: true },
         },
       },
       {
         title: 'when the control is formControl without options',
         params: {
-          target: new UntypedFormControl(), opts: undefined
+          target: new UntypedFormControl(),
+          opts: undefined,
         },
       },
       {
         title: 'when the control is formArray with options',
         params: {
-          target: new UntypedFormArray([new UntypedFormControl()]), opts: { onlySelf: false, emitEvent: true }
+          target: new UntypedFormArray([new UntypedFormControl()]),
+          opts: { onlySelf: false, emitEvent: true },
         },
       },
       {
         title: 'when the control is formArray without options',
         params: {
-          target: new UntypedFormArray([new UntypedFormControl()]), opts: undefined
+          target: new UntypedFormArray([new UntypedFormControl()]),
+          opts: undefined,
         },
       },
       {
         title: 'when the control is formGroup with options',
         params: {
-          target: new UntypedFormGroup({ control: new UntypedFormControl() }), opts: { onlySelf: false, emitEvent: true }
+          target: new UntypedFormGroup({ control: new UntypedFormControl() }),
+          opts: { onlySelf: false, emitEvent: true },
         },
       },
       {
         title: 'when the control is formArray without options',
         params: {
-          target: new UntypedFormGroup({ control: new UntypedFormControl() }), opts: undefined
+          target: new UntypedFormGroup({ control: new UntypedFormControl() }),
+          opts: undefined,
         },
-      }
+      },
     ].forEach(item => {
       it(item.title, () => {
         spyOn(service, 'markAllAsDirty').and.callThrough();
@@ -301,7 +315,10 @@ describe('NbFormService', () => {
 
         item.params.target && expect(item.params.target.markAllAsTouched).toHaveBeenCalled();
         expect(service.markAllAsDirty).toHaveBeenCalledWith(item.params.target, item.params.opts);
-        expect(service.updateAllValueAndValidity).toHaveBeenCalledWith(item.params.target, item.params.opts);
+        expect(service.updateAllValueAndValidity).toHaveBeenCalledWith(
+          item.params.target,
+          item.params.opts
+        );
       });
     });
   });
@@ -322,8 +339,8 @@ describe('NbFormService', () => {
       expect(subscription).toBeTruthy();
 
       controls.target.setValue(1);
-      // because when updating control's value, updateValueAndValidity function will auto be call, 
-      // so here is 3 
+      // because when updating control's value, updateValueAndValidity function will auto be call,
+      // so here is 3
       expect(controls.target.updateValueAndValidity).toHaveBeenCalledTimes(3);
       expect(controls.compared.updateValueAndValidity).toHaveBeenCalledTimes(2);
 
@@ -348,5 +365,4 @@ describe('NbFormService', () => {
       expect(controls.compared.updateValueAndValidity).toHaveBeenCalledTimes(2);
     });
   });
-
 });

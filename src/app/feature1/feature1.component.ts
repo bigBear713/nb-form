@@ -1,6 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder, FormGroup, FormsModule, ReactiveFormsModule, UntypedFormControl } from '@angular/forms';
+import {
+  UntypedFormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  UntypedFormControl,
+} from '@angular/forms';
 import { Routes } from '@angular/router';
 import { NbTransModule } from '@bigbear713/nb-trans';
 import { NbControlErrType, NbFormModule, NbFormService } from 'nb-form';
@@ -10,10 +16,9 @@ import { NbControlErrType, NbFormModule, NbFormService } from 'nb-form';
   imports: [NbFormModule, NbTransModule, CommonModule, FormsModule, ReactiveFormsModule],
   selector: 'app-feature1',
   templateUrl: './feature1.component.html',
-  styleUrls: ['./feature1.component.css']
+  styleUrls: ['./feature1.component.css'],
 })
 export class Feature1Component implements OnInit {
-
   form!: FormGroup;
 
   errInfo2 = {
@@ -31,8 +36,7 @@ export class Feature1Component implements OnInit {
     this.buildForm();
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   onChangeFile($event: Event): void {
     const fileEle = $event.target as HTMLInputElement;
@@ -44,13 +48,16 @@ export class Feature1Component implements OnInit {
 
   private buildForm() {
     this.form = this.fb.group({
-      field1: [null, this.formService.getValidatorsFromControlConfig({
-        fileType: ['image/svg+xml', 'image/jpeg'],
-        maxFileSize: 500 * 1000, minFileSize: 100 * 1000
-      })],
+      field1: [
+        null,
+        this.formService.getValidatorsFromControlConfig({
+          fileType: ['image/svg+xml', 'image/jpeg'],
+          maxFileSize: 500 * 1000,
+          minFileSize: 100 * 1000,
+        }),
+      ],
     });
   }
-
 }
 
 export const routes: Routes = [{ path: '', component: Feature1Component }];

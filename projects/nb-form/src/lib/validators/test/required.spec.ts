@@ -1,6 +1,6 @@
-import { UntypedFormControl } from "@angular/forms";
-import { NbControlErrType } from "../../constants";
-import { NbFormValidators } from "../index";
+import { UntypedFormControl } from '@angular/forms';
+import { NbControlErrType } from '../../constants';
+import { NbFormValidators } from '../index';
 
 describe('NbFormValidators.required', () => {
   [
@@ -10,7 +10,7 @@ describe('NbFormValidators.required', () => {
         controlValue: null,
         required: false,
       },
-      expect: null
+      expect: null,
     },
     {
       title: 'When required is undefined and the value of control is null',
@@ -18,7 +18,7 @@ describe('NbFormValidators.required', () => {
         controlValue: null,
         required: undefined,
       },
-      expect: { [NbControlErrType.REQUIRED]: true }
+      expect: { [NbControlErrType.REQUIRED]: true },
     },
     {
       title: 'When required is true and the value of control is null',
@@ -26,7 +26,7 @@ describe('NbFormValidators.required', () => {
         controlValue: null,
         required: true,
       },
-      expect: { [NbControlErrType.REQUIRED]: true }
+      expect: { [NbControlErrType.REQUIRED]: true },
     },
     {
       title: 'When required is true and the value of control is string value',
@@ -34,14 +34,13 @@ describe('NbFormValidators.required', () => {
         controlValue: 'controlValue',
         required: true,
       },
-      expect: null
+      expect: null,
     },
   ].forEach(item => {
     it(item.title, () => {
-      const control = new UntypedFormControl(
-        item.params.controlValue,
-        [NbFormValidators.required(item.params.required)]
-      );
+      const control = new UntypedFormControl(item.params.controlValue, [
+        NbFormValidators.required(item.params.required),
+      ]);
       expect(control.errors).toEqual(item.expect);
     });
   });

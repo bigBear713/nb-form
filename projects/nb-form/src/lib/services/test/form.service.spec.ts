@@ -232,12 +232,16 @@ describe('NbFormService', () => {
       it(`#markAllAsDirty() - ${item.title}`, () => {
         spyOn(formTools, 'doFormArrayFn').and.callThrough();
         spyOn(formTools, 'doFormGroupFn').and.callThrough();
-        item.params.target && spyOn(item.params.target, 'markAsDirty');
+        if (item.params.target) {
+          spyOn(item.params.target, 'markAsDirty');
+        }
 
         service.markAllAsDirty(item.params.target, item.params.opts);
 
-        item.params.target &&
+        if (item.params.target) {
           expect(item.params.target.markAsDirty).toHaveBeenCalledWith(item.params.opts);
+        }
+
         expect(formTools.doFormArrayFn).toHaveBeenCalledTimes(item.expectCallTimes.doFormArrayFn);
         expect(formTools.doFormGroupFn).toHaveBeenCalledTimes(item.expectCallTimes.doFormGroupFn);
       });
@@ -309,11 +313,15 @@ describe('NbFormService', () => {
       it(item.title, () => {
         spyOn(service, 'markAllAsDirty').and.callThrough();
         spyOn(service, 'updateAllValueAndValidity').and.callThrough();
-        item.params.target && spyOn(item.params.target, 'markAllAsTouched').and.callThrough();
+        if (item.params.target) {
+          spyOn(item.params.target, 'markAllAsTouched').and.callThrough();
+        }
 
         service.showAllErrInfo(item.params.target, item.params.opts);
 
-        item.params.target && expect(item.params.target.markAllAsTouched).toHaveBeenCalled();
+        if (item.params.target) {
+          expect(item.params.target.markAllAsTouched).toHaveBeenCalled();
+        }
         expect(service.markAllAsDirty).toHaveBeenCalledWith(item.params.target, item.params.opts);
         expect(service.updateAllValueAndValidity).toHaveBeenCalledWith(
           item.params.target,

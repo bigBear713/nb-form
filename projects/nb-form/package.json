@@ -1,6 +1,6 @@
 {
   "name": "@bigbear713/nb-form",
-  "version": "18.0.0",
+  "version": "19.0.0",
   "homepage": "https://github.com/bigBear713/nb-form/blob/main/projects/nb-form/README.md",
   "description": "Angular common form lib by bigBear713.",
   "keywords": [
@@ -13,6 +13,7 @@
     "angular16",
     "angular17",
     "angular18",
+    "angular19",
     "form",
     "validators",
     "bigBear713"

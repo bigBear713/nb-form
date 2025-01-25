@@ -1,3 +1,10 @@
+# v19.0.0
+## Breaking Changes
+- feat: Upgrade `angular` to `^19.0.0`;
+- feat: Upgrade `@bigbear713/nb-common` to `^19.0.0`;
+
+---
+
 # v18.0.0
 ## Breaking Changes
 - feat: Upgrade `angular` to `^18.0.0`;

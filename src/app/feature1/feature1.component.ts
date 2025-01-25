@@ -12,7 +12,6 @@ import { NbTransModule } from '@bigbear713/nb-trans';
 import { NbControlErrType, NbFormModule, NbFormService } from 'nb-form';
 
 @Component({
-  standalone: true,
   imports: [NbFormModule, NbTransModule, CommonModule, FormsModule, ReactiveFormsModule],
   selector: 'app-feature1',
   templateUrl: './feature1.component.html',

@@ -14,6 +14,8 @@ import { NbFieldItemComponent } from '../field-item.component';
       <input />
     </nb-field-item>
   `,
+  // eslint-disable-next-line @angular-eslint/prefer-standalone
+  standalone: false,
 })
 class UIComponent {
   control!: UntypedFormControl;

@@ -8,7 +8,6 @@ const importsFromNgCommon = [NgIf];
 const importsFromSelf = [NbControlErrComponent];
 
 @Component({
-  standalone: true,
   imports: [...importsFromNgCommon, ...importsFromSelf],
   selector: 'nb-field-item',
   template: `

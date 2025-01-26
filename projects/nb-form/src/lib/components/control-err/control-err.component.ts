@@ -20,7 +20,6 @@ const importsFromNbCommon = [NbRStrComponent];
 const importsFromSelf = [NbErrInfoPipe];
 
 @Component({
-  standalone: true,
   imports: [...importsFromNgCommon, ...importsFromNbCommon, ...importsFromSelf],
   selector: 'nb-control-err',
   template: `<div

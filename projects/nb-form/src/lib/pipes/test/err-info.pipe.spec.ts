@@ -1,4 +1,4 @@
-import { Component, ElementRef } from '@angular/core';
+import { Component, ElementRef, inject } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { NbCommonTestingModule, NbValueTypeService } from '@bigbear713/nb-common';
 import { of } from 'rxjs';
@@ -96,12 +96,11 @@ const StandaloneCompConfig = {
 
 @Component(StandaloneCompConfig)
 class StandaloneComponent {
+  private elementRef: ElementRef<HTMLElement> = inject(ElementRef);
   errors = { [NbControlErrType.REQUIRED]: true };
   errInfo: INbControlErrInfo = { [NbControlErrType.REQUIRED]: 'The field is required!' };
 
   get textContent() {
     return this.elementRef.nativeElement.textContent?.trim();
   }
-
-  constructor(private elementRef: ElementRef<HTMLDivElement>) {}
 }

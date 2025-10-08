@@ -5,7 +5,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NbControlErrComponent } from '../control-err.component';
 import { NbFormTestingModule } from '../../../testing';
 import { NbControlErrType, NB_CONTROL_COMMON_ERR_INFO } from '../../../constants';
-import { Component, SimpleChange, ElementRef } from '@angular/core';
+import { Component, SimpleChange, ElementRef, inject } from '@angular/core';
 import { INbControlErrInfo } from '../../../models';
 import { AbstractControl, FormControl, UntypedFormControl } from '@angular/forms';
 import { NbFormValidators } from '../../../validators';
@@ -245,14 +245,13 @@ const StandaloneCompConfig = {
 
 @Component(StandaloneCompConfig)
 class StandaloneComponent {
+  private elementRef: ElementRef<HTMLElement> = inject(ElementRef);
   control = new FormControl<string>('', [NbFormValidators.required(true)]);
   errInfo = { [NbControlErrType.REQUIRED]: 'The field is required!' };
 
   get textContent() {
     return this.elementRef.nativeElement.textContent?.trim();
   }
-
-  constructor(private elementRef: ElementRef<HTMLElement>) {}
 }
 
 @Component({

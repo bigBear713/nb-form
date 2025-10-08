@@ -11,39 +11,43 @@
   <button type="button" (click)="changeLanguage('zh-CN')">切换为中文</button>
   <button type="button" (click)="changeLanguage('en')">switch as English</button>
 </h3>
-<form *ngIf="form" [formGroup]="form">
-  <nb-field-item [required]="true" [control]="field1Ctrl" [errInfo]="errInfo1">
-    <span field-label>{{ "demoContent.field1" | nbTrans }}：</span>
-    <input type="text" [formControl]="field1Ctrl" />
-  </nb-field-item>
-  <nb-field-item [control]="field2Ctrl" [errInfo]="errInfo1">
-    <span field-label>{{ "demoContent.field2" | nbTrans }}：</span>
-    <input type="text" [formControl]="field2Ctrl" />
-  </nb-field-item>
-  <nb-field-item [control]="field3Ctrl" [errInfo]="errInfo2">
-    <span field-label>{{ "demoContent.field3" | nbTrans }}：</span>
-    <input type="file" (change)="onChangeFile($event)" />
-  </nb-field-item>
-  <nb-field-item [control]="field4Ctrl">
-    <span field-label>{{ "demoContent.field4" | nbTrans }}：</span>
-    <input type="text" [formControl]="field4Ctrl" />
-  </nb-field-item>
-  <nb-field-item [control]="field5Ctrl">
-    <span field-label>{{ "demoContent.field5" | nbTrans }}：</span>
-    <input type="text" [formControl]="field5Ctrl" />
-  </nb-field-item>
-  <nb-field-item [control]="field6Ctrl" [errInfo]="errInfo1">
-    <span field-label><i>+</i>{{ "demoContent.field6" | nbTrans }}：</span>
-    <input type="text" [formControl]="field6Ctrl" />
-  </nb-field-item>
-</form>
+@if (form) {
+  <form [formGroup]="form">
+    <nb-field-item [required]="true" [control]="field1Ctrl" [errInfo]="errInfo1">
+      <span field-label>{{ "demoContent.field1" | nbTrans }}：</span>
+      <input type="text" [formControl]="field1Ctrl" />
+    </nb-field-item>
+    <nb-field-item [control]="field2Ctrl" [errInfo]="errInfo1">
+      <span field-label>{{ "demoContent.field2" | nbTrans }}：</span>
+      <input type="text" [formControl]="field2Ctrl" />
+    </nb-field-item>
+    <nb-field-item [control]="field3Ctrl" [errInfo]="errInfo2">
+      <span field-label>{{ "demoContent.field3" | nbTrans }}：</span>
+      <input type="file" (change)="onChangeFile($event)" />
+    </nb-field-item>
+    <nb-field-item [control]="field4Ctrl">
+      <span field-label>{{ "demoContent.field4" | nbTrans }}：</span>
+      <input type="text" [formControl]="field4Ctrl" />
+    </nb-field-item>
+    <nb-field-item [control]="field5Ctrl">
+      <span field-label>{{ "demoContent.field5" | nbTrans }}：</span>
+      <input type="text" [formControl]="field5Ctrl" />
+    </nb-field-item>
+    <nb-field-item [control]="field6Ctrl" [errInfo]="errInfo1">
+      <span field-label><i>+</i>{{ "demoContent.field6" | nbTrans }}：</span>
+      <input type="text" [formControl]="field6Ctrl" />
+    </nb-field-item>
+  </form>
+}
 
 <hr />
 <h5>{{ "demoContent.useComp" | nbTrans }}</h5>
-<form *ngIf="form" style="margin-bottom: 20px; width: 200px" [formGroup]="form">
-  <input type="text" formControlName="field1" />
-  <nb-control-err [control]="field1Ctrl" [errInfo]="errInfo1" />
-</form>
+@if (form) {
+  <form style="margin-bottom: 20px; width: 200px" [formGroup]="form">
+    <input type="text" formControlName="field1" />
+    <nb-control-err [control]="field1Ctrl" [errInfo]="errInfo1" />
+  </form>
+}
 <hr />
 <button type="button" (click)="onSubmit()">{{ "demoContent.submit" | nbTrans }}</button>
 <button (click)="resetCtrl1()">{{ "demoContent.resetField1" | nbTrans }}</button>

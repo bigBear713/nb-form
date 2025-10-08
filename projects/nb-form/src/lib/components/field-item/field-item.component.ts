@@ -13,16 +13,19 @@ const importsFromSelf = [NbControlErrComponent];
   template: `
     <!-- eslint-disable-next-line @angular-eslint/template/label-has-associated-control -->
     <label class="field-label">
-      <span *ngIf="required" class="label-required">*</span>
+      @if (required) {
+        <span class="label-required">*</span>
+      }
       <ng-content select="[field-label]"></ng-content>
     </label>
     <div class="field-content">
       <ng-content></ng-content>
-      <nb-control-err
-        *ngIf="control"
-        class="nb-control-err"
-        [control]="control"
-        [errInfo]="errInfo"></nb-control-err>
+      @if (control) {
+        <nb-control-err
+          class="nb-control-err"
+          [control]="control"
+          [errInfo]="errInfo"></nb-control-err>
+      }
     </div>
   `,
   styleUrls: ['./field-item.component.scss'],

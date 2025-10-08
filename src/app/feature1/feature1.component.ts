@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, OnInit } from '@angular/core';
 import {
   UntypedFormBuilder,
@@ -12,7 +12,7 @@ import { NbTransModule } from '@bigbear713/nb-trans';
 import { NbControlErrType, NbFormModule, NbFormService } from 'nb-form';
 
 @Component({
-  imports: [NbFormModule, NbTransModule, CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [NbFormModule, NbTransModule, FormsModule, ReactiveFormsModule],
   selector: 'app-feature1',
   templateUrl: './feature1.component.html',
   styleUrls: ['./feature1.component.css'],

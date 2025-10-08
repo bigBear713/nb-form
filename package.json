@@ -1,6 +1,6 @@
 {
   "name": "nb-form-demo",
-  "version": "18.0.0",
+  "version": "20.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

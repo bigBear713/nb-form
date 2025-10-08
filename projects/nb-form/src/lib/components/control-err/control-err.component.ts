@@ -2,30 +2,26 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  Inject,
+  inject,
   Input,
   OnChanges,
-  Optional,
   SimpleChanges,
 } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
 import { INbControlErrInfo } from '../../models';
 import { NB_CONTROL_COMMON_ERR_INFO } from '../../constants';
-import { NgIf } from '@angular/common';
 import { NbErrInfoPipe } from '../../pipes/err-info.pipe';
 import { NbRStrComponent, NbUnsubscribeService } from '@bigbear713/nb-common';
 
-const importsFromNgCommon = [NgIf];
 const importsFromNbCommon = [NbRStrComponent];
 const importsFromSelf = [NbErrInfoPipe];
 
 @Component({
-  imports: [...importsFromNgCommon, ...importsFromNbCommon, ...importsFromSelf],
+  imports: [...importsFromNbCommon, ...importsFromSelf],
   selector: 'nb-control-err',
-  template: `<div
-    *ngIf="control && hasErr"
-    class="err-info"
-    [nb-r-str]="control.errors | nbErrInfo: allErrInfo"></div>`,
+  template: `@if (control && hasErr) {
+    <div class="err-info" [nb-r-str]="control.errors | nbErrInfo: allErrInfo"></div>
+  }`,
   styles: [
     `
       :host {
@@ -48,6 +44,11 @@ const importsFromSelf = [NbErrInfoPipe];
   providers: [NbUnsubscribeService],
 })
 export class NbControlErrComponent implements OnChanges {
+  private commonErrInfo: INbControlErrInfo =
+    inject(NB_CONTROL_COMMON_ERR_INFO, { optional: true }) || {};
+  private changeDR: ChangeDetectorRef = inject(ChangeDetectorRef);
+  private unsubscribeService: NbUnsubscribeService = inject(NbUnsubscribeService);
+
   @Input({ required: true }) control!: AbstractControl;
 
   @Input() errInfo: INbControlErrInfo = {};
@@ -55,14 +56,6 @@ export class NbControlErrComponent implements OnChanges {
   allErrInfo: INbControlErrInfo = {};
 
   hasErr: boolean = false;
-
-  constructor(
-    @Inject(NB_CONTROL_COMMON_ERR_INFO)
-    @Optional()
-    private commonErrInfo: INbControlErrInfo = {},
-    private changeDR: ChangeDetectorRef,
-    private unsubscribeService: NbUnsubscribeService
-  ) {}
 
   ngOnChanges(changes: SimpleChanges) {
     const { control, errInfo } = changes;
@@ -83,10 +76,7 @@ export class NbControlErrComponent implements OnChanges {
   }
 
   private updateAllErrInfo(): void {
-    this.allErrInfo = {
-      ...this.commonErrInfo,
-      ...this.errInfo,
-    };
+    this.allErrInfo = { ...this.commonErrInfo, ...this.errInfo };
     this.changeDR.markForCheck();
   }
 

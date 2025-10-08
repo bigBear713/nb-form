@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { AbstractControl, UntypedFormArray, UntypedFormGroup, ValidatorFn } from '@angular/forms';
 import { isEqual } from 'lodash-es';
 import { combineLatest, Subject, Subscription } from 'rxjs';
@@ -14,7 +14,7 @@ interface IComparedControls {
 
 @Injectable({ providedIn: 'root' })
 export class NbFormService {
-  constructor(private formTools: NbFormToolsService) {}
+  private formTools: NbFormToolsService = inject(NbFormToolsService);
 
   getValidatorsFromControlConfig(config: INbControlConfig): ValidatorFn[] {
     const strategies: { [key: string]: (config: INbControlConfig) => ValidatorFn | undefined } =
